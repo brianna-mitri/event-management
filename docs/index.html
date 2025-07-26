@@ -11,41 +11,34 @@
 
 
 
-    <!-- Navbar -->
+    <!------------------------------------------- Navbar ------------------------------------------->
 
-    <!-- <nav class="navbar navbar-expand-sm bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Logoname</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-              <a class="nav-link" href="#">Contact</a>
-              <a class="nav-link" href="#">FAQ</a>
-              
-            </div>
-
-            <a class="btn btn-success ms-sm-3" href="#">Get Updates</a>
-
-            
-            
-          </div>
-        </div>
-    </nav> -->
-     
     <nav class="navbar navbar-expand-sm bg-body-tertiary sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Logoname</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvasSm" aria-controls="navbarOffcanvasSm" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvasSm" aria-labelledby="navbarOffcanvasSmLabel">
+
+            <!-- Hamburger/Logo Name (left) -->
+            <div class="d-flex align-items-center gap-1">
+
+                <!-- Hamburger -->
+                <button class="navbar-toggler me-1" type="button" 
+                        data-bs-toggle="offcanvas" data-bs-target="#navbarMenu" 
+                        aria-controls="navbarMenu" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Logo Name -->
+                <a class="navbar-brand me-0" href="#">Logoname</a>
+
+            </div>
+            
+            <!-- Menu -->
+            <div class="offcanvas offcanvas-start offcanvas-sm" 
+                tabindex="-1" id="navbarMenu" aria-labelledby="navbarMenuLabel"
+                data-bs-backdrop="false" data-bs-scroll="true">
 
               
               <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Logoname</h5>
+                <h5 class="offcanvas-title" id="navbarMenuLabel">Menu</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
 
@@ -63,12 +56,22 @@
                   </li>
                 </ul>
                 
-                <a class="btn btn-success ms-sm-3" href="#">Get Updates</a>
+                <!-- CTA -->
+                <div class="mt-3 d-sm-none">
+                    <a class="btn btn-success ms-sm-3" href="#cta">Get Updates</a>
+                </div>
+                
     
               </div>
             </div>
+
+            <!-- CTA (always visible on right side)-->
+            <a class="btn btn-success ms-sm-3" href="#cta">Get Updates</a>
+
+
         </div>
     </nav>
+
 
     <!-- Content-->
     <main class="container-fluid">
