@@ -1,0 +1,19 @@
+/* Your palette */
+$primary:   #490100;
+$secondary: #7a7a4e;
+$tertiary: #d0d2aa;
+$success:   #a8dcab;
+$danger:    #c63b3b;
+$warning:   #e7c000;
+$info:      #d0d2aa;
+$light:     #f8f8f6;
+// $light:     #fdfae9;
+$dark:      #490100;
+
+$body-bg:    #fdfae9;
+$body-color: #490100;
+$tertiary-bg: #d0d2aa;
+// $tertiary-color: #d0d2aa;
+
+/* Import all Bootstrap so every component is updated */
+@import "../../node_modules/bootstrap/scss/bootstrap";
