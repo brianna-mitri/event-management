@@ -5397,7 +5397,7 @@ progress {
   font-style: normal !important;
 }
 
-.fw-lighter, .faqs .accordion-body {
+.fw-lighter, .faqs .accordion-body, .faqs-light .accordion-body, .faqs-dark .accordion-body {
   font-weight: lighter !important;
 }
 
@@ -5413,7 +5413,7 @@ progress {
   font-weight: 500 !important;
 }
 
-.fw-semibold, .faqs .accordion-button {
+.fw-semibold, .faqs .accordion-button, .faqs-light .accordion-button, .faqs-dark .accordion-button {
   font-weight: 600 !important;
 }
 
@@ -9041,7 +9041,37 @@ progress {
 /* Supporting Colors */
 /* Functional Colors */
 /* Body and Background Colors */
-.faqs .accordion {
+/* Core Brand Colors */
+/* Supporting Colors */
+/* Functional Colors */
+/* Body and Background Colors */
+/* Lead-Text Adjustments (preferred paragraph text) */
+.lead-text {
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  line-height: 1.6;
+  font-weight: 400;
+  color: inherit;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.faqs .accordion-button, .faqs-light .accordion-button, .faqs-dark .accordion-button {
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  line-height: 1.6;
+  font-weight: 400;
+  color: inherit;
+}
+.faqs .accordion-body, .faqs-light .accordion-body, .faqs-dark .accordion-body {
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  line-height: 1.6;
+  font-weight: 400;
+  color: inherit;
+}
+.faqs .accordion, .faqs-light .accordion, .faqs-dark .accordion {
+  --bs-accordion-border-width: 2px;
+}
+
+.faqs-dark .accordion {
   --bs-accordion-color: #fdfae9;
   --bs-accordion-bg: #490100;
   --bs-accordion-btn-color: #fdfae9;
@@ -9050,19 +9080,19 @@ progress {
   --bs-accordion-active-color: #fdfae9;
   --bs-accordion-active-bg: #490100;
   --bs-accordion-border-color: #fdfae9;
-  --bs-accordion-border-width: 2px;
   --bs-accordion-btn-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fdfae9' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2'/></svg>");
   --bs-accordion-btn-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fdfae9' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8'/></svg>");
 }
-.faqs .accordion-button {
-  font-size: clamp(1rem, 2.2vw, 1.25rem);
-  line-height: 1.6;
-  font-weight: 400;
-  color: inherit;
-}
-.faqs .accordion-body {
-  font-size: clamp(1rem, 2.2vw, 1.25rem);
-  line-height: 1.6;
-  font-weight: 400;
-  color: inherit;
+
+.faqs-light .accordion {
+  --bs-accordion-color: #490100;
+  --bs-accordion-bg: #fdfae9;
+  --bs-accordion-btn-color: #490100;
+  --bs-accordion-btn-bg: #fdfae9;
+  --bs-accordion-btn-focus-box-shadow: none;
+  --bs-accordion-active-color: #490100;
+  --bs-accordion-active-bg: #fdfae9;
+  --bs-accordion-border-color: #490100;
+  --bs-accordion-btn-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23490100' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2'/></svg>");
+  --bs-accordion-btn-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23490100' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8'/></svg>");
 }
