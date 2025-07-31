@@ -1,0 +1,21 @@
+@import 'colors';
+
+/* Lead-Text Adjustments (preferred paragraph text) */
+
+
+// create mixin for lead-text styles
+@mixin lead-text-styles {
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    line-height: 1.6;
+    font-weight: 400;
+    color: inherit;
+}
+
+// apply to .lead-text class
+.lead-text {
+    @include lead-text-styles;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
