@@ -7,7 +7,11 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sass": "sass scss/main.scss css/main.css",
+    "sass-min": "sass scss/main.scss css/main.min.css --style=compressed",
+    "autoprefixer": "postcss css/main.css -o css/main.css",
+    "build-css": "npm run sass && npm run autoprefixer && npm run sass-min",
+    "watch": "sass scss/main.scss css/main.css --watch"
   },
   "repository": {
     "type": "git",
