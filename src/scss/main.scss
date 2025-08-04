@@ -8,11 +8,19 @@
 // 3. bootstrap required files
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/variables-dark";
+// @import "../../node_modules/bootstrap/scss/maps";
+// @import "../../node_modules/bootstrap/scss/mixins";
+// @import "../../node_modules/bootstrap/scss/root";
+
+// 4. custom spacing additions (after variables but before maps)
+@import 'spacing';
+
+// 5. import maps (uses $spacers)
 @import "../../node_modules/bootstrap/scss/maps";
 @import "../../node_modules/bootstrap/scss/mixins";
 @import "../../node_modules/bootstrap/scss/root";
 
-// 4. bootstrap components for performance
+// 6. bootstrap components for performance
 @import "../../node_modules/bootstrap/scss/reboot";
 @import "../../node_modules/bootstrap/scss/type";
 @import "../../node_modules/bootstrap/scss/images";
@@ -27,12 +35,12 @@
 @import "../../node_modules/bootstrap/scss/close";
 @import "../../node_modules/bootstrap/scss/offcanvas";
 
-// 5. helpers
+// 7. helpers
 @import "../../node_modules/bootstrap/scss/helpers";
 
-// 6. utilities
+// 8. utilities
 @import "../../node_modules/bootstrap/scss/utilities";
 @import "../../node_modules/bootstrap/scss/utilities/api";
 
-// 7. custom components
+// 9. custom components
 @import "faqs";

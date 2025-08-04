@@ -1,0 +1,61 @@
+/* 1. extend the spacers map (after variables but before utilities) */
+$spacers: map-merge(
+    $spacers,
+    (
+        6: $spacer * 3.5,
+        7: $spacer * 4,
+        8: $spacer * 4.5,
+        9: $spacer * 6,
+        10: $spacer * 7,
+        11: $spacer * 8,
+        12: $spacer * 9
+    )
+);
+
+
+/* 2. custom margins */
+
+// section
+@mixin section-spacing(
+    $mx-base: 2, 
+    $mx-md: 5, 
+    $mx-lg: 6, 
+    $mx-xl:10,
+
+    $my-base: 4,
+    $my-md: 7
+) {
+    // horizontal margins
+    @extend .mx-#{$mx-base};
+    @extend .mx-md-#{$mx-md};
+    @extend .mx-lg-#{$mx-lg};
+    @extend .mx-xl-#{$mx-xl};
+
+    // vertical margins
+    @extend .my-#{$my-base};
+    @extend .my-md-#{$my-md};
+}
+
+.section-spacing {
+    // create the class with defaults
+    @include section-spacing();
+}
+
+// banner
+.banner-spacing {
+
+    // vertical padding
+    @extend .py-4;
+    @extend .py-md-7;
+
+    // customizable properties
+    text-align: center;
+
+    // container handles horizontal spacing
+    .container, .container-fluid {
+        @extend .px-3;
+        @extend .px-md-5;
+        @extend .px-lg-8;
+        @extend .px-xl-10;
+    }
+}
