@@ -1,26 +1,65 @@
 /* Core Brand Colors */
-$primary:   #b22222;
-$secondary: #d0d2aa;
-// $light:     #f8f8f6;
-$light:     #fdfae9;
-$dark:      #490100;
+// $cream: #fdfae9;
+$cream: #f5f1e9;
+$green-light: #d0d2aa;
+// $green-light: #d0d7bd;
+$green-dark: #7e896b;
+$red-dark: #490100;
 
-/* Supporting Colors */
-// $warm: #fdfae9;
-$white: #f8f8f6;
-$neutral: #7a7a4e;
+// $red-accent: #b22222;    // ?
+// $red-accent: #d30000;
+$red-accent: #b80f0a;
+$darker-green: shade-color($green-dark, 40%);
+$darker-red: shade-color($red-dark, 20%);
+
+/* ---------- Bootstrap Coloring ---------- */
+
+/* Main Colors */
+$primary:   $green-dark;
+$secondary: $green-light;
+
+$light:     $cream;
+$dark:      $red-dark;
 
 /* Functional Colors */
 $success:   #a8dcab;
+// $info:      $green-light;
+$info: $red-accent;
 $warning:   #e7c000;
-$info:      $neutral;
+
 
 /* Body and Background Colors */
-$body-bg: $light;
-$body-color: $dark;
-$secondary-bg: $neutral;
-$tertiary-bg: $light;
+$body-bg: $cream;                       // background color
+// $body-color: $darker-red;               // main text color
+$body-color: $red-dark;
+// $body-bg: $cream;
+// $body-color: $green-dark;
 
-// /* Import all Bootstrap so every component is updated */
-// @import "../../node_modules/bootstrap/scss/bootstrap";
-// @import "../../node_modules/bootstrap/scss/variables";
+
+// ensure minimum contrast ratios
+// $min-contrast-ratio: 10;
+
+// $primary:   #b22222;
+// $secondary: #d0d2aa;
+// // $light:     #f8f8f6;
+// $light:     #fdfae9;
+// $dark:      #490100;
+
+// /* Supporting Colors */
+// // $warm: #fdfae9;
+// $white: #f8f8f6;
+// // $neutral: #7a7a4e;
+// $neutral: #7e896b;
+
+// /* Functional Colors */
+// $success:   #a8dcab;
+// $warning:   #e7c000;
+// $info:      $neutral;
+
+// /* Body and Background Colors */
+// // $body-bg: $light;                // background color
+// $body-bg: $neutral;
+// // $body-color: $dark;              // main text color
+// $body-color: $light;
+// $secondary-bg: $neutral;
+// $tertiary-bg: $light;
