@@ -20,9 +20,9 @@ $spacers: map-merge(
     $mx-base: 2, 
     $mx-md: 5, 
     $mx-lg: 6, 
-    $mx-xl:10,
+    $mx-xl:12,
 
-    $my-base: 4,
+    $my-base: 5,
     $my-md: 7
 ) {
     // horizontal margins
@@ -45,17 +45,28 @@ $spacers: map-merge(
 .banner-spacing {
 
     // vertical padding
-    @extend .py-4;
-    @extend .py-md-7;
+    @extend .py-3;
+    @extend .py-md-4;
+
+    // vertical margins
+    @extend .my-2;
+    @extend .my-3;
 
     // customizable properties
-    text-align: center;
+    // text-align: center;
 
     // container handles horizontal spacing
     .container, .container-fluid {
         @extend .px-3;
         @extend .px-md-5;
         @extend .px-lg-8;
-        @extend .px-xl-10;
+        @extend .px-xl-12;
     }
+}
+
+// navbar
+.navbar-spacing {
+    // padding left right on non mobile
+    @extend .px-md-4;
+    @extend .px-lg-6;
 }
