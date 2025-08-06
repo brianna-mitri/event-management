@@ -5,21 +5,22 @@
     $bg, $text-color, $hover-color: null, 
     $btn-bg: null, $btn-text: null
 ) {
-    background-color: $bg !important;
+    background-color: $bg;
 
     .navbar-brand,
     .navbar-nav .nav-link {
-        color: $text-color !important;
-
+        color: $text-color;
+        background-color: transparent;
+        
         &:hover, &:focus {
-            color: $hover-color or darken(text-color, 10%) !important;
+            color: $hover-color or darken(text-color, 10%);
         }
     }
 
     .navbar-toggler {
         // border-color: none;
         border: none;
-        box-shadow: none !important;
+        box-shadow: none;
     }
 
     .navbar-toggler-icon {
@@ -30,22 +31,27 @@
 
     // cta button styling within navbar
     .btn {
-        background-color: $btn-bg  or $text-color !important;
-        color: $btn-text or $bg !important;
+        background-color: $btn-bg  or $text-color;
+        color: $btn-text or $bg;
 
         &:hover {
-            background-color: darken($btn-bg or $text-color, 10%) !important;
+            background-color: darken($btn-bg or $text-color, 10%);
         }
     }
 
     // offcanvas menu styling
+    @include media-breakpoint-down(sm) {
+        .offcanvas {
+            background-color: $bg;
+        }
+    }
     .offcanvas {
-        background-color: $bg !important;
+        // background-color: $bg;
 
         // flex-grow: 2;
 
         .offcanvas-title {
-            color: $text-color !important;
+            color: $text-color;
         }
 
         .btn-close {
@@ -53,9 +59,9 @@
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z' fill='#{$encoded-color}'/%3e%3c/svg%3e");
 
             // adjust sizing
-            width: 1.5rem;
-            height: 1.5rem;
-            background-size: 1.5rem 1.5rem;
+            width: 2rem;
+            height: 2rem;
+            background-size: 2rem 2rem;
             opacity: 100;
 
         }
@@ -70,6 +76,30 @@
 }
 
 // navbar themes
+.navbar-theme-transparent {
+    @include navbar-theme(
+        transparent, $light, $info,
+        $dark, $light
+
+        // transparent, $light, $info,
+        // rgba(15, 23, 42, 0.1), $light
+    );
+
+    // offcanvas bar
+    @include media-breakpoint-down(sm) {
+        .offcanvas {
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(8px);
+        }
+    }
+
+    //cta button
+    .btn {
+        // backdrop-filter: blur(10px);
+        border: 1.5px solid $light;
+    }
+}
+
 .navbar-theme-info {
     @include navbar-theme(
         $light, $dark, $info,
@@ -142,12 +172,8 @@
 
 }
 
-
-
-// .navbar[data-bs-theme="dark"] {
-//   --bs-navbar-bg: #51140c;
-//   --bs-navbar-color: rgba(255,255,255,.85);
-//   --bs-navbar-hover-color: #fff;
-//   --bs-navbar-brand-color: #fff;
-//   --bs-navbar-toggler-border-color: rgba(255,255,255,.3);
-// }
+/* --------------------------- Transition --------------------------- */
+.navbar {
+    transition: background-color 0.5s ease;
+    // transition: all 0.5s ease;
+}
