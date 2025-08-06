@@ -2,22 +2,8 @@
 .hero {
 
     // responsive heights
-    height: 55vh;                       //mobile
-    min-height: 550px;
-
-    // @media (min-width: 768px) {         //tablet
-    //     height: 60vh;
-    //     min-height: 550px;
-    // }
-
-    // @media (min-width: 992px) {         //desktop
-    //     height: 70vh;
-    //     min-height: 600px;
-    // }
-
-    // @include media-breakpoint-down(md) {
-    //     height: 50vh;
-    // }
+    height: 70vh;                       //mobile
+    min-height: 600px;
 
     @include media-breakpoint-up(lg) {
         height: 65vh;

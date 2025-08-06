@@ -12201,8 +12201,8 @@ progress {
 }
 
 .hero {
-  height: 55vh;
-  min-height: 550px;
+  height: 70vh;
+  min-height: 600px;
   background-position: center;
   background-size: cover;
   display: flex;
