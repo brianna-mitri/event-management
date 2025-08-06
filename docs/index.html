@@ -16,8 +16,8 @@
 
     <!------------------------------------------- Navbar ------------------------------------------->
 
-    <nav class="navbar navbar-expand-sm navbar-theme-info sticky-top navbar-spacing">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-sm navbar-theme-transparent fixed-top navbar-spacing">
+      <div class="container-fluid">
 
             <!-- Hamburger/Logo Name (left) -->
             <div class="d-flex align-items-center gap-1">
@@ -30,12 +30,12 @@
                 </button>
 
                 <!-- Logo Name -->
-                <a class="navbar-brand me-0 text-dark" href="#">Logoname</a>
+                <a class="navbar-brand me-0" href="#">Logoname</a>
 
             </div>
             
             <!-- Menu -->
-            <div class="offcanvas bg-light offcanvas-start offcanvas-sm" 
+            <div class="offcanvas offcanvas-start offcanvas-sm" 
                 tabindex="-1" id="navbarMenu" aria-labelledby="navbarMenuLabel"
                 data-bs-backdrop="false" data-bs-scroll="true">
 
@@ -70,7 +70,7 @@
                 
                 <!-- CTA -->
                 <div class="mt-3 d-sm-none">
-                    <a class="btn btn rounded-pill ms-sm-3" href="#cta">Get Updates</a>
+                    <a class="btn btn ms-sm-3" href="#cta">Get Updates</a>
                 </div>
                 
     
@@ -78,7 +78,7 @@
             </div>
 
             <!-- CTA (always visible on right side)-->
-            <a class="btn btn rounded-pill ms-sm-3" href="#cta">Get Updates</a>
+            <a class="btn btn ms-sm-3" href="#cta">Get Updates</a>
 
 
         </div>
@@ -87,32 +87,21 @@
     <!-- Main Content -->
     <main>
       <!--------------------------------- Hero Banner Section --------------------------------->
-      <section class="hero-banner">
-        <div class="container-fluid">
+           <section class="hero hero-home hero-mask hero-left hero-spacing">
+        <!-- Gradient overlay -->
+        <div class="hero-mask mask-gradient"></div>
+        
+        <!-- Text -->
+        <div class="container">
           <div class="row">
-            <div class="position-relative d-flex align-items-center justify-content-center text-light" style="height: 60vh; min-height: 400px;">
-              <!--Bacground img-->
-              <div class="position-absolute top 0 start-0 w-100 h-100"
-                style="background-image: url('assets/img/event_night.png');
-                      background-size: cover;
-                      background-position: center;
-                      z-index: 1;">
-              </div>
-              <!-- Dark Overlay -->
-              <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50" style="z-index: 2;"></div>
+            <div class="col-sm-12 col-md-8 col-lg-7">
+              <h1 class="display-1 pb-2 fw-semibold text-light">Celebrate our event name</h1>
+              <h4 class="display-7 fw-normal text-light pb-4">Cityname &#8226; MM-DD-YYYY</h4>
+              <!-- <h2 class="display-7 mb-4 fw-light text-light">Weekday, DD Month YYYY</h2> -->
 
-              <!-- Content -->
-              <div class="container text-center" style="z-index: 3;">
-                <div class="row justify-content-center">
-                  <div class="col-lg-8 col-md-10">
-                    <h1 class="display-2 mb-4 fw-semibold text-light">Celebrate Our Event Name</h1>
-                    <!-- <h1 class="display-2 mb-4 fw-semibold text-white">Join Us For Our Event Name</h1> -->
-                    <h2 class="display-7 mb-4 fw-light text-light">Weekday, DD Month YYYY</h2>
-                    <!-- <a class="btn btn-secondary ms-sm-3" href="#">RSVP</a> -->
-                    <button type="button" class="btn btn-lg btn-info text-light rounded-pill my-2">RSVP</button>
-                    <button type="button" class="btn btn-lg btn-outline-secondary rounded-pill my-2">Get Updates</button>
-                  </div>
-                </div>
+              <div class="hero-btns">
+                <button type="button" class="btn btn-light">RSVP</button>
+                <button type="button" class="btn btn-outline-light">See details</button>
               </div>
             </div>
           </div>
@@ -128,7 +117,7 @@
           <div class="row align-items-center">
             <!--Text -->
             <div class="col-sm-7 text-start">
-              <h1 class="display-4 fw-semibold mb-md-4">You're invited!</h1>
+              <h2 class="display-4 fw-semibold mb-md-4">You're invited!</h2>
               <p class="lead-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate consequuntur dicta pariatur, ab ea possimus obcaecati inventore ullam soluta officia repellat tenetur ipsa modi aperiam est laboriosam voluptates similique.</p>
             </div>
             <!--Photo -->
@@ -147,9 +136,9 @@
         <div class="container-fluid text-center">
           <!-- Add Countdown Here!! -->
           <!-- <h2 class="display-4 fw-semibold">It's Coming Up!</h2> -->
-          <h1 class="display-4 fw-semibold mb-md-4">Save Your Spot</h2>
+          <h2 class="display-4 fw-semibold mb-md-4">Save Your Spot</h2>
           <p class="lead fw-normal mb-md-4">Only DD days left to RSVP. Hurry so you don't miss out!</p>
-          <a class="btn btn-lg btn-secondary rounded-pill ms-sm-3" href="#">RSVP Now</a>
+          <a class="btn main-btn btn-secondary ms-sm-3" href="#">RSVP Now</a>
         </div>
       </section>
 
@@ -157,7 +146,7 @@
       <section class="faqs-primary bg-primary banner-spacing">
         <div class="container-fluid">
           <!-- Title -->
-          <h1 class="display-4 fw-semibold text-center text-light mb-md-3">FAQ</h1>
+          <h2 class="display-4 fw-semibold text-center text-light mb-md-3">FAQ</h2>
 
           <!-- Accordion -->
           <div class="accordion accordion-flush" id="home-faqs">
@@ -239,5 +228,6 @@
 
     <!--Bootstrap JS Bundle (w/ Popper)-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script src="./assets/js/navbar.js"></script>
   </body>
 </html>

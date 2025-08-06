@@ -70,3 +70,15 @@ $spacers: map-merge(
     @extend .px-md-4;
     @extend .px-lg-6;
 }
+
+// hero spacing
+.hero-spacing {
+    // container handles horizontal spacing
+    .container, .container-fluid {
+        // @extend .ps-2;
+        @extend .ms-2;
+        @extend .ps-md-5;
+        @extend .ps-lg-6;
+        @extend .ps-xl-12;
+    }
+}

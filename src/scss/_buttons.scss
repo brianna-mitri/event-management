@@ -1,0 +1,20 @@
+// apply to every button
+.btn {
+    @extend .rounded-pill;
+}
+
+// apply to hero buttons
+.hero-btns {
+    .btn {
+        padding: 0.5em 1.5em;
+        font-weight: 600;
+        font-size: 1.15rem;
+    }
+}
+
+// main button style --> SHOULD BE LARGE ONLY
+.main-btn {
+    padding: 0.6em 1.5em;
+    font-weight: 600;
+    font-size: 1.25rem;
+}
