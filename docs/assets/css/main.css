@@ -11959,11 +11959,11 @@ progress {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23f5f1e9' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 .navbar-theme-transparent .btn {
-  background-color: #490100;
+  background-color: rgba(15, 23, 42, 0.1);
   color: #f5f1e9;
 }
 .navbar-theme-transparent .btn:hover {
-  background-color: rgb(22, 0.301369863, 0);
+  background-color: rgba(1.5789473684, 2.4210526316, 4.4210526316, 0.1);
 }
 @media (max-width: 575.98px) {
   .navbar-theme-transparent .offcanvas {
@@ -11988,7 +11988,9 @@ progress {
   }
 }
 .navbar-theme-transparent .btn {
-  border: 1.5px solid #f5f1e9;
+  background: rgba(245, 241, 233, 0.15);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
 }
 
 .navbar-theme-info {

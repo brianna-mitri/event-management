@@ -78,11 +78,11 @@
 // navbar themes
 .navbar-theme-transparent {
     @include navbar-theme(
-        transparent, $light, $info,
-        $dark, $light
-
         // transparent, $light, $info,
-        // rgba(15, 23, 42, 0.1), $light
+        // $dark, $light
+
+        transparent, $light, $info,
+        rgba(15, 23, 42, 0.1), $light
     );
 
     // offcanvas bar
@@ -95,8 +95,9 @@
 
     //cta button
     .btn {
-        // backdrop-filter: blur(10px);
-        border: 1.5px solid $light;
+        background: rgba($light, 0.15);
+        backdrop-filter: blur(4px);
+        // border: 1.5px solid $light;
     }
 }
 
