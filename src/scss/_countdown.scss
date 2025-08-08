@@ -1,0 +1,26 @@
+/* Countdown: Typography & Borders */
+.timebox {
+
+    .time-unit {
+        border: 1px solid;
+        @extend .rounded-3;      
+    }
+
+    h3 {
+        margin-bottom: 0.25rem;
+        font-size: 3rem;
+        font-weight: 350;
+        line-height: 1.1;
+    }
+
+    p {
+        margin-bottom: 0.25rem;
+        line-height: 0;
+    }
+
+    .p-time {
+        font-size: 0.7rem;
+        font-weight: 600;
+        line-height: 2;
+    }
+}
