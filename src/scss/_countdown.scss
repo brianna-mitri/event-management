@@ -1,9 +1,16 @@
+// @use 'colors'; 
+
+
 /* Countdown: Typography & Borders */
+
+$time-unit-color: lighten($dark, 5%);
+
 .timebox {
 
     .time-unit {
-        border: 1px solid;
-        @extend .rounded-3;      
+        border: 1px solid $time-unit-color;
+        @extend .rounded-3;
+        background-color: $time-unit-color;      
     }
 
     h3 {
