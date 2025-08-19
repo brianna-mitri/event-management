@@ -11974,6 +11974,10 @@ progress {
 .navbar-theme-transparent .btn:hover {
   background-color: rgba(1.5789473684, 2.4210526316, 4.4210526316, 0.1);
 }
+.navbar-theme-transparent:has(.navbar-collapse.show), .navbar-theme-transparent:has(.navbar-collapse.collapsing) {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
 @media (max-width: 575.98px) {
   .navbar-theme-transparent #navbarMenu.navbar-collapse {
     margin-left: -15px;
@@ -12148,7 +12152,7 @@ progress {
 
 /* --------------------------- Transition --------------------------- */
 .navbar {
-  transition: background-color 0.5s ease;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
 }
 
 .hero {

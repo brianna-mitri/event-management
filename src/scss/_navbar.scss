@@ -64,6 +64,13 @@
         rgba(15, 23, 42, 0.1), $light
     );
 
+    // apply blur to navbar when dropdown opened
+    &:has(.navbar-collapse.show),
+    &:has(.navbar-collapse.collapsing) {
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+    }
+
     // collapsing menu
     @include media-breakpoint-down(sm) {
         #navbarMenu.navbar-collapse {
@@ -173,6 +180,9 @@
 
 /* --------------------------- Transition --------------------------- */
 .navbar {
-    transition: background-color 0.5s ease;
+    transition: 
+        background-color 0.3s ease,
     // transition: all 0.5s ease;
+        backdrop-filter 0.3s ease, 
+        -webkit-backdrop-filter 0.3s ease;
 }
