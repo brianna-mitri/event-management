@@ -13,7 +13,7 @@
         background-color: transparent;
         
         &:hover, &:focus {
-            color: $hover-color or darken(text-color, 10%);
+            color: $hover-color or darken($text-color, 10%);
         }
     }
 
@@ -75,6 +75,7 @@
             // have background show during collapsing and when opened
             &.collapsing,
             &.show {
+                background-image: radial-gradient(black, transparent);
                 backdrop-filter: blur(8px);
                 -webkit-backdrop-filter: blur(8px);
             }

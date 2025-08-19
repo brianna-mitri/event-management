@@ -11980,6 +11980,7 @@ progress {
     margin-right: -15px;
   }
   .navbar-theme-transparent .navbar-collapse.collapsing, .navbar-theme-transparent .navbar-collapse.show {
+    background-image: radial-gradient(black, transparent);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
