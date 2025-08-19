@@ -75,9 +75,10 @@
             // have background show during collapsing and when opened
             &.collapsing,
             &.show {
-                background-image: radial-gradient(black, transparent);
-                backdrop-filter: blur(8px);
+                // background-image: radial-gradient(black, transparent);
+                background: rgba(15, 23, 42, 0.25);
                 -webkit-backdrop-filter: blur(8px);
+                backdrop-filter: blur(8px);
             }
 
             // padding
