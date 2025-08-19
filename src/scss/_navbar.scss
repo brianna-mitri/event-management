@@ -66,53 +66,35 @@
 
     // keep navbar stack above
     // position: relative;
-    z-index: 1060;
+    z-index: 1200;
 
     // collapsing menu
     @include media-breakpoint-down(sm) {
-        .navbar-collapse {
+        #navbarMenu.navbar-collapse {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 1200;
+
             // ensure background goes from side to side (no gaps)
             margin-left: -15px;
             margin-right: -15px;
 
-            // anchor for the blur layer and contain its z index
-            position: relative;
-            z-index: 0;
+            // have background show during collapsing and when opened
+            &.collapsing,
+            &.show {
+                // background-image: radial-gradient(black, transparent);
+                background: rgba(15, 23, 42, 0.25);
+                background-image: none;
+                -webkit-backdrop-filter: blur(8px);
+                backdrop-filter: blur(8px);
+            }
 
-            // // have background show during collapsing and when opened
-            // &.collapsing,
-            // &.show {
-            //     // background-image: radial-gradient(black, transparent);
-            //     background: rgba(15, 23, 42, 0.25);
-            //     -webkit-backdrop-filter: blur(8px);
-            //     backdrop-filter: blur(8px);
-            // }
-
-            // // padding
-            // .navbar-nav {
-            //     padding: 1rem 1.5rem;
-            // }
-        }
-
-        // have background show during collapsing and when opened
-        .navbar-collapse.show::before,
-        .navbar-collapse.collapsing::before {
-            content: "";
-            position: absolute;
-            top: 0; bottom: 0;
-            left: -15px; right: -15px;
-            z-index: -1;
-            pointer-events: none;
-            
-            // background-image: radial-gradient(black, transparent);
-            background: rgba(15, 23, 42, 0.25);
-            -webkit-backdrop-filter: blur(8px);
-            backdrop-filter: blur(8px);
-        }
-
-        // padding
-        .navbar-nav {
-            padding: 1rem 1.5rem;
+            // padding
+            .navbar-nav {
+                padding: 1rem 1.5rem;
+            }
         }
     }
 
