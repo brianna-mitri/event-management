@@ -64,18 +64,9 @@
         rgba(15, 23, 42, 0.1), $light
     );
 
-    // keep navbar stack above
-    // position: relative;
-    z-index: 1200;
-
     // collapsing menu
     @include media-breakpoint-down(sm) {
         #navbarMenu.navbar-collapse {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            z-index: 1200;
 
             // ensure background goes from side to side (no gaps)
             margin-left: -15px;
@@ -85,7 +76,7 @@
             &.collapsing,
             &.show {
                 // background-image: radial-gradient(black, transparent);
-                background: rgba(15, 23, 42, 0.25);
+                // background: rgba(15, 23, 42, 0.25);
                 background-image: none;
                 -webkit-backdrop-filter: blur(8px);
                 backdrop-filter: blur(8px);

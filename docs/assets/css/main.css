@@ -11943,7 +11943,6 @@ progress {
 /* --------------------------- COLOR THEMES --------------------------- */
 .navbar-theme-transparent {
   background-color: transparent;
-  z-index: 1200;
 }
 .navbar-theme-transparent .navbar-brand,
 .navbar-theme-transparent .navbar-nav .nav-link {
@@ -11977,16 +11976,10 @@ progress {
 }
 @media (max-width: 575.98px) {
   .navbar-theme-transparent #navbarMenu.navbar-collapse {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 1200;
     margin-left: -15px;
     margin-right: -15px;
   }
   .navbar-theme-transparent #navbarMenu.navbar-collapse.collapsing, .navbar-theme-transparent #navbarMenu.navbar-collapse.show {
-    background: rgba(15, 23, 42, 0.25);
     background-image: none;
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
