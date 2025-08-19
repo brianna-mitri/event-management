@@ -11976,8 +11976,8 @@ progress {
 }
 @media (max-width: 575.98px) {
   .navbar-theme-transparent .navbar-collapse {
-    margin-left: -12px;
-    margin-right: -12px;
+    margin-left: -15px;
+    margin-right: -15px;
   }
   .navbar-theme-transparent .navbar-collapse.collapsing, .navbar-theme-transparent .navbar-collapse.show {
     backdrop-filter: blur(8px);
