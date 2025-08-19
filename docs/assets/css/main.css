@@ -972,12 +972,13 @@ progress {
   --bs-gutter-y: 0;
 }
 
-.g-1, .time-spacing .timebox .row,
-.gx-1 {
+.g-1,
+.gx-1,
+.time-spacing .timebox .row {
   --bs-gutter-x: 0.25rem;
 }
 
-.g-1, .time-spacing .timebox .row,
+.g-1,
 .gy-1 {
   --bs-gutter-y: 0.25rem;
 }
@@ -1469,11 +1470,12 @@ progress {
   .gy-md-3 {
     --bs-gutter-y: 1rem;
   }
-  .g-md-4, .time-spacing .timebox .row,
-  .gx-md-4 {
+  .g-md-4,
+  .gx-md-4,
+  .time-spacing .timebox .row {
     --bs-gutter-x: 1.5rem;
   }
-  .g-md-4, .time-spacing .timebox .row,
+  .g-md-4,
   .gy-md-4 {
     --bs-gutter-y: 1.5rem;
   }
@@ -1726,11 +1728,11 @@ progress {
   .gy-lg-7 {
     --bs-gutter-y: 4rem;
   }
-  .g-lg-8, .time-spacing .timebox .row,
+  .g-lg-8,
   .gx-lg-8 {
     --bs-gutter-x: 4.5rem;
   }
-  .g-lg-8, .time-spacing .timebox .row,
+  .g-lg-8,
   .gy-lg-8 {
     --bs-gutter-y: 4.5rem;
   }
@@ -1944,7 +1946,8 @@ progress {
     --bs-gutter-y: 3.5rem;
   }
   .g-xl-7,
-  .gx-xl-7 {
+  .gx-xl-7,
+  .time-spacing .timebox .row {
     --bs-gutter-x: 4rem;
   }
   .g-xl-7,
@@ -8618,7 +8621,7 @@ progress {
     padding-top: 0.5rem !important;
     padding-bottom: 0.5rem !important;
   }
-  .py-md-3 {
+  .py-md-3, .time-spacing .timebox .row {
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
   }
@@ -10480,7 +10483,7 @@ progress {
     padding-right: 1.5rem !important;
     padding-left: 1.5rem !important;
   }
-  .px-xl-5 {
+  .px-xl-5, .time-spacing .timebox .row {
     padding-right: 3rem !important;
     padding-left: 3rem !important;
   }
@@ -12291,4 +12294,26 @@ progress {
   font-size: 0.7rem;
   font-weight: 600;
   line-height: 2;
+}
+@media (min-width: 576px) {
+  .timebox h3, .timebox .h3 {
+    font-size: 5rem;
+  }
+  .timebox p {
+    font-size: 1.5rem;
+  }
+  .timebox .p-time {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 992px) {
+  .timebox h3, .timebox .h3 {
+    font-size: 7rem;
+  }
+  .timebox p {
+    font-size: 2rem;
+  }
+  .timebox .p-time {
+    font-size: 1.5rem;
+  }
 }

@@ -1,18 +1,19 @@
-// @use 'colors'; 
-
-
 /* Countdown: Typography & Borders */
 
+// time unit background color
 $time-unit-color: lighten($dark, 5%);
 
+
+// time box settings
 .timebox {
 
     .time-unit {
         border: 1px solid $time-unit-color;
         @extend .rounded-3;
-        background-color: $time-unit-color;      
+        background-color: $time-unit-color;
     }
 
+    // main number
     h3 {
         margin-bottom: 0.25rem;
         font-size: 3rem;
@@ -20,14 +21,48 @@ $time-unit-color: lighten($dark, 5%);
         line-height: 1.1;
     }
 
+    // dash 
     p {
         margin-bottom: 0.25rem;
         line-height: 0;
     }
 
+    // time wording
     .p-time {
         font-size: 0.7rem;
         font-weight: 600;
         line-height: 2;
+    }
+
+    // applies font changes when greater than sm
+    @include media-breakpoint-up(sm) {
+        h3 {
+            font-size: 5rem;
+            // font-weight: 350;
+        }
+
+        p {
+            font-size: 1.5rem;
+        }
+
+        .p-time {
+            font-size: 1rem;
+        }
+    }
+
+    // applies font changes when greater than lg
+    @include media-breakpoint-up(lg) {
+        h3 {
+            font-size: 7rem;
+            // font-weight: 350;
+        }
+
+        p {
+            font-size: 2rem;
+        }
+
+        .p-time {
+            font-size: 1.5rem;
+        }
     }
 }
