@@ -11969,25 +11969,16 @@ progress {
   background-color: rgba(1.5789473684, 2.4210526316, 4.4210526316, 0.1);
 }
 @media (max-width: 575.98px) {
-  .navbar-theme-transparent .offcanvas {
-    background-color: transparent;
+  .navbar-theme-transparent .navbar-collapse {
+    margin-left: -12px;
+    margin-right: -12px;
   }
-}
-.navbar-theme-transparent .offcanvas .offcanvas-title {
-  color: #f5f1e9;
-}
-.navbar-theme-transparent .offcanvas .btn-close {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z' fill='%23f5f1e9'/%3e%3c/svg%3e");
-  width: 2rem;
-  height: 2rem;
-  background-size: 2rem 2rem;
-  opacity: 100;
-}
-@media (max-width: 575.98px) {
-  .navbar-theme-transparent .offcanvas {
-    background: rgba(15, 23, 42, 0.5);
+  .navbar-theme-transparent .navbar-collapse.collapsing, .navbar-theme-transparent .navbar-collapse.show {
+    backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-            backdrop-filter: blur(8px);
+  }
+  .navbar-theme-transparent .navbar-collapse .navbar-nav {
+    padding: 1rem 1.5rem;
   }
 }
 .navbar-theme-transparent .btn {
@@ -12023,21 +12014,6 @@ progress {
 .navbar-theme-info .btn:hover {
   background-color: rgb(89.4620689655, 4.5379310345, 4.5379310345);
 }
-@media (max-width: 575.98px) {
-  .navbar-theme-info .offcanvas {
-    background-color: #f5f1e9;
-  }
-}
-.navbar-theme-info .offcanvas .offcanvas-title {
-  color: #490100;
-}
-.navbar-theme-info .offcanvas .btn-close {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z' fill='%23490100'/%3e%3c/svg%3e");
-  width: 2rem;
-  height: 2rem;
-  background-size: 2rem 2rem;
-  opacity: 100;
-}
 
 .navbar-theme-secondary {
   background-color: #d0d2aa;
@@ -12065,21 +12041,6 @@ progress {
 }
 .navbar-theme-secondary .btn:hover {
   background-color: rgb(99.6639344262, 108.3647540984, 84.6352459016);
-}
-@media (max-width: 575.98px) {
-  .navbar-theme-secondary .offcanvas {
-    background-color: #d0d2aa;
-  }
-}
-.navbar-theme-secondary .offcanvas .offcanvas-title {
-  color: rgb(75.6, 82.2, 64.2);
-}
-.navbar-theme-secondary .offcanvas .btn-close {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z' fill='rgb(75.6, 82.2, 64.2)'/%3e%3c/svg%3e");
-  width: 2rem;
-  height: 2rem;
-  background-size: 2rem 2rem;
-  opacity: 100;
 }
 
 .navbar-theme-primary {
@@ -12109,21 +12070,6 @@ progress {
 .navbar-theme-primary .btn:hover {
   background-color: rgb(189.5615384615, 192.3461538462, 136.6538461538);
 }
-@media (max-width: 575.98px) {
-  .navbar-theme-primary .offcanvas {
-    background-color: #7e896b;
-  }
-}
-.navbar-theme-primary .offcanvas .offcanvas-title {
-  color: #f5f1e9;
-}
-.navbar-theme-primary .offcanvas .btn-close {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z' fill='%23f5f1e9'/%3e%3c/svg%3e");
-  width: 2rem;
-  height: 2rem;
-  background-size: 2rem 2rem;
-  opacity: 100;
-}
 
 .navbar-theme-dark {
   background-color: #490100;
@@ -12151,21 +12097,6 @@ progress {
 }
 .navbar-theme-dark .btn:hover {
   background-color: rgb(89.4620689655, 4.5379310345, 4.5379310345);
-}
-@media (max-width: 575.98px) {
-  .navbar-theme-dark .offcanvas {
-    background-color: #490100;
-  }
-}
-.navbar-theme-dark .offcanvas .offcanvas-title {
-  color: #f5f1e9;
-}
-.navbar-theme-dark .offcanvas .btn-close {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z' fill='%23f5f1e9'/%3e%3c/svg%3e");
-  width: 2rem;
-  height: 2rem;
-  background-size: 2rem 2rem;
-  opacity: 100;
 }
 
 /* --------------------------- Typography --------------------------- */
