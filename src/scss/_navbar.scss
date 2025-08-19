@@ -21,12 +21,25 @@
         // border-color: none;
         border: none;
         box-shadow: none;
+
+        // fade in and out between hamburger and x icons
+        .navbar-toggler-icon {
+            transition: background-image 0.25s ease-in-out;
+        }
     }
 
+    // hamburger icon
     .navbar-toggler-icon {
         $encoded-color: str-replace(#{$text-color}, '#', '%23');
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='#{$encoded-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        
+    }
+
+    // x icon when dropdown open
+    .navbar-toggler[aria-expanded="true"] {
+        .navbar-toggler-icon {
+            $encoded-color: str-replace(#{$text-color}, '#', '%23');
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='#{$encoded-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M6 6L24 24M24 6L6 24'/%3e%3c/svg%3e");
+        }
     }
 
     // cta button styling within navbar
@@ -38,57 +51,6 @@
             background-color: darken($btn-bg or $text-color, 10%);
         }
     }
-
-    // // offcanvas menu styling
-    // @include media-breakpoint-down(sm) {
-    //     .offcanvas {
-    //         background-color: $bg;
-    //     }
-    // }
-    // .offcanvas {
-    //     // background-color: $bg;
-
-    //     // flex-grow: 2;
-
-    //     .offcanvas-title {
-    //         color: $text-color;
-    //     }
-
-    //     .btn-close {
-    //         $encoded-color: str-replace(#{$text-color}, '#', '%23');
-    //         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z' fill='#{$encoded-color}'/%3e%3c/svg%3e");
-
-    //         // adjust sizing
-    //         width: 2rem;
-    //         height: 2rem;
-    //         background-size: 2rem 2rem;
-    //         opacity: 100;
-
-    //     }
-    // }
-
-
-    // .collapse {
-    //     // background-color: $bg;
-
-    //     // flex-grow: 2;
-
-    //     // .offcanvas-title {
-    //     //     color: $text-color;
-    //     // }
-
-    //     .btn-close {
-    //         $encoded-color: str-replace(#{$text-color}, '#', '%23');
-    //         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z' fill='#{$encoded-color}'/%3e%3c/svg%3e");
-
-    //         // adjust sizing
-    //         width: 2rem;
-    //         height: 2rem;
-    //         background-size: 2rem 2rem;
-    //         opacity: 100;
-
-    //     }
-    // }
 
 }
 
@@ -184,27 +146,27 @@
     }
 }
 
-.offcanvas {
-    .offcanvas-title {
-        font-weight: 700;
-        font-size: 2rem;
-    }
+// .offcanvas {
+//     .offcanvas-title {
+//         font-weight: 700;
+//         font-size: 2rem;
+//     }
 
-    // applies font changes when at sm or less
-    @include media-breakpoint-down(sm) {
-        .navbar-nav .nav-link {
-            font-weight: 500;
-            font-size: 1.5rem;
-        }
+//     // applies font changes when at sm or less
+//     @include media-breakpoint-down(sm) {
+//         .navbar-nav .nav-link {
+//             font-weight: 500;
+//             font-size: 1.5rem;
+//         }
 
-        .btn {
-            font-weight: 500;
-            font-size: 1.5rem;
-            width: 60%;
-        }
-    }
+//         .btn {
+//             font-weight: 500;
+//             font-size: 1.5rem;
+//             width: 60%;
+//         }
+//     }
 
-}
+// }
 
 /* --------------------------- Transition --------------------------- */
 .navbar {

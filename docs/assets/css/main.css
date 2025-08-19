@@ -11958,8 +11958,14 @@ progress {
   border: none;
   box-shadow: none;
 }
+.navbar-theme-transparent .navbar-toggler .navbar-toggler-icon {
+  transition: background-image 0.25s ease-in-out;
+}
 .navbar-theme-transparent .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23f5f1e9' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar-theme-transparent .navbar-toggler[aria-expanded=true] .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23f5f1e9' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M6 6L24 24M24 6L6 24'/%3e%3c/svg%3e");
 }
 .navbar-theme-transparent .btn {
   background-color: rgba(15, 23, 42, 0.1);
@@ -12004,8 +12010,14 @@ progress {
   border: none;
   box-shadow: none;
 }
+.navbar-theme-info .navbar-toggler .navbar-toggler-icon {
+  transition: background-image 0.25s ease-in-out;
+}
 .navbar-theme-info .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23490100' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar-theme-info .navbar-toggler[aria-expanded=true] .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23490100' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M6 6L24 24M24 6L6 24'/%3e%3c/svg%3e");
 }
 .navbar-theme-info .btn {
   background-color: #8a0707;
@@ -12032,8 +12044,14 @@ progress {
   border: none;
   box-shadow: none;
 }
+.navbar-theme-secondary .navbar-toggler .navbar-toggler-icon {
+  transition: background-image 0.25s ease-in-out;
+}
 .navbar-theme-secondary .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(75.6, 82.2, 64.2)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar-theme-secondary .navbar-toggler[aria-expanded=true] .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(75.6, 82.2, 64.2)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M6 6L24 24M24 6L6 24'/%3e%3c/svg%3e");
 }
 .navbar-theme-secondary .btn {
   background-color: #7e896b;
@@ -12060,8 +12078,14 @@ progress {
   border: none;
   box-shadow: none;
 }
+.navbar-theme-primary .navbar-toggler .navbar-toggler-icon {
+  transition: background-image 0.25s ease-in-out;
+}
 .navbar-theme-primary .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23f5f1e9' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar-theme-primary .navbar-toggler[aria-expanded=true] .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23f5f1e9' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M6 6L24 24M24 6L6 24'/%3e%3c/svg%3e");
 }
 .navbar-theme-primary .btn {
   background-color: #d0d2aa;
@@ -12088,8 +12112,14 @@ progress {
   border: none;
   box-shadow: none;
 }
+.navbar-theme-dark .navbar-toggler .navbar-toggler-icon {
+  transition: background-image 0.25s ease-in-out;
+}
 .navbar-theme-dark .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23f5f1e9' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar-theme-dark .navbar-toggler[aria-expanded=true] .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23f5f1e9' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M6 6L24 24M24 6L6 24'/%3e%3c/svg%3e");
 }
 .navbar-theme-dark .btn {
   background-color: #8a0707;
@@ -12113,22 +12143,6 @@ progress {
 .navbar .btn {
   font-weight: 600;
   font-size: 1.05rem;
-}
-
-.offcanvas .offcanvas-title {
-  font-weight: 700;
-  font-size: 2rem;
-}
-@media (max-width: 575.98px) {
-  .offcanvas .navbar-nav .nav-link {
-    font-weight: 500;
-    font-size: 1.5rem;
-  }
-  .offcanvas .btn {
-    font-weight: 500;
-    font-size: 1.5rem;
-    width: 60%;
-  }
 }
 
 /* --------------------------- Transition --------------------------- */
