@@ -42,6 +42,13 @@
         }
     }
 
+    // shadow on mobile when menu open
+    @include media-breakpoint-down(sm) {
+        &:has(.navbar-collapse.show){
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+    }
+
     // cta button styling within navbar
     .btn {
         background-color: $btn-bg  or $text-color;
