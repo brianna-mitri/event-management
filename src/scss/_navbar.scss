@@ -24,7 +24,7 @@
 
         // fade in and out between hamburger and x icons
         .navbar-toggler-icon {
-            transition: background-image 0.25s ease-in-out;
+            transition: background-image 0.15s ease-in-out;
         }
     }
 
@@ -151,6 +151,13 @@
     @include navbar-theme(
         $light, $dark, $info,
         $info, $light
+    );
+}
+
+.navbar-theme-light {
+    @include navbar-theme(
+        $light, $dark, $success,
+        $secondary, $darker-red
     );
 }
 
