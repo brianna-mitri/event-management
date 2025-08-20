@@ -49,12 +49,38 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
-        // padding to dropdown menu items
+        // borders and padding to dropdown menu items (and hover state)
         .navbar-nav {
             // padding: 1 rem 0;
+            
+            // borders
+            .nav-item {
+                // border on each item (except last)
+                border-bottom: 2px solid rgba($text-color, 0.2);
+            
+                &:last-child {
+                    border-bottom: none;
+                }
 
+            }
+
+            
             .nav-link {
+                // padding 
                 padding: 0.75rem 1.5rem; // padding for each link
+
+                // hover/focus state
+                &:hover,
+                &:focus {
+                    background-color: rgba($hover-color or $text-color, 0.3);
+                    color: $hover-color or darken($text-color, 10%);
+                }
+
+                // active/pressed state
+                &:active {
+                    background-color: rgba($hover-color or $text-color, 0.6);
+                    color: $hover-color or darken($text-color, 10%);
+                }
             }
         }
     }
