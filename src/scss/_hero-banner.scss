@@ -54,10 +54,28 @@
     // }
 }
 
+// hero middle section
+.hero-middle {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    color: $light;
+}
+
+
 /* ------------------------ Page Specific Images ------------------------ */
 .hero-home {
     background-image: url('../img/event_dinner_og.jpg');
     ///................
+}
+
+.hero-cta {
+    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('../img/green_blur.jpg');
 }
 
 /* ------------------------ Text Sizes Based on Media ------------------------ */

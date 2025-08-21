@@ -1,8 +1,8 @@
 /* -------------------------- Core Brand Colors -------------------------- */
 // $cream: #fdfae9;
 $cream: #f5f1e9;
-$green-light: #d0d2aa;
-// $green-light: #d0d7bd;
+// $green-light: #d0d2aa;
+$green-light: #d0d7bd;
 $green-dark: #7e896b;
 $red-dark: #490100;
 $red-accent: #8a0707;
@@ -18,18 +18,22 @@ $secondary: $green-light;
 
 $light:     $cream;
 $dark:      $red-dark;
+// $main-text: #333;
+$main-text: #21201f;
 
 /* Functional Colors */
-$success:   #a8dcab;
+// $success:   #a8dcab;
+$success:   #defaca;
 // $info:      $green-light;
 $info:      $red-accent;
 $warning:   #e7c000;
-$danger:    #b92e34;
+// $danger:    #b92e34;
+$danger:    #e55451;
 
 
 /* Body and Background Colors */
 $body-bg: $cream;                    // background color
-$body-color: $darker-red;
+$body-color: $main-text;
 // $body-color: $red-dark;             // main text color
 
 
@@ -40,12 +44,21 @@ $body-color: $darker-red;
 /* Define color scheme maps (just bg and text) */
 $color-schemes: (
     "secondary": (
-        "bg": lighten($secondary, 10%),
+        // "bg": lighten($secondary, 5%),
+        "bg": $secondary,
         // "text": darken($darker-green, 5%)
-        "text": $darker-red
+        "text": $main-text
     ),
     "dark": (
         "bg": $dark,
+        "text": $light
+    ),
+    "primary": (
+        "bg": $primary,
+        "text": $light
+    ),
+    "forest": (
+        "bg": $darker-green,
         "text": $light
     ),
     "important": (

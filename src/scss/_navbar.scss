@@ -149,7 +149,8 @@
 
 .navbar-theme-info {
     @include navbar-theme(
-        $light, $dark, $info,
+        // $light, $dark, $info,
+        $light, $body-color, $info,
         $info, $light
     );
 }

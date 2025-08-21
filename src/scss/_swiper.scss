@@ -40,8 +40,8 @@
 
 .btn-swiper {
     border-width: 1px;
-    border-color: $darker-green;
-    color: $darker-green;
+    border-color: $body-color;
+    color: $body-color;
     font-weight: 300px;
     width: 100%;
 
@@ -57,14 +57,14 @@
     width: 44px;
     height: 44px;
     // background: lighten($dark, 5%);
-    background: $light;
+    background: $info;
     // @extend .rounded-circle;
     border-radius: 50%;
 
     // style arrow
     &:after {
         font-size: 16px;
-        color: $dark;
+        color: $light;
         font-weight: bold;
         line-height: 44px;
     }

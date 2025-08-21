@@ -2,7 +2,8 @@
 
 // time unit background color
 // $time-unit-color: lighten($dark, 5%);
-$time-unit-color: $primary;
+// $time-unit-color: $primary;
+$time-unit-color: rgba($light, 0.15);
 
 
 // time box settings
@@ -12,6 +13,9 @@ $time-unit-color: $primary;
         border: 1px solid $time-unit-color;
         @extend .rounded-3;
         background-color: $time-unit-color;
+        
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
     }
 
     // main number
