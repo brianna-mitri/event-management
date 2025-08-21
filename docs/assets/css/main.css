@@ -8,8 +8,8 @@
 /* Define color scheme maps (just bg and text) */
 /* Generate utility classes for each color scheme */
 .color-scheme-secondary {
-  background-color: rgb(231.97, 232.95, 213.35);
-  color: rgb(8.9, 35.6, 25.4285714286);
+  background-color: rgb(226.4384615385, 227.6538461538, 203.3461538462);
+  color: rgb(58.4, 0.8, 0);
 }
 
 .color-scheme-dark {
@@ -31,8 +31,8 @@
 /* Define color scheme maps (just bg and text) */
 /* Generate utility classes for each color scheme */
 .color-scheme-secondary {
-  background-color: rgb(231.97, 232.95, 213.35);
-  color: rgb(8.9, 35.6, 25.4285714286);
+  background-color: rgb(226.4384615385, 227.6538461538, 203.3461538462);
+  color: rgb(58.4, 0.8, 0);
 }
 
 .color-scheme-dark {
@@ -131,18 +131,18 @@
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
-  --bs-body-color: #490100;
-  --bs-body-color-rgb: 73, 1, 0;
+  --bs-body-color: rgb(58.4, 0.8, 0);
+  --bs-body-color-rgb: 58, 1, 0;
   --bs-body-bg: #f5f1e9;
   --bs-body-bg-rgb: 245, 241, 233;
   --bs-emphasis-color: #000;
   --bs-emphasis-color-rgb: 0, 0, 0;
-  --bs-secondary-color: rgba(73, 1, 0, 0.75);
-  --bs-secondary-color-rgb: 73, 1, 0;
+  --bs-secondary-color: rgba(58.4, 0.8, 0, 0.75);
+  --bs-secondary-color-rgb: 58, 1, 0;
   --bs-secondary-bg: #e9ecef;
   --bs-secondary-bg-rgb: 233, 236, 239;
-  --bs-tertiary-color: rgba(73, 1, 0, 0.5);
-  --bs-tertiary-color-rgb: 73, 1, 0;
+  --bs-tertiary-color: rgba(58.4, 0.8, 0, 0.5);
+  --bs-tertiary-color-rgb: 58, 1, 0;
   --bs-tertiary-bg: #f8f9fa;
   --bs-tertiary-bg-rgb: 248, 249, 250;
   --bs-heading-color: inherit;
@@ -152,7 +152,7 @@
   --bs-link-hover-color: rgb(100.8, 109.6, 85.6);
   --bs-link-hover-color-rgb: 101, 110, 86;
   --bs-code-color: #d63384;
-  --bs-highlight-color: #490100;
+  --bs-highlight-color: rgb(58.4, 0.8, 0);
   --bs-highlight-bg: rgb(255, 242.6, 205.4);
   --bs-border-width: 1px;
   --bs-border-style: solid;
@@ -3150,7 +3150,7 @@ progress {
   --bs-navbar-toggler-padding-y: 0.25rem;
   --bs-navbar-toggler-padding-x: 0.75rem;
   --bs-navbar-toggler-font-size: 1.25rem;
-  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2873, 1, 0, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2858.4, 0.8, 0, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
   --bs-navbar-toggler-border-color: rgba(var(--bs-emphasis-color-rgb), 0.15);
   --bs-navbar-toggler-border-radius: var(--bs-border-radius);
   --bs-navbar-toggler-focus-width: 0.25rem;
@@ -3573,7 +3573,7 @@ progress {
   --bs-accordion-btn-padding-y: 1rem;
   --bs-accordion-btn-color: var(--bs-body-color);
   --bs-accordion-btn-bg: var(--bs-accordion-bg);
-  --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23490100' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='rgb%2858.4, 0.8, 0%29' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
   --bs-accordion-btn-icon-width: 1.25rem;
   --bs-accordion-btn-icon-transform: rotate(-180deg);
   --bs-accordion-btn-icon-transition: transform 0.2s ease-in-out;
@@ -11408,8 +11408,8 @@ progress {
 /* Define color scheme maps (just bg and text) */
 /* Generate utility classes for each color scheme */
 .color-scheme-secondary {
-  background-color: rgb(231.97, 232.95, 213.35);
-  color: rgb(8.9, 35.6, 25.4285714286);
+  background-color: rgb(226.4384615385, 227.6538461538, 203.3461538462);
+  color: shade-color(#490100, 20%);
 }
 
 .color-scheme-dark {
@@ -11431,8 +11431,8 @@ progress {
 /* Define color scheme maps (just bg and text) */
 /* Generate utility classes for each color scheme */
 .color-scheme-secondary {
-  background-color: rgb(231.97, 232.95, 213.35);
-  color: rgb(8.9, 35.6, 25.4285714286);
+  background-color: rgb(226.4384615385, 227.6538461538, 203.3461538462);
+  color: shade-color(#490100, 20%);
 }
 
 .color-scheme-dark {

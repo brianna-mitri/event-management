@@ -29,7 +29,8 @@ $danger:    #b92e34;
 
 /* Body and Background Colors */
 $body-bg: $cream;                    // background color
-$body-color: $red-dark;             // main text color
+$body-color: $darker-red;
+// $body-color: $red-dark;             // main text color
 
 
 // ensure minimum contrast ratios
@@ -39,8 +40,9 @@ $body-color: $red-dark;             // main text color
 /* Define color scheme maps (just bg and text) */
 $color-schemes: (
     "secondary": (
-        "bg": lighten($secondary, 13%),
-        "text": darken($darker-green, 5%)
+        "bg": lighten($secondary, 10%),
+        // "text": darken($darker-green, 5%)
+        "text": $darker-red
     ),
     "dark": (
         "bg": $dark,
