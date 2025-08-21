@@ -39,11 +39,15 @@ $body-color: $red-dark;             // main text color
 /* Define color scheme maps (just bg and text) */
 $color-schemes: (
     "secondary": (
-        "bg": lighten($secondary, 10%),
+        "bg": lighten($secondary, 13%),
         "text": darken($darker-green, 5%)
     ),
     "dark": (
         "bg": $dark,
+        "text": $light
+    ),
+    "important": (
+        "bg": lighten($dark, 5%),
         "text": $light
     )
 );

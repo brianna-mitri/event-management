@@ -121,12 +121,26 @@ $spacers: map-merge(
 
     // container handles horizontal spacing (left only)
     .container, .container-fluid {
+
+        // have swiper overflow on right side
         @extend .ps-3;
         @extend .ps-md-5;
         @extend .ps-lg-8;
         @extend .ps-xl-12;
 
         @extend .pe-0;
+
+        
+        h2 {
+            // even out header spacing
+            @extend .pe-3;
+            @extend .pe-md-5;
+            @extend .pe-lg-8;
+            @extend .pe-xl-12;
+
+            // bottom spacing
+            @extend .pb-xl-2;
+        }
     }
 
 

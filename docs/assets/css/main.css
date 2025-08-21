@@ -8,12 +8,17 @@
 /* Define color scheme maps (just bg and text) */
 /* Generate utility classes for each color scheme */
 .color-scheme-secondary {
-  background-color: rgb(226.4384615385, 227.6538461538, 203.3461538462);
+  background-color: rgb(231.97, 232.95, 213.35);
   color: rgb(8.9, 35.6, 25.4285714286);
 }
 
 .color-scheme-dark {
   background-color: #490100;
+  color: #f5f1e9;
+}
+
+.color-scheme-important {
+  background-color: rgb(98.5, 1.3493150685, 0);
   color: #f5f1e9;
 }
 
@@ -26,12 +31,17 @@
 /* Define color scheme maps (just bg and text) */
 /* Generate utility classes for each color scheme */
 .color-scheme-secondary {
-  background-color: rgb(226.4384615385, 227.6538461538, 203.3461538462);
+  background-color: rgb(231.97, 232.95, 213.35);
   color: rgb(8.9, 35.6, 25.4285714286);
 }
 
 .color-scheme-dark {
   background-color: #490100;
+  color: #f5f1e9;
+}
+
+.color-scheme-important {
+  background-color: rgb(98.5, 1.3493150685, 0);
   color: #f5f1e9;
 }
 
@@ -5440,7 +5450,7 @@ progress {
   padding-right: 0.5rem !important;
 }
 
-.pe-3 {
+.pe-3, .swiper-spacing .container h2, .swiper-spacing .container-fluid h2, .swiper-spacing .container .h2, .swiper-spacing .container-fluid .h2, .swiper-spacing .container-sm h2, .swiper-spacing .container-sm .h2, .swiper-spacing .container-md h2, .swiper-spacing .container-md .h2, .swiper-spacing .container-lg h2, .swiper-spacing .container-lg .h2, .swiper-spacing .container-xl h2, .swiper-spacing .container-xl .h2, .swiper-spacing .container-xxl h2, .swiper-spacing .container-xxl .h2 {
   padding-right: 1rem !important;
 }
 
@@ -8239,7 +8249,7 @@ progress {
   .pe-md-4 {
     padding-right: 1.5rem !important;
   }
-  .pe-md-5 {
+  .pe-md-5, .swiper-spacing .container h2, .swiper-spacing .container-fluid h2, .swiper-spacing .container .h2, .swiper-spacing .container-fluid .h2, .swiper-spacing .container-sm h2, .swiper-spacing .container-sm .h2, .swiper-spacing .container-md h2, .swiper-spacing .container-md .h2, .swiper-spacing .container-lg h2, .swiper-spacing .container-lg .h2, .swiper-spacing .container-xl h2, .swiper-spacing .container-xl .h2, .swiper-spacing .container-xxl h2, .swiper-spacing .container-xxl .h2 {
     padding-right: 3rem !important;
   }
   .pe-md-6 {
@@ -9201,7 +9211,7 @@ progress {
   .pe-lg-7 {
     padding-right: 4rem !important;
   }
-  .pe-lg-8 {
+  .pe-lg-8, .swiper-spacing .container h2, .swiper-spacing .container-fluid h2, .swiper-spacing .container .h2, .swiper-spacing .container-fluid .h2, .swiper-spacing .container-sm h2, .swiper-spacing .container-sm .h2, .swiper-spacing .container-md h2, .swiper-spacing .container-md .h2, .swiper-spacing .container-lg h2, .swiper-spacing .container-lg .h2, .swiper-spacing .container-xl h2, .swiper-spacing .container-xl .h2, .swiper-spacing .container-xxl h2, .swiper-spacing .container-xxl .h2 {
     padding-right: 4.5rem !important;
   }
   .pe-lg-9 {
@@ -10166,7 +10176,7 @@ progress {
   .pe-xl-11 {
     padding-right: 8rem !important;
   }
-  .pe-xl-12 {
+  .pe-xl-12, .swiper-spacing .container h2, .swiper-spacing .container-fluid h2, .swiper-spacing .container .h2, .swiper-spacing .container-fluid .h2, .swiper-spacing .container-sm h2, .swiper-spacing .container-sm .h2, .swiper-spacing .container-md h2, .swiper-spacing .container-md .h2, .swiper-spacing .container-lg h2, .swiper-spacing .container-lg .h2, .swiper-spacing .container-xl h2, .swiper-spacing .container-xl .h2, .swiper-spacing .container-xxl h2, .swiper-spacing .container-xxl .h2 {
     padding-right: 9rem !important;
   }
   .pb-xl-0 {
@@ -10175,7 +10185,7 @@ progress {
   .pb-xl-1 {
     padding-bottom: 0.25rem !important;
   }
-  .pb-xl-2 {
+  .pb-xl-2, .swiper-spacing .container h2, .swiper-spacing .container-fluid h2, .swiper-spacing .container .h2, .swiper-spacing .container-fluid .h2, .swiper-spacing .container-sm h2, .swiper-spacing .container-sm .h2, .swiper-spacing .container-md h2, .swiper-spacing .container-md .h2, .swiper-spacing .container-lg h2, .swiper-spacing .container-lg .h2, .swiper-spacing .container-xl h2, .swiper-spacing .container-xl .h2, .swiper-spacing .container-xxl h2, .swiper-spacing .container-xxl .h2 {
     padding-bottom: 0.5rem !important;
   }
   .pb-xl-3 {
@@ -11398,12 +11408,17 @@ progress {
 /* Define color scheme maps (just bg and text) */
 /* Generate utility classes for each color scheme */
 .color-scheme-secondary {
-  background-color: rgb(226.4384615385, 227.6538461538, 203.3461538462);
+  background-color: rgb(231.97, 232.95, 213.35);
   color: rgb(8.9, 35.6, 25.4285714286);
 }
 
 .color-scheme-dark {
   background-color: #490100;
+  color: #f5f1e9;
+}
+
+.color-scheme-important {
+  background-color: rgb(98.5, 1.3493150685, 0);
   color: #f5f1e9;
 }
 
@@ -11416,12 +11431,17 @@ progress {
 /* Define color scheme maps (just bg and text) */
 /* Generate utility classes for each color scheme */
 .color-scheme-secondary {
-  background-color: rgb(226.4384615385, 227.6538461538, 203.3461538462);
+  background-color: rgb(231.97, 232.95, 213.35);
   color: rgb(8.9, 35.6, 25.4285714286);
 }
 
 .color-scheme-dark {
   background-color: #490100;
+  color: #f5f1e9;
+}
+
+.color-scheme-important {
+  background-color: rgb(98.5, 1.3493150685, 0);
   color: #f5f1e9;
 }
 
@@ -11942,9 +11962,14 @@ progress {
 }
 
 .main-btn {
-  padding: 0.6em 1.5em;
+  padding: 0.5em 1.8em;
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 1.05rem;
+}
+@media (min-width: 768px) {
+  .main-btn {
+    font-size: 1.25rem;
+  }
 }
 
 /* Countdown: Typography & Borders */

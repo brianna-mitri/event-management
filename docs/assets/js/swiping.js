@@ -11,7 +11,12 @@ const swiper = new Swiper(".swiperDetails", {
         // larger space between each slide for larger than mobile screen
         640: {
             spaceBetween: 30
+        },
+
+        1024: {
+            spaceBetween: 50
         }
+        
     },
 
     // elements

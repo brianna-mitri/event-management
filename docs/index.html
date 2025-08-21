@@ -8,7 +8,7 @@
     <!-- CSS-->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link href="./assets/css/main.min.css?v=5.3" rel="stylesheet">
+    <link href="./assets/css/main.min.css?v=5.4" rel="stylesheet">
   </head>
   <body>
 
@@ -129,108 +129,114 @@
         </div>
       </section>
       
-      <!---------- CTA: RSVP ---------->
-      <section class="cta-countdown section-spacing text-center">
-        <div class="container-fluid time-spacing">
-          <h2 class="display-4 fw-semibold">Only <span class="text-danger"><spand id="days-remaining">DD</spand> days left</span> until our event name</h2>
+      <!---------- General Info Section ---------->
+      <section class="general-info color-scheme-secondary">
+        <!---------- 1) CTA: RSVP ---------->
+        <section class="cta-countdown banner-spacing text-center">
+          <div class="container-fluid time-spacing">
+            <h2 class="display-4 fw-semibold">Only <span class="text-danger"><spand id="days-remaining">DD</spand> days left</span> until our event name</h2>
 
-          <!-- <div class="timebox2 d-flex gap-5 justify-content-center"> -->
-          <div class="timebox text-light">
-            <div class="row row-cols-4 justify-content-center align-items-center">
-              <div class="col">
-                <!--Days-->
-                <div class="time-unit">
-                  <h3 id="days" class="h-time">00</h3>
-                  <p>&mdash;</p>
-                  <p class="p-time">days</p>
+            <!-- <div class="timebox2 d-flex gap-5 justify-content-center"> -->
+            <div class="timebox text-light">
+              <div class="row row-cols-4 justify-content-center align-items-center">
+                <div class="col">
+                  <!--Days-->
+                  <div class="time-unit">
+                    <h3 id="days" class="h-time">00</h3>
+                    <p>&mdash;</p>
+                    <p class="p-time">days</p>
+                  </div>
                 </div>
-              </div>
-              <div class="col">
-                <!--Hours-->
-                <div class="time-unit">
-                  <h3 id="hours">00</h3>
-                  <p>&mdash;</p>
-                  <p class="p-time">hours</p>
+                <div class="col">
+                  <!--Hours-->
+                  <div class="time-unit">
+                    <h3 id="hours">00</h3>
+                    <p>&mdash;</p>
+                    <p class="p-time">hours</p>
+                  </div>
                 </div>
-              </div>
-              <div class="col">
-                <!--Minutes-->
-                <div class="time-unit">
-                  <h3 id="minutes">00</h3>
-                  <p>&mdash;</p>
-                  <p class="p-time">minutes</p>
+                <div class="col">
+                  <!--Minutes-->
+                  <div class="time-unit">
+                    <h3 id="minutes">00</h3>
+                    <p>&mdash;</p>
+                    <p class="p-time">minutes</p>
+                  </div>
                 </div>
-              </div>
-              <div class="col">
-                <!--Seconds-->
-                <div class="time-unit">
-                  <h3 id="seconds">00</h3>
-                  <p>&mdash;</p>
-                  <p class="p-time">seconds</p>
+                <div class="col">
+                  <!--Seconds-->
+                  <div class="time-unit">
+                    <h3 id="seconds">00</h3>
+                    <p>&mdash;</p>
+                    <p class="p-time">seconds</p>
+                  </div>
                 </div>
+                
               </div>
-              
             </div>
+
+            <a class="btn main-btn color-scheme-important" href="#">Please RSVP by Month DD</a>
+            <!-- <a class="btn main-btn btn-secondary" href="#">RSVP for Month DD</a> -->
           </div>
 
-          <a class="btn main-btn btn-secondary" href="#">RSVP for Month DD</a>
-        </div>
+        </section>
+
+        <!---------- 2) Swiper Details Overview ---------->
+        <section class="swiper-details swiper-spacing">
+          <div class="container-fluid">
+            <!-- Title -->
+            <h2 class="display-4 text-center fw-semibold">Get all the details</h2>
+            <!-- <h2 class="display-4 fw-semibold">All you need to know</h2> -->
+
+            <!-- Swiper wrapper -->
+            <div class="swiper swiperDetails">
+              <div class="swiper-wrapper">
+                <!-- slides -->
+                <div class="swiper-slide">
+                  <img src="./assets/img/swiper_venue.jpg" class="detail-img">
+                  <h3>Location</h3>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                  <button class="btn btn-swiper">Learn more</button>
+
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="./assets/img/swiper_location.jpg" class="detail-img">
+                  <h3>Dresscode</h3>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                  <button class="btn btn-swiper">Learn more</button>
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="./assets/img/swiper_venue.jpg" class="detail-img">
+                  <h3>RSVP</h3>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                  <button class="btn btn-swiper">Learn more</button>
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="./assets/img/swiper_location.jpg" class="detail-img">
+                  <h3>Registry</h3>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                  <button class="btn btn-swiper">Learn more</button>
+                </div>
+
+              </div>
+
+              <!-- Pagination -->
+              <!-- <div class="swiper-pagination"></div> -->
+
+              <!-- Navigation buttons-->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+
+            </div>
+        
+          </div>
+        </section>
 
       </section>
-
-      <!---------- Swiper Details Overview ---------->
-      <section class="swiper-details color-scheme-secondary swiper-spacing">
-        <div class="container-fluid">
-          <!-- Title -->
-           <h2 class="display-4 fw-semibold">Get all the details</h2>
-          <!-- <h2 class="display-4 fw-semibold">All you need to know</h2> -->
-
-          <!-- Swiper wrapper -->
-          <div class="swiper swiperDetails">
-            <div class="swiper-wrapper">
-              <!-- slides -->
-              <div class="swiper-slide">
-                <img src="./assets/img/swiper_venue.jpg" class="detail-img">
-                <h3>Location</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <button class="btn btn-swiper">Learn more</button>
-
-              </div>
-
-              <div class="swiper-slide">
-                <img src="./assets/img/swiper_location.jpg" class="detail-img">
-                <h3>Dresscode</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <button class="btn btn-swiper">Learn more</button>
-              </div>
-
-              <div class="swiper-slide">
-                <img src="./assets/img/swiper_venue.jpg" class="detail-img">
-                <h3>RSVP</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <button class="btn btn-swiper">Learn more</button>
-              </div>
-
-              <div class="swiper-slide">
-                <img src="./assets/img/swiper_location.jpg" class="detail-img">
-                <h3>Registry</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <button class="btn btn-swiper">Learn more</button>
-              </div>
-
-            </div>
-
-            <!-- Pagination -->
-            <!-- <div class="swiper-pagination"></div> -->
-
-            <!-- Navigation buttons-->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-
-          </div>
       
-        </div>
-      </section>
 
       <!--------------------------- FAQs ------------------------------------->
       <section class="faqs-primary bg-primary banner-spacing">

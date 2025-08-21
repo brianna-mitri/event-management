@@ -14,7 +14,12 @@
 
 // main button style --> SHOULD BE LARGE ONLY
 .main-btn {
-    padding: 0.6em 1.5em;
+    padding: 0.5em 1.8em;
     font-weight: 600;
-    font-size: 1.25rem;
+    font-size: 1.05rem;
+
+    // make font bigger for larger screen
+    @include media-breakpoint-up(md) {
+        font-size: 1.25rem;
+    }
 }
