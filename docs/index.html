@@ -7,8 +7,8 @@
 
     <!-- CSS-->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="./assets/css/main.min.css?v=5.2" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="./assets/css/main.css"> -->
   </head>
   <body>
 
@@ -132,7 +132,7 @@
       <!---------- CTA: RSVP ---------->
       <section class="cta-countdown section-spacing text-center">
         <div class="container-fluid time-spacing">
-          <h2 class="display-4 fw-semibold">Only <span class="text-danger"><spand id="days-remaining">DD</spand> days</span> until our event name</h2>
+          <h2 class="display-4 fw-semibold">Only <span class="text-danger"><spand id="days-remaining">DD</spand> days left</span> until our event name</h2>
 
           <!-- <div class="timebox2 d-flex gap-5 justify-content-center"> -->
           <div class="timebox text-light">
@@ -176,6 +176,60 @@
           <a class="btn main-btn btn-secondary" href="#">RSVP for Month DD</a>
         </div>
 
+      </section>
+
+      <!---------- Swiper Details Overview ---------->
+      <section class="swiper-details color-scheme-secondary swiper-spacing">
+        <div class="container-fluid">
+          <!-- Title -->
+           <h2 class="display-4 fw-semibold">Get all the details</h2>
+          <!-- <h2 class="display-4 fw-semibold">All you need to know</h2> -->
+
+          <!-- Swiper wrapper -->
+          <div class="swiper swiperDetails">
+            <div class="swiper-wrapper">
+              <!-- slides -->
+              <div class="swiper-slide">
+                <img src="./assets/img/swiper_venue.jpg" class="detail-img">
+                <h3>Location</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <button class="btn btn-swiper">Learn more</button>
+
+              </div>
+
+              <div class="swiper-slide">
+                <img src="./assets/img/swiper_location.jpg" class="detail-img">
+                <h3>Dresscode</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <button class="btn btn-swiper">Learn more</button>
+              </div>
+
+              <div class="swiper-slide">
+                <img src="./assets/img/swiper_venue.jpg" class="detail-img">
+                <h3>RSVP</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <button class="btn btn-swiper">Learn more</button>
+              </div>
+
+              <div class="swiper-slide">
+                <img src="./assets/img/swiper_location.jpg" class="detail-img">
+                <h3>Registry</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <button class="btn btn-swiper">Learn more</button>
+              </div>
+
+            </div>
+
+            <!-- Pagination -->
+            <!-- <div class="swiper-pagination"></div> -->
+
+            <!-- Navigation buttons-->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+          </div>
+      
+        </div>
       </section>
 
       <!--------------------------- FAQs ------------------------------------->
@@ -261,10 +315,15 @@
       
     </footer> -->
 
-
+    <!---------- SCRIPTS ---------->
     <!--Bootstrap JS Bundle (w/ Popper)-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <!--Swiper JS-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!--Personal scripts-->
     <script src="./assets/js/navbar.js"></script>
     <script src="./assets/js/countdown.js"></script>
+    <script src="./assets/js/swiping.js"></script>
   </body>
 </html>

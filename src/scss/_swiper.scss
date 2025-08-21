@@ -1,0 +1,71 @@
+/* -------------------------- Sliding Animation -------------------------- */
+.swiper-wrapper {
+    transition: transform 400ms ease;
+
+    &.at-start {
+        // offset to make first slide appear left-aligned
+        transform: translateX(-0.01%) !important;
+    }
+}
+
+/* -------------------------- Styling -------------------------- */
+.swiper-slide {
+    width: 85vw;
+    max-width: 300px;
+
+    @include media-breakpoint-up(sm) {
+        max-width: 500px;
+    }
+
+    @include media-breakpoint-up(md) {
+        max-width: 600px;
+    }
+}
+
+.detail-img {
+    width: 100%; //always fills slide width
+    aspect-ratio: 1 / 1; //square ratio
+    object-fit: cover;
+    @extend .rounded-4;
+
+    // @include media-breakpoint-up(sm) {
+    //     // aspect-ratio: 3 / 2;
+    //     aspect-ratio: 5 / 4;
+    // }
+
+    @include media-breakpoint-up(md) {
+        aspect-ratio: 3 / 2;
+    }
+}
+
+.btn-swiper {
+    border-width: 1px;
+    border-color: $darker-green;
+    color: $darker-green;
+    font-weight: 300px;
+    width: 100%;
+
+    &::after {
+        content: ' →';
+        margin-left: auto;
+    }
+}
+
+// navigation buttons
+.swiper-button-prev,
+.swiper-button-next {
+    width: 44px;
+    height: 44px;
+    // background: lighten($dark, 5%);
+    background: $light;
+    // @extend .rounded-circle;
+    border-radius: 50%;
+
+    // style arrow
+    &:after {
+        font-size: 16px;
+        color: $dark;
+        font-weight: bold;
+        line-height: 44px;
+    }
+}

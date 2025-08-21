@@ -83,7 +83,7 @@ $spacers: map-merge(
     }
 }
 
-
+// countdown spacing
 .time-spacing {
     .timebox {
         .row {
@@ -101,6 +101,43 @@ $spacers: map-merge(
 
             // side padding
             @extend .px-xl-5;
+        }
+    }
+}
+
+
+// swiper spacing
+.swiper-spacing {
+    // vertical padding
+    @extend .py-3;
+    @extend .py-md-4;
+
+    // vertical margins
+    @extend .my-2;
+    @extend .my-3;
+
+    // customizable properties
+    // text-align: center;
+
+    // container handles horizontal spacing (left only)
+    .container, .container-fluid {
+        @extend .ps-3;
+        @extend .ps-md-5;
+        @extend .ps-lg-8;
+        @extend .ps-xl-12;
+
+        @extend .pe-0;
+    }
+
+
+    .swiper {
+        // top and bottom padding
+        @extend .pt-2;
+        @extend .pb-4;
+
+        // sub header
+        h3 {
+            @extend .pt-2;
         }
     }
 }
