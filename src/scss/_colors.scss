@@ -1,16 +1,13 @@
-/* Core Brand Colors */
+/* -------------------------- Core Brand Colors -------------------------- */
 // $cream: #fdfae9;
 $cream: #f5f1e9;
 $green-light: #d0d2aa;
 // $green-light: #d0d7bd;
 $green-dark: #7e896b;
 $red-dark: #490100;
-
-// $red-accent: #b22222;    // ?
-// $red-accent: #d30000;
-// $red-accent: #b80f0a;
 $red-accent: #8a0707;
-$darker-green: shade-color($green-dark, 40%);
+// $darker-green: shade-color($green-dark, 40%);
+$darker-green: #0e3828;
 $darker-red: shade-color($red-dark, 20%);
 
 /* ---------- Bootstrap Coloring ---------- */
@@ -31,12 +28,31 @@ $danger:    #b92e34;
 
 
 /* Body and Background Colors */
-$body-bg: $cream;                       // background color
-// $body-color: $darker-red;               // main text color
-$body-color: $red-dark;
-// $body-bg: $cream;
-// $body-color: $green-dark;
+$body-bg: $cream;                    // background color
+$body-color: $red-dark;             // main text color
 
 
 // ensure minimum contrast ratios
 // $min-contrast-ratio: 10;
+
+/* -------------------------- Custom Color Schemes -------------------------- */
+/* Define color scheme maps (just bg and text) */
+$color-schemes: (
+    "secondary": (
+        "bg": lighten($secondary, 10%),
+        "text": darken($darker-green, 5%)
+    ),
+    "dark": (
+        "bg": $dark,
+        "text": $light
+    )
+);
+
+/* Generate utility classes for each color scheme */
+@each $scheme-name, $colors in $color-schemes {
+    .color-scheme-#{$scheme-name} {
+        background-color: map-get($colors, bg);
+        color: map-get($colors, "text");
+    }
+}
+

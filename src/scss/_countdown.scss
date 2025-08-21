@@ -1,7 +1,8 @@
 /* Countdown: Typography & Borders */
 
 // time unit background color
-$time-unit-color: lighten($dark, 5%);
+// $time-unit-color: lighten($dark, 5%);
+$time-unit-color: $primary;
 
 
 // time box settings
