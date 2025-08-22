@@ -75,7 +75,21 @@
 }
 
 .hero-cta {
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('../img/green_blur.jpg');
+    background-attachment: fixed;  // simple parallax effect
+    // .text-danger {
+    //     // text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    //     text-shadow: 
+    //         0 0 4px rgba(0, 0, 0, 0.5),
+    //         0 0 8px rgba(0, 0, 0, 0.3),
+    //         0 0 12px rgba(0, 0, 0, 0.1);
+    // }
+    // background-image: linear-gradient(rgba(30, 40, 50, 0.4), rgba(30, 40, 50, 0.4)), url('../img/event_bw_blur_crop.jpg');
+
+    // background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../img/event_bw_blur.jpg');
+    // background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../img/cheers.jpg');
+    background-image: linear-gradient(rgba(30, 40, 50, 0.5), rgba(30, 40, 50, 0.2)), url('../img/table_florals.jpg');
+
+    // background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('../img/green_blur.jpg');
 }
 
 /* ------------------------ Text Sizes Based on Media ------------------------ */
