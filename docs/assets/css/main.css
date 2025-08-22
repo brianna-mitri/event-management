@@ -77,6 +77,8 @@
 
 /* 1. extend the spacers map (after variables but before utilities) */
 /* 2. custom margins */
+/* -------------- General Content Spacing -------------- */
+/* -------------- Specific Spacing Options -------------- */
 :root,
 [data-bs-theme=light] {
   --bs-blue: #0d6efd;
@@ -4940,17 +4942,17 @@ progress {
   margin-bottom: 0.25rem !important;
 }
 
-.my-2, .banner-spacing, .swiper-spacing {
+.my-2, .swiper-spacing {
   margin-top: 0.5rem !important;
   margin-bottom: 0.5rem !important;
 }
 
-.my-3, .banner-spacing, .swiper-spacing {
+.my-3, .swiper-spacing {
   margin-top: 1rem !important;
   margin-bottom: 1rem !important;
 }
 
-.my-4 {
+.my-4, .time-spacing .timebox .row {
   margin-top: 1.5rem !important;
   margin-bottom: 1.5rem !important;
 }
@@ -5000,11 +5002,11 @@ progress {
   margin-bottom: auto !important;
 }
 
-.mt-0 {
+.mt-0, .banner-spacing-top {
   margin-top: 0 !important;
 }
 
-.mt-1, .time-spacing .timebox .row {
+.mt-1 {
   margin-top: 0.25rem !important;
 }
 
@@ -5012,7 +5014,7 @@ progress {
   margin-top: 0.5rem !important;
 }
 
-.mt-3 {
+.mt-3, .banner-spacing-bottom, .banner-spacing-middle {
   margin-top: 1rem !important;
 }
 
@@ -5112,7 +5114,7 @@ progress {
   margin-right: auto !important;
 }
 
-.mb-0 {
+.mb-0, .banner-spacing-bottom {
   margin-bottom: 0 !important;
 }
 
@@ -5124,7 +5126,7 @@ progress {
   margin-bottom: 0.5rem !important;
 }
 
-.mb-3, .time-spacing .timebox .row {
+.mb-3, .banner-spacing-middle, .banner-spacing-top {
   margin-bottom: 1rem !important;
 }
 
@@ -5291,7 +5293,7 @@ progress {
   padding-left: 0.5rem !important;
 }
 
-.px-3, .banner-spacing .container, .banner-spacing .container-fluid, .banner-spacing .container-sm, .banner-spacing .container-md, .banner-spacing .container-lg, .banner-spacing .container-xl, .banner-spacing .container-xxl {
+.px-3, .banner-spacing-bottom .container, .banner-spacing-bottom .container-fluid, .banner-spacing-middle .container, .banner-spacing-middle .container-fluid, .banner-spacing-top .container, .banner-spacing-top .container-fluid, .banner-spacing-bottom .container-sm, .banner-spacing-middle .container-sm, .banner-spacing-top .container-sm, .banner-spacing-bottom .container-md, .banner-spacing-middle .container-md, .banner-spacing-top .container-md, .banner-spacing-bottom .container-lg, .banner-spacing-middle .container-lg, .banner-spacing-top .container-lg, .banner-spacing-bottom .container-xl, .banner-spacing-middle .container-xl, .banner-spacing-top .container-xl, .banner-spacing-bottom .container-xxl, .banner-spacing-middle .container-xxl, .banner-spacing-top .container-xxl {
   padding-right: 1rem !important;
   padding-left: 1rem !important;
 }
@@ -5356,7 +5358,7 @@ progress {
   padding-bottom: 0.5rem !important;
 }
 
-.py-3, .banner-spacing, .swiper-spacing {
+.py-3, .banner-spacing-bottom, .banner-spacing-middle, .banner-spacing-top, .swiper-spacing {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
 }
@@ -5426,7 +5428,7 @@ progress {
   padding-top: 1.5rem !important;
 }
 
-.pt-5 {
+.pt-5, .banner-spacing-middle {
   padding-top: 3rem !important;
 }
 
@@ -5534,7 +5536,7 @@ progress {
   padding-bottom: 3rem !important;
 }
 
-.pb-6 {
+.pb-6, .banner-spacing-middle {
   padding-bottom: 3.5rem !important;
 }
 
@@ -7904,7 +7906,7 @@ progress {
     margin-top: auto !important;
     margin-bottom: auto !important;
   }
-  .mt-md-0 {
+  .mt-md-0, .banner-spacing-top {
     margin-top: 0 !important;
   }
   .mt-md-1 {
@@ -7916,7 +7918,7 @@ progress {
   .mt-md-3 {
     margin-top: 1rem !important;
   }
-  .mt-md-4 {
+  .mt-md-4, .banner-spacing-bottom, .banner-spacing-middle {
     margin-top: 1.5rem !important;
   }
   .mt-md-5 {
@@ -8000,7 +8002,7 @@ progress {
   .mb-md-3 {
     margin-bottom: 1rem !important;
   }
-  .mb-md-4 {
+  .mb-md-4, .banner-spacing-middle, .banner-spacing-top {
     margin-bottom: 1.5rem !important;
   }
   .mb-md-5 {
@@ -8131,7 +8133,7 @@ progress {
     padding-right: 1.5rem !important;
     padding-left: 1.5rem !important;
   }
-  .px-md-5, .banner-spacing .container, .banner-spacing .container-fluid, .banner-spacing .container-sm, .banner-spacing .container-md, .banner-spacing .container-lg, .banner-spacing .container-xl, .banner-spacing .container-xxl {
+  .px-md-5, .banner-spacing-bottom .container, .banner-spacing-bottom .container-fluid, .banner-spacing-middle .container, .banner-spacing-middle .container-fluid, .banner-spacing-top .container, .banner-spacing-top .container-fluid, .banner-spacing-bottom .container-sm, .banner-spacing-middle .container-sm, .banner-spacing-top .container-sm, .banner-spacing-bottom .container-md, .banner-spacing-middle .container-md, .banner-spacing-top .container-md, .banner-spacing-bottom .container-lg, .banner-spacing-middle .container-lg, .banner-spacing-top .container-lg, .banner-spacing-bottom .container-xl, .banner-spacing-middle .container-xl, .banner-spacing-top .container-xl, .banner-spacing-bottom .container-xxl, .banner-spacing-middle .container-xxl, .banner-spacing-top .container-xxl {
     padding-right: 3rem !important;
     padding-left: 3rem !important;
   }
@@ -8179,7 +8181,7 @@ progress {
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
   }
-  .py-md-4, .banner-spacing, .swiper-spacing {
+  .py-md-4, .banner-spacing-bottom, .banner-spacing-middle, .banner-spacing-top, .swiper-spacing {
     padding-top: 1.5rem !important;
     padding-bottom: 1.5rem !important;
   }
@@ -8233,7 +8235,7 @@ progress {
   .pt-md-5 {
     padding-top: 3rem !important;
   }
-  .pt-md-6 {
+  .pt-md-6, .banner-spacing-middle {
     padding-top: 3.5rem !important;
   }
   .pt-md-7 {
@@ -8314,7 +8316,7 @@ progress {
   .pb-md-6 {
     padding-bottom: 3.5rem !important;
   }
-  .pb-md-7 {
+  .pb-md-7, .banner-spacing-middle {
     padding-bottom: 4rem !important;
   }
   .pb-md-8 {
@@ -8825,7 +8827,7 @@ progress {
     margin-top: 3rem !important;
     margin-bottom: 3rem !important;
   }
-  .my-lg-6 {
+  .my-lg-6, .time-spacing .timebox .row {
     margin-top: 3.5rem !important;
     margin-bottom: 3.5rem !important;
   }
@@ -9096,7 +9098,7 @@ progress {
     padding-right: 4rem !important;
     padding-left: 4rem !important;
   }
-  .px-lg-8, .banner-spacing .container, .banner-spacing .container-fluid, .banner-spacing .container-sm, .banner-spacing .container-md, .banner-spacing .container-lg, .banner-spacing .container-xl, .banner-spacing .container-xxl {
+  .px-lg-8, .banner-spacing-bottom .container, .banner-spacing-bottom .container-fluid, .banner-spacing-middle .container, .banner-spacing-middle .container-fluid, .banner-spacing-top .container, .banner-spacing-top .container-fluid, .banner-spacing-bottom .container-sm, .banner-spacing-middle .container-sm, .banner-spacing-top .container-sm, .banner-spacing-bottom .container-md, .banner-spacing-middle .container-md, .banner-spacing-top .container-md, .banner-spacing-bottom .container-lg, .banner-spacing-middle .container-lg, .banner-spacing-top .container-lg, .banner-spacing-bottom .container-xl, .banner-spacing-middle .container-xl, .banner-spacing-top .container-xl, .banner-spacing-bottom .container-xxl, .banner-spacing-middle .container-xxl, .banner-spacing-top .container-xxl {
     padding-right: 4.5rem !important;
     padding-left: 4.5rem !important;
   }
@@ -10065,7 +10067,7 @@ progress {
     padding-right: 8rem !important;
     padding-left: 8rem !important;
   }
-  .px-xl-12, .banner-spacing .container, .banner-spacing .container-fluid, .banner-spacing .container-sm, .banner-spacing .container-md, .banner-spacing .container-lg, .banner-spacing .container-xl, .banner-spacing .container-xxl {
+  .px-xl-12, .banner-spacing-bottom .container, .banner-spacing-bottom .container-fluid, .banner-spacing-middle .container, .banner-spacing-middle .container-fluid, .banner-spacing-top .container, .banner-spacing-top .container-fluid, .banner-spacing-bottom .container-sm, .banner-spacing-middle .container-sm, .banner-spacing-top .container-sm, .banner-spacing-bottom .container-md, .banner-spacing-middle .container-md, .banner-spacing-top .container-md, .banner-spacing-bottom .container-lg, .banner-spacing-middle .container-lg, .banner-spacing-top .container-lg, .banner-spacing-bottom .container-xl, .banner-spacing-middle .container-xl, .banner-spacing-top .container-xl, .banner-spacing-bottom .container-xxl, .banner-spacing-middle .container-xxl, .banner-spacing-top .container-xxl {
     padding-right: 9rem !important;
     padding-left: 9rem !important;
   }
