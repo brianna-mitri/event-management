@@ -11998,7 +11998,7 @@ progress {
   height: 100vh;
   background-size: cover;
   background-position: center top;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   z-index: -1;
   transform: translate3d(0, var(--bg-y, 0px), 0);
   will-change: transform;
