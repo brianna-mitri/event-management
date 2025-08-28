@@ -1,0 +1,20 @@
+{
+    // put css in assets/css (no map)
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "/docs/assets/css",
+            "generateMap": false
+        },
+        {
+            "format": "compressed",
+            "extensionName": ".min.css",
+            "savePath": "/docs/assets/css",
+            "generateMap": false
+        }
+    ],
+
+    // make absolute paths start at the workspace
+    "liveSassCompile.settings.rootIsWorkspace": true
+}
