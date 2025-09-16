@@ -5002,7 +5002,7 @@ progress {
   margin-bottom: auto !important;
 }
 
-.mt-0, .banner-spacing-top {
+.mt-0, .banner-spacing-no-margins, .banner-spacing-top {
   margin-top: 0 !important;
 }
 
@@ -5114,7 +5114,7 @@ progress {
   margin-right: auto !important;
 }
 
-.mb-0, .banner-spacing-bottom {
+.mb-0, .banner-spacing-bottom, .banner-spacing-no-margins {
   margin-bottom: 0 !important;
 }
 
@@ -5293,7 +5293,7 @@ progress {
   padding-left: 0.5rem !important;
 }
 
-.px-3, .banner-spacing-bottom .container, .banner-spacing-bottom .container-fluid, .banner-spacing-middle .container, .banner-spacing-middle .container-fluid, .banner-spacing-top .container, .banner-spacing-top .container-fluid, .banner-spacing-bottom .container-sm, .banner-spacing-middle .container-sm, .banner-spacing-top .container-sm, .banner-spacing-bottom .container-md, .banner-spacing-middle .container-md, .banner-spacing-top .container-md, .banner-spacing-bottom .container-lg, .banner-spacing-middle .container-lg, .banner-spacing-top .container-lg, .banner-spacing-bottom .container-xl, .banner-spacing-middle .container-xl, .banner-spacing-top .container-xl, .banner-spacing-bottom .container-xxl, .banner-spacing-middle .container-xxl, .banner-spacing-top .container-xxl {
+.px-3, .banner-spacing-bottom .container, .banner-spacing-bottom .container-fluid, .banner-spacing-no-margins .container, .banner-spacing-no-margins .container-fluid, .banner-spacing-middle .container, .banner-spacing-middle .container-fluid, .banner-spacing-top .container, .banner-spacing-top .container-fluid, .banner-spacing-bottom .container-sm, .banner-spacing-no-margins .container-sm, .banner-spacing-middle .container-sm, .banner-spacing-top .container-sm, .banner-spacing-bottom .container-md, .banner-spacing-no-margins .container-md, .banner-spacing-middle .container-md, .banner-spacing-top .container-md, .banner-spacing-bottom .container-lg, .banner-spacing-no-margins .container-lg, .banner-spacing-middle .container-lg, .banner-spacing-top .container-lg, .banner-spacing-bottom .container-xl, .banner-spacing-no-margins .container-xl, .banner-spacing-middle .container-xl, .banner-spacing-top .container-xl, .banner-spacing-bottom .container-xxl, .banner-spacing-no-margins .container-xxl, .banner-spacing-middle .container-xxl, .banner-spacing-top .container-xxl {
   padding-right: 1rem !important;
   padding-left: 1rem !important;
 }
@@ -5358,7 +5358,7 @@ progress {
   padding-bottom: 0.5rem !important;
 }
 
-.py-3, .banner-spacing-bottom, .banner-spacing-middle, .banner-spacing-top, .swiper-spacing {
+.py-3, .banner-spacing-bottom, .banner-spacing-no-margins, .banner-spacing-middle, .banner-spacing-top, .swiper-spacing {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
 }
@@ -7906,7 +7906,7 @@ progress {
     margin-top: auto !important;
     margin-bottom: auto !important;
   }
-  .mt-md-0, .banner-spacing-top {
+  .mt-md-0, .banner-spacing-no-margins, .banner-spacing-top {
     margin-top: 0 !important;
   }
   .mt-md-1 {
@@ -8133,7 +8133,7 @@ progress {
     padding-right: 1.5rem !important;
     padding-left: 1.5rem !important;
   }
-  .px-md-5, .banner-spacing-bottom .container, .banner-spacing-bottom .container-fluid, .banner-spacing-middle .container, .banner-spacing-middle .container-fluid, .banner-spacing-top .container, .banner-spacing-top .container-fluid, .banner-spacing-bottom .container-sm, .banner-spacing-middle .container-sm, .banner-spacing-top .container-sm, .banner-spacing-bottom .container-md, .banner-spacing-middle .container-md, .banner-spacing-top .container-md, .banner-spacing-bottom .container-lg, .banner-spacing-middle .container-lg, .banner-spacing-top .container-lg, .banner-spacing-bottom .container-xl, .banner-spacing-middle .container-xl, .banner-spacing-top .container-xl, .banner-spacing-bottom .container-xxl, .banner-spacing-middle .container-xxl, .banner-spacing-top .container-xxl {
+  .px-md-5, .banner-spacing-bottom .container, .banner-spacing-bottom .container-fluid, .banner-spacing-no-margins .container, .banner-spacing-no-margins .container-fluid, .banner-spacing-middle .container, .banner-spacing-middle .container-fluid, .banner-spacing-top .container, .banner-spacing-top .container-fluid, .banner-spacing-bottom .container-sm, .banner-spacing-no-margins .container-sm, .banner-spacing-middle .container-sm, .banner-spacing-top .container-sm, .banner-spacing-bottom .container-md, .banner-spacing-no-margins .container-md, .banner-spacing-middle .container-md, .banner-spacing-top .container-md, .banner-spacing-bottom .container-lg, .banner-spacing-no-margins .container-lg, .banner-spacing-middle .container-lg, .banner-spacing-top .container-lg, .banner-spacing-bottom .container-xl, .banner-spacing-no-margins .container-xl, .banner-spacing-middle .container-xl, .banner-spacing-top .container-xl, .banner-spacing-bottom .container-xxl, .banner-spacing-no-margins .container-xxl, .banner-spacing-middle .container-xxl, .banner-spacing-top .container-xxl {
     padding-right: 3rem !important;
     padding-left: 3rem !important;
   }
@@ -8181,7 +8181,7 @@ progress {
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
   }
-  .py-md-4, .banner-spacing-bottom, .banner-spacing-middle, .banner-spacing-top, .swiper-spacing {
+  .py-md-4, .banner-spacing-bottom, .banner-spacing-no-margins, .banner-spacing-middle, .banner-spacing-top, .swiper-spacing {
     padding-top: 1.5rem !important;
     padding-bottom: 1.5rem !important;
   }
@@ -9098,7 +9098,7 @@ progress {
     padding-right: 4rem !important;
     padding-left: 4rem !important;
   }
-  .px-lg-8, .banner-spacing-bottom .container, .banner-spacing-bottom .container-fluid, .banner-spacing-middle .container, .banner-spacing-middle .container-fluid, .banner-spacing-top .container, .banner-spacing-top .container-fluid, .banner-spacing-bottom .container-sm, .banner-spacing-middle .container-sm, .banner-spacing-top .container-sm, .banner-spacing-bottom .container-md, .banner-spacing-middle .container-md, .banner-spacing-top .container-md, .banner-spacing-bottom .container-lg, .banner-spacing-middle .container-lg, .banner-spacing-top .container-lg, .banner-spacing-bottom .container-xl, .banner-spacing-middle .container-xl, .banner-spacing-top .container-xl, .banner-spacing-bottom .container-xxl, .banner-spacing-middle .container-xxl, .banner-spacing-top .container-xxl {
+  .px-lg-8, .banner-spacing-bottom .container, .banner-spacing-bottom .container-fluid, .banner-spacing-no-margins .container, .banner-spacing-no-margins .container-fluid, .banner-spacing-middle .container, .banner-spacing-middle .container-fluid, .banner-spacing-top .container, .banner-spacing-top .container-fluid, .banner-spacing-bottom .container-sm, .banner-spacing-no-margins .container-sm, .banner-spacing-middle .container-sm, .banner-spacing-top .container-sm, .banner-spacing-bottom .container-md, .banner-spacing-no-margins .container-md, .banner-spacing-middle .container-md, .banner-spacing-top .container-md, .banner-spacing-bottom .container-lg, .banner-spacing-no-margins .container-lg, .banner-spacing-middle .container-lg, .banner-spacing-top .container-lg, .banner-spacing-bottom .container-xl, .banner-spacing-no-margins .container-xl, .banner-spacing-middle .container-xl, .banner-spacing-top .container-xl, .banner-spacing-bottom .container-xxl, .banner-spacing-no-margins .container-xxl, .banner-spacing-middle .container-xxl, .banner-spacing-top .container-xxl {
     padding-right: 4.5rem !important;
     padding-left: 4.5rem !important;
   }
@@ -10067,7 +10067,7 @@ progress {
     padding-right: 8rem !important;
     padding-left: 8rem !important;
   }
-  .px-xl-12, .banner-spacing-bottom .container, .banner-spacing-bottom .container-fluid, .banner-spacing-middle .container, .banner-spacing-middle .container-fluid, .banner-spacing-top .container, .banner-spacing-top .container-fluid, .banner-spacing-bottom .container-sm, .banner-spacing-middle .container-sm, .banner-spacing-top .container-sm, .banner-spacing-bottom .container-md, .banner-spacing-middle .container-md, .banner-spacing-top .container-md, .banner-spacing-bottom .container-lg, .banner-spacing-middle .container-lg, .banner-spacing-top .container-lg, .banner-spacing-bottom .container-xl, .banner-spacing-middle .container-xl, .banner-spacing-top .container-xl, .banner-spacing-bottom .container-xxl, .banner-spacing-middle .container-xxl, .banner-spacing-top .container-xxl {
+  .px-xl-12, .banner-spacing-bottom .container, .banner-spacing-bottom .container-fluid, .banner-spacing-no-margins .container, .banner-spacing-no-margins .container-fluid, .banner-spacing-middle .container, .banner-spacing-middle .container-fluid, .banner-spacing-top .container, .banner-spacing-top .container-fluid, .banner-spacing-bottom .container-sm, .banner-spacing-no-margins .container-sm, .banner-spacing-middle .container-sm, .banner-spacing-top .container-sm, .banner-spacing-bottom .container-md, .banner-spacing-no-margins .container-md, .banner-spacing-middle .container-md, .banner-spacing-top .container-md, .banner-spacing-bottom .container-lg, .banner-spacing-no-margins .container-lg, .banner-spacing-middle .container-lg, .banner-spacing-top .container-lg, .banner-spacing-bottom .container-xl, .banner-spacing-no-margins .container-xl, .banner-spacing-middle .container-xl, .banner-spacing-top .container-xl, .banner-spacing-bottom .container-xxl, .banner-spacing-no-margins .container-xxl, .banner-spacing-middle .container-xxl, .banner-spacing-top .container-xxl {
     padding-right: 9rem !important;
     padding-left: 9rem !important;
   }
@@ -12174,6 +12174,32 @@ progress {
   line-height: 44px;
 }
 
-footer.bg-dark .nav-link {
+.footer-dark {
+  background-color: #490100;
+}
+.footer-dark .nav-link {
   color: #f5f1e9;
+}
+.footer-dark p {
+  color: #f5f1e9;
+}
+@media (max-width: 575.98px) {
+  .footer-dark .nav-link {
+    font-size: 1.2rem;
+  }
+}
+
+.footer-light {
+  background-color: rgb(229.0625, 218.6875, 197.9375);
+}
+.footer-light .nav-link {
+  color: #21201f;
+}
+.footer-light p {
+  color: #21201f;
+}
+@media (max-width: 575.98px) {
+  .footer-light .nav-link {
+    font-size: 1.2rem;
+  }
 }

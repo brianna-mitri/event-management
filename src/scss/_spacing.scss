@@ -88,6 +88,14 @@ $spacers: map-merge(
     );
 }
 
+// banner no margins 
+.banner-spacing-no-margins {
+    @include banner-spacing-base(
+        $margin-top: false,
+        $margin-bottom: false
+    );
+}
+
 // banner in middle (extra top and bottom spacing)
 .banner-spacing-middle {
     // use default margins

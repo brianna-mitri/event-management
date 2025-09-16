@@ -1,4 +1,40 @@
-// customize footer display
-footer.bg-dark .nav-link {
-    color: $light;
+// footer base theme
+@mixin footer-theme(
+    $bg-color, $text-color
+) {
+    // set background color 
+    background-color: $bg-color;
+
+    // set nav link
+    .nav-link {
+        color: $text-color;
+        // font-size: 1.1rem;
+    }
+
+    // set regular text
+    p {
+        color: $text-color;
+        // font-size: 1.5rem;
+    }
+
+    // applies font changes when smaller than sm
+    @include media-breakpoint-down(sm) {
+        .nav-link {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+// dark theme
+.footer-dark {
+    @include footer-theme(
+        $dark, $light
+    );
+}
+
+// light theme
+.footer-light {
+    @include footer-theme(
+        darken($light, 10%), $main-text
+    );
 }
