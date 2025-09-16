@@ -12036,6 +12036,10 @@ progress {
   background-image: linear-gradient(rgba(30, 40, 50, 0.5), rgba(30, 40, 50, 0.2)), url("../img/table_florals.jpg");
 }
 
+.hero-rsvp {
+  background-image: url("../img/swiper_venue.jpg");
+}
+
 /* ------------------------ Text Sizes Based on Media ------------------------ */
 @media (max-width: 767.98px) {
   section.hero .container h1.display-1, section.hero .container .display-1.h1 {
