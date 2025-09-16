@@ -204,3 +204,14 @@ $spacers: map-merge(
         }
     }
 }
+
+// footer spacing
+.footer-spacing {
+    .container {
+        @extend .py-4;
+
+        .nav-item {
+            @extend .pb-4;
+        }
+    }
+}
