@@ -196,7 +196,7 @@ $spacers: map-merge(
     .swiper {
         // top and bottom padding
         @extend .pt-2;
-        @extend .pb-4;
+        // @extend .pb-4;
 
         // sub header
         h3 {

@@ -24,7 +24,7 @@
     }
 }
 
-// dark theme: faq home page
+// dark theme
 .faqs-dark {
     @extend .faqs;
 
@@ -57,7 +57,7 @@
     // }
 }
 
-// dark theme: faq page
+// light theme
 .faqs-light {
     @extend .faqs;
 
@@ -116,6 +116,44 @@
         // custom icons
         --bs-accordion-btn-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fdfae9' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2'/></svg>");
         --bs-accordion-btn-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fdfae9' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8'/></svg>");
+    }
+
+    // .accordion-body {
+    //     color: rgba(colors.$dark, 0.9)
+    // }
+}
+
+// match page colors theme
+.faqs-match {
+    @extend .faqs;
+
+    // main body colors
+    .accordion {
+        // text colors
+        --bs-accordion-color: #{colors.$body-color};             //question
+        --bs-accordion-bg: #{colors.$body-bg};                 //answer
+        
+        // 
+        --bs-accordion-btn-color: #{colors.$body-color};         //question text (not active)
+        --bs-accordion-btn-bg: #{colors.$body-bg};             //background color
+        --bs-accordion-btn-focus-box-shadow: none;          //focus outline
+
+        // active
+        --bs-accordion-active-color: #{colors.$body-color};      //question text color                           //question text when clicked
+        --bs-accordion-active-bg: #{colors.$body-bg};          //question bg text color
+
+        // border
+        --bs-accordion-border-color: #{colors.$body-color};
+        // --bs-accordion-border-width: 2px;
+
+        // custom icons
+        .accordion-button {
+            color: $body-color;
+            --bs-accordion-btn-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2'/></svg>");
+            --bs-accordion-btn-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8'/></svg>");
+        }
+        // --bs-accordion-btn-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23490100' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2'/></svg>");
+        // --bs-accordion-btn-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23490100' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8'/></svg>");
     }
 
     // .accordion-body {
