@@ -1,0 +1,8 @@
+// default to show one step at a time
+.step {
+    display: none; // hide all steps by default
+}
+
+.step.active {
+    display: block; // only show the step with active class
+}

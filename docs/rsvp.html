@@ -8,7 +8,7 @@
     <!-- CSS-->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"> -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /> -->
-    <link href="./assets/css/main.min.css?v=6.0" rel="stylesheet">
+    <link href="./assets/css/main.min.css?v=1" rel="stylesheet">
   </head>
   <body>
 
@@ -104,7 +104,130 @@
         <!----------------------------- RSVP Form ----------------------------->
         <section class="rsvp-form section-spacing">
             <div class="container-fluid">
-                <h2 class="display-4 fw-semibold mb-md-4">We hope you say yes!</h2>
+                <!-- <h2 class="display-4 fw-semibold mb-md-4">We hope you say yes!</h2> -->
+
+                <!------- Progress Bar ------->
+                <div class="progress" role="progressbar">
+                    <div class="progress-bar bg-info" id="progressBar" style="width: 25%"></div>
+                </div>
+
+                <!------- Form ------->
+                <form id="rsvpForm">
+
+                    <!-- 1) Name input -->
+                    <div class="step active" id="step-name">
+                        <div class="row g-3 mb-3">
+                            <!-- <label for="formName" class="form-label fs-5">Your full name</label> -->
+                            <h4>What's your full name?</h4>
+                            <div class="col-sm-6">
+                                <label for="firstName" class="form-label">First name</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="Your first name" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="lastName" class="form-label">Last name</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="Your last name" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <!-- 2) Attending input -->
+                    <div class="step" id="step-attendance">
+                        <div class="row g-3 mb-3">
+                            <!-- <label for="rsvpResponse" class="form-label fs-5">Will you be attending?</label> -->
+                            <h4>Will you come to our event name?</h4>
+
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="attendingInput" id="attendingYes" value="yes" required>
+                                    <label class="form-check-label" for="attendingYes">
+                                        Yes, I'll be there!
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="attendingInput" id="attendingNo" value="no" required>
+                                    <label class="form-check-label" for="attendingNo">
+                                        Sorry, can't make it :(
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3) Dietary preferences -->
+                    <div class="step" id="step-dietary">
+                        <h4>Do you have a dietary preference?</h4>
+
+                        <div class="col">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="dietaryInput" id="dietVegan" value="vegan" required>
+                                <label class="form-check-label" for="dietVegan">
+                                    Vegan
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="dietaryInput" id="dietVegetarian" value="vegetarian" required>
+                                <label class="form-check-label" for="dietVegetarian">
+                                    Vegetarian
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="dietaryInput" id="dietPescatarian" value="pescatarian" required>
+                                <label class="form-check-label" for="dietPescatarian">
+                                    Pescatarian
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="dietaryInput" id="dietNone" value="none" required>
+                                <label class="form-check-label" for="dietNone">
+                                    None
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <!-- 4) Confirmation input -->
+                    <div class="step" id="step-confirm">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6>Overview:</h6>
+                                <p><strong>Name:</strong> <span id="summaryName"></span></p>
+                                <p><strong>Attending:</strong> <span id="summaryAttending"></span></p>
+
+                                <!-- Show only if attending -->
+                                <div id="attendingSummary" style="display: none;">
+                                    <p><strong>Dietary preference:</strong> <span id="summaryDietary"></span></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!------------- Navigation Buttons ------------->
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-outline-secondary" id="prevBtn" onclick="changeStep(-1)" style="display: none;">
+                            Back
+                        </button>
+
+                        <div></div> <!--Spacer-->
+
+                        <button type="button" class="btn btn-primary" id="nextBtn" onclick="changeStep(1)">
+                            Next
+                        </button>
+
+                        <button type="submit" class="btn btn-success" id="submitBtn" style="display: none;">
+                            Send RSVP
+                        </button>
+                    </div>
+
+
+                </form>
+
             </div>
             
         </section>
@@ -144,6 +267,7 @@
 
     <!--Personal scripts-->
     <script src="./assets/js/navbar.js"></script>
+    <script src="./assets/js/multistep-form.js"></script>
     <!-- <script src="./assets/js/countdown.js"></script>
     <script src="./assets/js/swiping.js"></script>
     <script src="./assets/js/parallax.js"></script> -->
