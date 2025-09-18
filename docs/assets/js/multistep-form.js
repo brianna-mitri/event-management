@@ -1,6 +1,9 @@
 /* --------------------------------------------------------- */
 // Step Management System
 /* --------------------------------------------------------- */
+// configuration
+GOOGLE_APPS_SCRIPT = 'https://script.google.com/macros/s/AKfycbzjmubkgAzt1qUdjQ8yBTFLHAFpFPKj1bx0KxVlZBtlyZyBY7ovQrG4zdI1DJNW9pV6/exec';
+
 // define step paths
 const stepOrder = {
     attending: ['name', 'attendance', 'dietary', 'confirm'],
@@ -10,7 +13,63 @@ const stepOrder = {
 // track current flow and position
 let currentOrder = stepOrder.attending;      //current step sequence
 let currentStepIndex = 0;   //current index
+let guestVerified = false;  //track if guest is verified
+let guestInfo = null;       //store guest info
 
+
+
+/* -------------------------------- Google Sheets API Functions ---------------------------------------------------------------------------------------------------------------------------------------- */
+
+// function: verify guest name
+async function verifyGuestName(firstName, lastName) {
+    try {
+        const body = new URLSearchParams({
+            action: 'verifyGuest',
+            firstName: firstName.trim(),
+            lastName: lastName.trim()
+        });
+
+        const response = await fetch(GOOGLE_APPS_SCRIPT, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body
+        });
+
+        if (!response.ok) {
+            console.error('Apps script http error', response.status, await response.text());
+            alert('Unable to verify guest at the moment. Please try again.');
+            return false;
+        }
+
+        const result = await response.json();
+
+        if (result.success && result.found) {
+            // name found on guest list
+            guestVerified = true;
+            guestInfo = result.guest;
+            // alert(`Welcome ${firstName} ${lastName}!`);
+            return true;
+        } else {
+            // name not found on guest list  
+            guestVerified = false;
+            guestInfo = null;
+            alert("Sorry, we couldn't find you on our guest list. Please check the spelling.");
+            return false;
+        }
+
+
+        // return result;
+    } catch (error) {
+        console.error('Error verifying guest: ', error);
+        guestVerified = false;
+        guestInfo = null;
+        alert('Unable to verify guest at moment. Please try again. Network Error: ' + error);
+        return false;
+        // return { found: false, error: 'Network error' };
+    }
+}
 
 /*-------------------------- Function: updateOrder() --------------------------*/
 // Called when user chagnes their attendance choice
@@ -69,9 +128,9 @@ function showStep(stepIndex) {
 /*-------------------------- Function: changeStep(direction) --------------------------*/
 // Called when user clicks "Next" (+1) or "Back" (-1)
 /*-----------------------------------------------------------------------------*/
-function changeStep(direction) {
+async function changeStep(direction) {
     // validate current step before moving forward
-    if (direction === 1 && !validateCurrentStep()) {
+    if (direction === 1 && !await validateCurrentStep()) {
         return;
     }
 
@@ -97,7 +156,7 @@ function changeStep(direction) {
 /*-------------------------- Function: validateCurrentStep() --------------------------*/
 // Checks if required fields have been filled out before moving on
 /*-----------------------------------------------------------------------------*/
-function validateCurrentStep() {
+async function validateCurrentStep() {
     const currentStepName = currentOrder[currentStepIndex];
     const step = document.getElementById(`step-${currentStepName}`);
     const inputs = step.querySelectorAll('input[required]');
@@ -136,6 +195,18 @@ function validateCurrentStep() {
             } else {
                 input.classList.remove('is-invalid');
             }
+        }
+    }
+
+
+    // special validation for name step (verifying if on guest list)
+    if (currentStepName === 'name' && isValid) {
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+
+        const verified = await verifyGuestName(firstName, lastName);
+        if (!verified) {
+            isValid = false
         }
     }
 
@@ -186,6 +257,7 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
 
     alert('RSVP submitted successfully! Thank you!');
     console.log('Form data:', data);
+    console.log('Guest info:', guestInfo);
 });
 
 /*-----------------------------------------------------------------------------*/
@@ -194,6 +266,16 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
 // listen for attendance changes to update steps order
 document.querySelectorAll('input[name="attendingInput"]').forEach(radio => {
     radio.addEventListener('change', updateOrder);
+});
+
+// clear guest verification when name field change
+document.getElementById('firstName').addEventListener('input', function() {
+    guestVerified = false;
+    guestInfo = null;
+});
+document.getElementById('lastName').addEventListener('input', function() {
+    guestVerified = false;
+    guestInfo = null;
 });
 
 /*-----------------------------------------------------------------------------*/
