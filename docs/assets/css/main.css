@@ -12948,6 +12948,8 @@ textarea.form-control-lg {
 
 .hero-rsvp {
   background-image: url("../img/swiper_venue.jpg");
+  height: 45vh;
+  min-height: 500px;
 }
 
 /* ------------------------ Text Sizes Based on Media ------------------------ */
