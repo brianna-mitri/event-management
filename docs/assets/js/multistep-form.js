@@ -101,6 +101,7 @@ function validateCurrentStep() {
     const currentStepName = currentOrder[currentStepIndex];
     const step = document.getElementById(`step-${currentStepName}`);
     const inputs = step.querySelectorAll('input[required]');
+    let isValid = true;
 
     // check each required input
     for (let input of inputs) {
@@ -111,20 +112,36 @@ function validateCurrentStep() {
             const isChecked = Array.from(radioGroup).some(radio => radio.checked);
 
             if(!isChecked) {
-                alert('Please make a selection before continuing.');
-                return false;
-            } 
+                // add invalid class to all radio buttons
+                radioGroup.forEach(radio => {
+                    radio.classList.add('is-invalid');
+                });
+                isValid = false;
+                // alert('Please make a selection before continuing.');
+                // return false;
+            } else {
+                // remove invalid class
+                radioGroup.forEach(radio => {
+                    radio.classList.remove('is-invalid');
+                });
+            }
 
         } else if (input.type !== 'checkbox') {
             if (!input.value.trim()) {
+                input.classList.add('is-invalid');
                 input.focus();
-                alert('Please fill in all required fields.');
-                return false;
+                isValid = false;
+                // alert('Please fill in all required fields.');
+                // return false;
+            } else {
+                input.classList.remove('is-invalid');
             }
         }
     }
 
-    return true;  //all validation passed
+    return isValid; //all validation passed
+
+    // return true;  //all validation passed
 }
 
 /*-------------------------- Function: updateSummary() --------------------------*/

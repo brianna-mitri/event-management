@@ -118,14 +118,21 @@
                     <div class="step active" id="step-name">
                         <div class="row g-3 mb-3">
                             <!-- <label for="formName" class="form-label fs-5">Your full name</label> -->
+                            <h2 class="text-center">Welcome!</h2>
                             <h4>What's your full name?</h4>
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">First name</label>
                                 <input type="text" class="form-control" id="firstName" placeholder="Your first name" required>
+                                <div class="invalid-feedback">
+                                    Please enter your first name
+                                </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="lastName" class="form-label">Last name</label>
                                 <input type="text" class="form-control" id="lastName" placeholder="Your last name" required>
+                                <div class="invalid-feedback">
+                                    Please enter your last name
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -150,6 +157,11 @@
                                     <label class="form-check-label" for="attendingNo">
                                         Sorry, can't make it :(
                                     </label>
+
+                                    <!-- invalid feedback -->
+                                    <div class="invalid-feedback">
+                                        Please select whether you'll be attending
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -186,6 +198,11 @@
                                 <label class="form-check-label" for="dietNone">
                                     None
                                 </label>
+
+                                <!-- invalid feedback -->
+                                <div class="invalid-feedback">
+                                    Please select your dietary preference
+                                </div>
                             </div>
 
                         </div>
