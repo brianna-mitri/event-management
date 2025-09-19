@@ -16,7 +16,8 @@ let currentStepIndex = 0;   //current index
 let guestVerified = false;  //track if guest is verified
 let guestInfo = null;       //store guest info
 
-
+// navigation controls
+let navigating = false;
 
 /* -------------------------------- Google Sheets API Functions ---------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -129,25 +130,65 @@ function showStep(stepIndex) {
 // Called when user clicks "Next" (+1) or "Back" (-1)
 /*-----------------------------------------------------------------------------*/
 async function changeStep(direction) {
-    // validate current step before moving forward
-    if (direction === 1 && !await validateCurrentStep()) {
-        return;
+
+    // ignore rentrancy
+    if (navigating) return;
+    navigating = true;
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // disable nav buttons during async work
+    [prevBtn, nextBtn, submitBtn].forEach(b => b && (b.disabled = true));
+
+    try {
+        // validate before moving forward
+        if (direction === 1) {
+            const ok = await validateCurrentStep();
+            if (!ok) return;   //stop here if invalid
+            
+            // update step order, if they just answered attendance
+            if (currentOrder[currentStepIndex] === 'attendance') {
+                updateOrder();
+            }
+        }
+
+        // move to the next/previous step
+        currentStepIndex += direction;
+
+        // boundary checks: don't go below 0 or above max steps
+        if (currentStepIndex < 0) currentStepIndex = 0;
+        if (currentStepIndex >= currentOrder.length) currentStepIndex = currentOrder.length - 1;
+
+        // display the new step
+        showStep(currentStepIndex);
+
+    } finally {
+        navigating = false;
+        //re-enable buttons appropriate for the new step
+        [prevBtn, nextBtn, submitBtn].forEach(b => b && (b.disabled = false));
     }
 
-    // update step order, if they just answered attendance
-    if (currentOrder[currentStepIndex] === 'attendance' && direction === 1) {
-        updateOrder();
-    }
+    // // validate current step before moving forward
+    // if (direction === 1 && !await validateCurrentStep()) {
+    //     return;
+    // }
 
-    // move to the next/previous step
-    currentStepIndex += direction;
+    // // update step order, if they just answered attendance
+    // if (currentOrder[currentStepIndex] === 'attendance' && direction === 1) {
+    //     updateOrder();
+    // }
 
-    // boundary checks: don't go below 0 or above max steps
-    if (currentStepIndex < 0) currentStepIndex = 0;
-    if (currentStepIndex >= currentOrder.length) currentStepIndex = currentOrder.length - 1;
+    // // move to the next/previous step
+    // currentStepIndex += direction;
 
-    // display the new step
-    showStep(currentStepIndex);
+    // // boundary checks: don't go below 0 or above max steps
+    // if (currentStepIndex < 0) currentStepIndex = 0;
+    // if (currentStepIndex >= currentOrder.length) currentStepIndex = currentOrder.length - 1;
+
+    // // display the new step
+    // showStep(currentStepIndex);
 
 
 }
@@ -256,22 +297,22 @@ document.getElementById('rsvpForm').addEventListener('submit', async function (e
         e.preventDefault();
         await changeStep(1);
         return;
-    } else {
-        // on final step, validate current step before 'submit'
-        e.preventDefault();
-        const ok = await validateCurrentStep();
-        if (!ok) return;
+    } 
+    // on final step, validate current step before 'submit'
+    e.preventDefault();
+    const ok = await validateCurrentStep();
+    if (!ok) return;
 
-        // collect all form data on submit
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData.entries());
+    // collect all form data on submit
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
 
-        alert('RSVP submitted successfully! Thank you!');
-        console.log('Form data:', data);
-        console.log('Guest info:', guestInfo);
-    }
+    alert('RSVP submitted successfully! Thank you!');
+    console.log('Form data:', data);
+    console.log('Guest info:', guestInfo);
+    
 
-})
+});
 
 /*-----------------------------------------------------------------------------*/
 // Event Listeners
