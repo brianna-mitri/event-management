@@ -248,17 +248,30 @@ function updateSummary() {
 /*-----------------------------------------------------------------------------*/
 // Form Submission Handler
 /*-----------------------------------------------------------------------------*/
-document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+document.getElementById('rsvpForm').addEventListener('submit', async function (e) {
 
-    // collect all form data
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData.entries());
+    // prevent incomplete/invalid form submissions (treat "enter" as "next" and validate last step)
+    if (currentStepIndex !== currentOrder.length - 1) {
+        // treat submit as "next" (if not final step)
+        e.preventDefault();
+        await changeStep(1);
+        return;
+    } else {
+        // on final step, validate current step before 'submit'
+        e.preventDefault();
+        const ok = await validateCurrentStep();
+        if (!ok) return;
 
-    alert('RSVP submitted successfully! Thank you!');
-    console.log('Form data:', data);
-    console.log('Guest info:', guestInfo);
-});
+        // collect all form data on submit
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData.entries());
+
+        alert('RSVP submitted successfully! Thank you!');
+        console.log('Form data:', data);
+        console.log('Guest info:', guestInfo);
+    }
+
+})
 
 /*-----------------------------------------------------------------------------*/
 // Event Listeners
