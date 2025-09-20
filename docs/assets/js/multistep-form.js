@@ -12,7 +12,7 @@ const stepOrder = {
     notAttending: ['name', 'attendance', 'confirm'],
 
     // grp party routes
-    attendingGrp: ['name', 'attendance-grp', 'dietary', 'confirm'],        //checks at least one person in attendance
+    attendingGrp: ['name', 'attendance-grp', 'dietary-grp', 'confirm'],        //checks at least one person in attendance
     notAttendingGrp: ['name', 'attendance-grp', 'confirm']                 //checks 'none' for attendance
 };
 
@@ -24,6 +24,29 @@ let guestInfo = null;       //store guest info
 
 // navigation controls
 let navigating = false;
+
+// grp dropdown dietary preferences options
+const dietOptions = [
+        ['none', 'None'],
+        ['vegan', 'Vegan'],
+        ['vegetarian', 'Vegetarian'],
+        ['pescatarian', 'Pescatarian']
+    ]
+
+// ---- helpers---------------------
+function isGroupParty() {
+    return (guestInfo?.party?.party_type || 'single').toLowerCase() !== 'single';
+}
+
+function getSelectedGroupIds() {
+    return Array.from(document.querySelectorAll('input[name="grpAttendees[]"]:checked'))
+        .map(el => el.value)
+        .filter(v => v !== 'none');
+}
+
+function idToNameMap() {
+    return new Map((guestInfo?.members || []).map(m => [String(m.guest_id), `${m.first_name} ${m.last_name}`]));
+}
 
 /* -------------------------------- Google Sheets API Functions ---------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -140,6 +163,11 @@ function showStep(stepIndex) {
     } else {
         nextBtn.style.display = 'inline-block';
         submitBtn.style.display = 'none';
+    }
+
+    // lifecycle for dietary step
+    if (currentStepName === 'dietary-grp') {
+        enterDietaryGrpStep();
     }
 }
 
@@ -283,6 +311,24 @@ async function validateCurrentStep() {
         if (!ok) return false;
     }
 
+    // for group dietary preference, if checked "yes" then need to not have "None" for each party member
+    if (currentStepName === 'dietary-grp') {
+        if (dietaryGrpState.answer === 'yes') {
+            // selected attendees
+            const ids = getSelectedGroupIds();
+
+            // must have at least one preference that isn't 'none'
+            const hasRealPref = ids.some(id => (dietaryGrpState.perGuest[id] || 'none') !== 'none');
+            if (!hasRealPref) {
+                showDietaryGrpError('Please choose at least one dietary preference (other than "None")')
+                return false;
+            }
+
+            // clear any prior erro if "no" or valid "yes"
+            showDietaryGrpError('');
+        }
+    }
+
     return isValid; //all validation passed
 }
 
@@ -355,6 +401,169 @@ function renderGrpChecklist(members = []) {
 
     // initialize order (default to notAttendingGrp)
     updateOrderGrp();
+}
+
+/*-------------------------- Functions: Render Grp Dietary Table --------------------------*/
+// 1) renderGrpDietaryTable(): builds the per person dietary table
+// 2) setupDietaryGrpUI(): one-time wiring for the Yes/No radios
+// 3) enterDietaryGrpStep(): lifecycle when entering the dietary-grp step
+// 4) showDietaryGrpError(): show/hide error message under table
+/*-----------------------------------------------------------------------------*/
+// persis group dietary UI between navigations
+const dietaryGrpState = {
+    answer: null,               // 'yes' | 'no' | null
+    perGuest: {}                // { [guestId]: 'vegan' | 'vegetarian' | 'pescatarian' | 'none' }
+}
+
+function renderGrpDietaryTable(selectedIds) {
+    const wrap = document.getElementById('grp-dietary-table-wrap');
+    const tbody = document.querySelector('#grp-dietary-table tbody');
+    tbody.innerHTML = '';  //clear old content
+    
+    // set up input values (selected party members 'First Last')
+    const map = idToNameMap();
+    // const options = [
+    //     ['none', 'None'],
+    //     ['vegan', 'Vegan'],
+    //     ['vegetarian', 'Vegetarian'],
+    //     ['pescatarian', 'Pescatarian']
+    // ]
+
+    // keep only entries for currently selected guests
+    Object.keys(dietaryGrpState.perGuest).forEach(id => {
+        if (!selectedIds.includes(id)) delete dietaryGrpState.perGuest[id];
+    });
+
+    // build table row for each selected attendee
+    selectedIds.forEach(id => {
+
+        // default to 'none' if this if newly selected guest
+        if (!dietaryGrpState.perGuest[id]) dietaryGrpState.perGuest[id] = 'none';
+
+        const tr = document.createElement('tr');
+
+        // left cell: name
+        const name = map.get(String(id)) || id;
+        tr.innerHTML = `<td>${name}</td>`;
+        
+        // right cell: <select> with options (default is none)
+        const td = document.createElement('td');
+        const selectId = `diet_${id}`;
+        const select = document.createElement('select');
+        select.className = 'form-select form-select-sm grp-diet-select';
+        select.id = selectId;
+        select.name = selectId;
+
+        dietOptions.forEach(([val, label]) => {
+            const opt = document.createElement('option');
+            opt.value = val;
+            opt.textContent = label;
+            if (val === 'none') opt.selected = true;  //default
+            select.appendChild(opt);
+        });
+
+        // restore saved value
+        select.value = dietaryGrpState.perGuest[id];
+
+        // keep state up to date as user changes dropdowns
+        select.addEventListener('change', () => {
+            dietaryGrpState.perGuest[id] = select.value || 'none';
+        });
+
+        td.appendChild(select);
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+    });
+
+    // show table only if there are attendees
+    wrap.style.display = selectedIds.length ? 'block' : 'none';
+}
+
+let dietaryGrpWired = false;
+function setupDietaryGrpUI() {
+    if (dietaryGrpWired) return;
+    dietaryGrpWired = true;
+
+    const yes = document.getElementById('dietaryGrpYes');
+    const no = document.getElementById('dietaryGrpNo');
+    const wrap = document.getElementById('grp-dietary-table-wrap');
+
+    // hide any validation message from previous try
+    const hideMsg = () => {
+        const msg = document.querySelector('#step-dietary-grp .invalid-feedback');
+        if (msg) msg.style.display = 'none';
+    };
+
+    if (yes) {
+        // open table when user picks yes
+        yes.addEventListener('change', () => {
+            hideMsg();
+            dietaryGrpState.answer = yes.checked ? 'yes' : dietaryGrpState.answer;
+            showDietaryGrpError('');  //clear any previous error
+            renderGrpDietaryTable(getSelectedGroupIds());
+            wrap.style.display = 'block';
+        });
+    } 
+    if (no) {
+        // open table when user picks no
+        no.addEventListener('change', () => {
+            hideMsg();
+            dietaryGrpState.answer = no.checked ? 'no' : dietaryGrpState.answer;
+            showDietaryGrpError('');  //clear any previous error
+            wrap.style.display = 'none';
+        });
+    }
+
+    // if attendee checkboxes change WHILE on this step and Yes is selected, refresh table so rows match attendees
+    const refreshIfNeeded = () => {
+        const onThisStep = document.getElementById('step-dietary-grp')?.classList.contains('active');
+        if (onThisStep && dietaryGrpState.answer === 'yes') {
+            renderGrpDietaryTable(getSelectedGroupIds());
+        }
+    };
+    document.getElementById('grpChecklist')?.addEventListener('change', refreshIfNeeded);
+}
+
+function enterDietaryGrpStep() {
+    setupDietaryGrpUI();
+
+    const yes = document.getElementById('dietaryGrpYes');
+    const no = document.getElementById('dietaryGrpNo');
+    const wrap = document.getElementById('grp-dietary-table-wrap');
+    
+    // restore radios from state
+    if (dietaryGrpState.answer === 'yes') {
+        if (yes) yes.checked = true;
+        if (no) no.checked = false;
+        renderGrpDietaryTable(getSelectedGroupIds());
+        if (wrap) wrap.style.display = 'block';
+    } else if (dietaryGrpState.answer === 'no') {
+        if (yes) yes.checked = false;
+        if (no) no.checked = true;
+        if (wrap) wrap.style.display = 'none';
+    } else {
+        // first time here, keep both unchecked and table hidden
+        if (yes) yes.checked = false;
+        if (no) no.checked = false;
+        if (wrap) wrap.style.display = 'none';
+    }
+}
+
+function showDietaryGrpError(text) {
+    const wrap = document.getElementById('grp-dietary-table-wrap');
+    if (!wrap) return;
+
+    // reuse/create a message element
+    let msg = document.getElementById('dietary-grp-extra-msg');
+    if (!msg) {
+        msg = document.createElement('div');
+        msg.id = 'dietary-grp-extra-msg';
+        msg.className = 'invalid-feedback d-block';
+        wrap.appendChild(msg);
+    }
+
+    msg.textContent = text || '';
+    msg.style.display = text ? 'block' : 'none';
 }
 
 /*-------------------------- Function: updateSummary() --------------------------*/

@@ -167,7 +167,7 @@
                         </div>
                     </div>
 
-                    <!-- 3) Dietary preferences -->
+                    <!-- 3) Dietary preferences (single)-->
                     <div class="step" id="step-dietary">
                         <h4>Do you have a dietary preference?</h4>
 
@@ -226,6 +226,44 @@
                         </div>
                     </div>
                     
+                    <!-- 3) Dietary preferences (group)-->
+                    <div class="step" id="step-dietary-grp">
+                        <h4>Does anyone have a dietary preference?</h4>
+                        
+                        <div class="col">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="dietaryGrpInput" id="dietaryGrpYes" value="yes" required>
+                                <label class="form-check-label" for="dietaryGrpYes">
+                                    Yes
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="dietaryGrpInput" id="dietaryGrpNo" value="no" required>
+                                <label class="form-check-label" for="dietaryGrpNo">
+                                    No
+                                </label>
+
+                                <!-- invalid feedback -->
+                                <div class="invalid-feedback">
+                                    Please select yes or no
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dietary preferences shown if yes checked -->
+                        <div id="grp-dietary-table-wrap" style="display: none;">
+                            <div class="table-responsive">
+                                <table class="table table-sm align-middle" id="grp-dietary-table">
+                                    <thead>
+                                        <tr><th>Guest</th><th>Preference</th></tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
                     <!-----CONFIRMATION------------------------------------------------------------------------------------------------------>
                     <!-- 4) Confirmation input -->
                     <div class="step" id="step-confirm">
