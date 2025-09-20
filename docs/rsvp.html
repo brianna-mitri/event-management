@@ -137,7 +137,7 @@
                         </div>
                     </div>
 
-                    
+                    <!-----SINGLE PATH------------------------------------------------------------------------------------------------------>
                     <!-- 2) Attending input (single)-->
                     <div class="step" id="step-attendance">
                         <div class="row g-3 mb-3">
@@ -207,7 +207,26 @@
 
                         </div>
                     </div>
+
+                    <!-----GROUP PATH------------------------------------------------------------------------------------------------------>
+                    <!-- 2) Attending input (group)-->
+                    <div class="step" id="step-attendance-grp">
+                        <div class="row g-3 mb-3">
+                            <!-- <label for="rsvpResponse" class="form-label fs-5">Will you be attending?</label> -->
+                            <h4>Who can come to our event name?</h4>
+                            <p class="text-muted">Select everyone in your party who'll attend.</p>
+
+                            <!--populated by JS once user name verified -->
+                            <div id="grpChecklist" class="d-flex flex-column"></div>
+                            
+                            <!-- invalid feedback -->
+                            <div class="invalid-feedback">
+                                Please select at least one guest
+                            </div>
+                        </div>
+                    </div>
                     
+                    <!-----CONFIRMATION------------------------------------------------------------------------------------------------------>
                     <!-- 4) Confirmation input -->
                     <div class="step" id="step-confirm">
                         <div class="card">
