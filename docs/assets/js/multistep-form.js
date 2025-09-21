@@ -712,7 +712,7 @@ function updateSummary() {
         }
 
         // update attending summary text with label from attending question
-        const attendingLabel = document.querySelector(`label[for="${attending.id}"]`)?.textContent?.trim() || attendingSelected.value;
+        const attendingLabel = document.querySelector(`label[for="${attending.id}"]`)?.textContent?.trim() || attending.value;
         document.getElementById('summaryAttending').textContent = attendingLabel;
     
         // if attending, show single dietary choice
