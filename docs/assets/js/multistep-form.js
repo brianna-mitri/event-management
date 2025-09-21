@@ -48,6 +48,92 @@ function idToNameMap() {
     return new Map((guestInfo?.members || []).map(m => [String(m.guest_id), `${m.first_name} ${m.last_name}`]));
 }
 
+function capitalize(s = '') {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+// ---- unified data model for both single + group ---------------------------------------------------------
+const memberInfo = {};              // guest_id -> {guest_id, party_id, attending, dietary_pref}
+let ogMemberInfo = {};            // copy taken right after verifyGuestName()
+
+const cap = s => s ? s[0].toUpperCase() + s.slice(1) : s;
+const deepClone = obj => JSON.parse(JSON.stringify(obj));
+
+// function: create/refresh memberInfo from guestInfo (after verify)
+function initMemberStateFromGuestInfo() {
+    Object.keys(memberInfo).forEach(k => delete memberInfo[k]);
+
+    const partyId = String(guestInfo?.guest?.party_id || '');
+    const members = Array.isArray(guestInfo?.members) ? guestInfo.members : [];
+
+    isGroup = isGroupParty(); // see if group
+
+    // group party: fill everyone with default "no/none" and flip to "yes" as user selects
+    if (isGroup) {
+        members.forEach(m => {
+            memberInfo[String(m.guest_id)] = {
+                guest_id: String(m.guest_id),
+                party_id: partyId,
+                attending: 'no',
+                dietary_pref: 'none'
+            };
+        });
+    }
+
+    // single party 
+    if (!isGroup) {
+        const g = guestInfo.guest;
+        memberInfo[String(g.guest_id)] = {
+            guest_id: String(g.guest_id),
+            party_id: partyId || String(g.party_id || ''),
+            attending: 'no',
+            dietary_pref: 'none'
+        };
+    }
+
+    ogMemberInfo = deepClone(memberInfo);
+}
+
+// function: attendance (group): reflect checkboxes into memberInfo
+function syncMemberAttendanceFromChecklist() {
+    const selectedIds = new Set(getSelectedGroupIds().map(String));
+    Object.keys(memberInfo).forEach(id => {
+        // if the group step exists, flip based on checklist
+        if (document.getElementById('step-attendance-grp')) {
+            memberInfo[id].attending = selectedIds.has(id) ? 'yes' : 'no';
+
+            // if no longer attending, force dietary none
+            if (memberInfo[id].attending === 'no') memberInfo[id].dietary_pref = 'none';
+        }
+    });
+
+    // if change group dietary to 'yes', keep table in sync
+    if (dietaryGrpState.answer === 'yes') {
+        renderGrpDietaryTable([...selectedIds]);
+    }
+}
+
+// function: when user switches group dietary to 'no', force all attending prefs to 'none'
+function setAllDietaryNoneForAttendees() {
+    // reset canonical state
+    Object.values(memberInfo).forEach(m => {
+        if (m.attending === 'yes') m.dietary_pref = 'none';
+    });
+
+    // reset ui mirror
+    Object.keys(dietaryGrpState.perGuest).forEach(id => {
+        dietaryGrpState.perGuest[id] = 'none';
+    });
+}
+
+// function: build human friendly name map once
+function getName(id) {
+    const map = idToNameMap();
+    return map.get(String(id)) || `Guest ${id}`;
+}
+
+// when user switches group dietary to No, force all attending prefs to none 
+
 /* -------------------------------- Google Sheets API Functions ---------------------------------------------------------------------------------------------------------------------------------------- */
 
 // function: verify guest name
@@ -79,6 +165,9 @@ async function verifyGuestName(firstName, lastName) {
             // name found on guest list
             guestVerified = true;
             guestInfo = result;
+
+            // initialize unified state now that we know party/guest ids
+            initMemberStateFromGuestInfo();
 
             // decide step order (based on party of 1 or more)
             const partyType = (result.party?.party_type  || 'single').toLowerCase();
@@ -401,6 +490,16 @@ function renderGrpChecklist(members = []) {
 
     // initialize order (default to notAttendingGrp)
     updateOrderGrp();
+
+    // keep memberInfo in sync as checklist changes
+    function onChecklistChange() {
+        syncMemberAttendanceFromChecklist();
+    }
+    noneBox.addEventListener('change', onChecklistChange);
+    memberBoxes.forEach(box => box.addEventListener('change', onChecklistChange));
+
+    // initial sync
+    syncMemberAttendanceFromChecklist();
 }
 
 /*-------------------------- Functions: Render Grp Dietary Table --------------------------*/
@@ -437,8 +536,8 @@ function renderGrpDietaryTable(selectedIds) {
     // build table row for each selected attendee
     selectedIds.forEach(id => {
 
-        // default to 'none' if this if newly selected guest
-        if (!dietaryGrpState.perGuest[id]) dietaryGrpState.perGuest[id] = 'none';
+        // // default to 'none' if this if newly selected guest
+        // if (!dietaryGrpState.perGuest[id]) dietaryGrpState.perGuest[id] = 'none';
 
         const tr = document.createElement('tr');
 
@@ -454,6 +553,22 @@ function renderGrpDietaryTable(selectedIds) {
         select.id = selectId;
         select.name = selectId;
 
+        // ensure a member record
+        if (!memberInfo[id]) {
+            memberInfo[id] = {
+                guest_id: String(id),
+                party_id: String(guestInfo?.party?.party_id || ''),
+                attending: 'yes',
+                dietary_pref: 'none'
+            };
+        }
+
+        // default perGueset from memberInfo if missing
+        if (!dietaryGrpState.perGuest[id]) {
+            dietaryGrpState.perGuest[id] = memberInfo[id].dietary_pref || 'none';
+        }
+
+        // options
         dietOptions.forEach(([val, label]) => {
             const opt = document.createElement('option');
             opt.value = val;
@@ -463,11 +578,13 @@ function renderGrpDietaryTable(selectedIds) {
         });
 
         // restore saved value
-        select.value = dietaryGrpState.perGuest[id];
+        select.value = memberInfo[id].dietary_pref || dietaryGrpState.perGuest[id] || 'none';
 
-        // keep state up to date as user changes dropdowns
+        // write through to both states
         select.addEventListener('change', () => {
-            dietaryGrpState.perGuest[id] = select.value || 'none';
+            const v = select.value || 'none';
+            dietaryGrpState.perGuest[id] = v;
+            memberInfo[id].dietary_pref = v;
         });
 
         td.appendChild(select);
@@ -510,6 +627,7 @@ function setupDietaryGrpUI() {
             hideMsg();
             dietaryGrpState.answer = no.checked ? 'no' : dietaryGrpState.answer;
             showDietaryGrpError('');  //clear any previous error
+            setAllDietaryNoneForAttendees();  //force 'none' for dietary options
             wrap.style.display = 'none';
         });
     }
@@ -570,68 +688,137 @@ function showDietaryGrpError(text) {
 // Fills in the confirmation page with user's choices
 /*-----------------------------------------------------------------------------*/
 function updateSummary() {
-    // get values
+    // common fields
     const firstName = document.getElementById('firstName').value;
     const lastName = document.getElementById('lastName').value;
-    // const attending = document.querySelector('input[name="attendingInput"]:checked');
-    const attendingSummary = document.getElementById('attendingSummary');           // show only if attending
+    const attendingSummaryBlock = document.getElementById('attendingSummary');  //show only if attending
+    const isGroup = isGroupParty();
 
-    // update user name
+    // update user name in summary
     document.getElementById('summaryName').textContent = `${firstName} ${lastName}`;
+    // const attending = document.querySelector('input[name="attendingInput"]:checked');
     
-    // output based on party single or not
-    const partyType = (guestInfo?.party?.party_type  || 'single').toLowerCase();
-    const isGroup = partyType !== 'single';
 
-    // summary if single
+    // ----- summary if single----------------
     if (!isGroup) {
         // single attending input
         const attending = document.querySelector('input[name="attendingInput"]:checked');
         
-        // // update summary
-        // document.getElementById('summaryName').textContent = `${firstName} ${lastName}`;
-        document.getElementById('summaryAttending').textContent = document.querySelector(`label[for="${attending.id}"]`).textContent;
-        // document.getElementById('summaryAttending').textContent = attending.value === 'yes' ? 'Yes, I\'ll be there!' : 'Sorry, can\'t make it :(';
+        // safety: if not attending (don't include attending summary block)
+        if (!attending) {
+            document.getElementById('summaryAttending').textContent = '';
+            attendingSummaryBlock.style.display = 'none';
+            return;
+        }
 
-        // show only if attending
-        // const attendingSummary = document.getElementById('attendingSummary');
+        // update attending summary text with label from attending question
+        const attendingLabel = document.querySelector(`label[for="${attending.id}"]`)?.textContent?.trim() || attendingSelected.value;
+        document.getElementById('summaryAttending').textContent = attendingLabel;
+    
+        // if attending, show single dietary choice
         if (attending.value === 'yes') {
             // dietary input
-            const dietary = document.querySelector('input[name="dietaryInput"]:checked');
-            const dietaryLabel = document.querySelector(`label[for="${dietary.id}"]`).textContent;
-            document.getElementById('summaryDietary').textContent = dietaryLabel;
+            const dietarySelected = document.querySelector('input[name="dietaryInput"]:checked');
+            const dietaryLabel = dietarySelected ? document.querySelector(`label[for="${dietarySelected.id}"]`)?.textContent?.trim() : '';
+            document.getElementById('summaryDietary').textContent = dietaryLabel || '';
 
-            // display
-            attendingSummary.style.display = 'block';
+            // display attending summary block and hide group dietary table
+            document.getElementById('summary-dietary-table-wrap').style.display = 'none';
+            attendingSummaryBlock.style.display = 'block';
         } else {
-            // hide
-            attendingSummary.style.display = 'none';
+            // not attending so hide dietary summary
+            attendingSummaryBlock.style.display = 'none';
         }
-    } else {
-        // summary if group party
-        const selected = Array.from(document.querySelectorAll('input[name="grpAttendees[]"]:checked'));
-        const none = selected.some(box => box.value === 'none');
 
-        // show attendingSummary (with dietary preference) only if attending
-        if (none || selected.length === 0) {
-            document.getElementById('summaryAttending').textContent = 'None';
-            attendingSummary.style.display = 'none';   //hide
-        } else {
-            // show attending names
-            const map = new Map((guestInfo?.members || []).map(m => [String(m.guest_id), `${m.first_name} ${m.last_name}`]));
-            const names = selected.map(box => map.get(String(box.value)) || box.value);
-            document.getElementById('summaryAttending').textContent = names.join(', ');
+        return; // done for single flow
 
-            // show dietary input
-            const dietary = document.querySelector('input[name="dietaryInput"]:checked');
-            const dietaryLabel = document.querySelector(`label[for="${dietary.id}"]`).textContent;
-            document.getElementById('summaryDietary').textContent = dietaryLabel;
+    } 
+    // else {
+    //     // summary if group party
+    //     const selected = Array.from(document.querySelectorAll('input[name="grpAttendees[]"]:checked'));
+    //     const none = selected.some(box => box.value === 'none');
 
-            // display
-            attendingSummary.style.display = 'block';
-        }
+    //     // show attendingSummary (with dietary preference) only if attending
+    //     if (none || selected.length === 0) {
+    //         document.getElementById('summaryAttending').textContent = 'None';
+    //         attendingSummary.style.display = 'none';   //hide
+    //     } else {
+    //         // show attending names
+    //         const map = new Map((guestInfo?.members || []).map(m => [String(m.guest_id), `${m.first_name} ${m.last_name}`]));
+    //         const names = selected.map(box => map.get(String(box.value)) || box.value);
+    //         document.getElementById('summaryAttending').textContent = names.join(', ');
+
+    //         // show dietary input
+    //         const dietary = document.querySelector('input[name="dietaryInput"]:checked');
+    //         const dietaryLabel = document.querySelector(`label[for="${dietary.id}"]`).textContent;
+    //         document.getElementById('summaryDietary').textContent = dietaryLabel;
+
+    //         // display
+    //         attendingSummary.style.display = 'block';
+    //     }
+    // }
+
+    // ----- summary if group ----------------
+    // selected attendees (ids only and excludes none) --> use memberInfo as source of truth
+    // const selectedIds = getSelectedGroupIds();
+    const attendingIds = Object.values(memberInfo)
+        .filter(m => m.attending === 'yes')
+        .map(m => m.guest_id);
+
+    // if none selected, show "none" and hide dietary info
+    if (attendingIds.length === 0) {
+        document.getElementById('summaryAttending').textContent = 'None';
+        attendingSummaryBlock.style.display = 'none';
+
+        // hide dietary table
+        document.getElementById('summary-dietary-table-wrap').style.display = 'none';
+        return;
     }
-    
+
+    // build a "attending" comma list of names
+    const map = idToNameMap();
+    const names = attendingIds.map(id => map.get(String(id)) || id);
+    document.getElementById('summaryAttending').textContent = names.join(', ');
+
+    // // determine group dietary yes or no (no--> treat everyone as none; yes--> only call it yes if at least one member is not none)
+    // const groupAnswer = dietaryGrpState.answer;  //yes, no, null
+    // const hasAnyRealPref = selectedIds.some(id => (dietaryGrpState.perGuest[id] || 'none') !== 'none');
+
+    // // decide the ditary preference: 'yes/no' for group summary
+    // const groupDietIsYes = groupAnswer === 'yes' && hasAnyRealPref;
+
+    // // update text summary line for dietary
+    // document.getElementById('summaryDietary').textContent = groupDietIsYes ? 'Yes' : 'No';
+
+    // group dietary: yes if any attendee has a non 'none' preference
+    const hasAnyRealPref = attendingIds.some(
+        id => (memberInfo[id]?.dietary_pref || 'none') !== 'none'
+    );
+    document.getElementById('summaryDietary').textContent = hasAnyRealPref ? 'Yes' : 'No';
+
+    // if 'yes' --> render a compact summary table with only the none 'none' rows
+    const summaryWrap = document.getElementById('summary-dietary-table-wrap');
+    const summaryTbody = document.querySelector('#summary-dietary-table tbody');
+    summaryTbody.innerHTML = '';
+
+    if (hasAnyRealPref) {
+        attendingIds.forEach(id => {
+            const pref = memberInfo[id]?.dietary_pref || 'none';
+            if (pref !== 'none') {
+                const tr = document.createElement('tr');
+                const name = map.get(String(id)) || id;
+                tr.innerHTML = `<td>${name}</td><td>${capitalize(pref)}</td>`;
+                summaryTbody.appendChild(tr);
+            }
+        });
+        summaryWrap.style.display = 'block'; //display table
+    } else {
+        summaryWrap.style.display = 'none'; //hide table if everyone is 'none'
+    }
+
+    // show the general attending block (for grp who are attending)
+    attendingSummaryBlock.style.display = 'block';
+    return;
 }
 
 /*-----------------------------------------------------------------------------*/
@@ -651,22 +838,60 @@ document.getElementById('rsvpForm').addEventListener('submit', async function (e
     const ok = await validateCurrentStep();
     if (!ok) return;
 
-    // collect all form data on submit
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData.entries());
+    //----- build payloads -----
+    const partyId = String(guestInfo?.guest?.party_id || '');
+    const nowIso = new Date().toISOString();
 
-    // add group selections explicitly
-    const selected = formData.getAll('grpAttendees[]');
-    if (selected && selected.length) {
-        data.grpAttendees = selected;
-        // data.selected_guest_ids = JSON.stringify(
-        //     selected.filter(v => v !== 'none')
-        // );
-    }
+    // party info patch
+    const partyPatch = { party_id: partyId, set: { has_responded: 'yes' }};
 
-    // success
-    console.log('Form data:', data);
+    // guest patches: memberInfo vs ogMemberinfo
+    const guestPatches = [];
+    Object.keys(memberInfo).forEach(id => {
+        const curr = memberInfo[id];
+        const orig = ogMemberInfo[id] || {};
+        const set = {};
+
+        if (curr.attending !== orig.attending) set.attending = curr.attending;
+        if (curr.dietary_pref !== orig.dietary_pref) set.dietary_pref = curr.dietary_pref;
+
+        if (Object.keys(set).length > 0) {
+            guestPatches.push({ guest_id: String(id), set });
+        }
+    });
+
+    // response append
+    const responseAppend = {
+        timestamp: nowIso,
+        user_id: String(Object.keys(memberInfo)[0] || ''),
+        party_id: partyId,
+        email: ''
+    };
+
+    // // collect all form data on submit
+    // const formData = new FormData(this);
+    // const data = Object.fromEntries(formData.entries());
+
+    // // add group selections explicitly
+    // const selected = formData.getAll('grpAttendees[]');
+    // if (selected && selected.length) {
+    //     data.grpAttendees = selected;
+    //     // data.selected_guest_ids = JSON.stringify(
+    //     //     selected.filter(v => v !== 'none')
+    //     // );
+    // }
+
+    // // success
+    // console.log('Form data:', data);
+    // console.log('Guest info:', guestInfo);
+
+    // console log outputs
     console.log('Guest info:', guestInfo);
+    console.log('Party patch:', partyPatch);
+    console.log('Guest patch:', guestPatches);
+    console.log('Response append:', responseAppend);
+
+    // alert
     alert('RSVP submitted successfully! Thank you!');
     
 

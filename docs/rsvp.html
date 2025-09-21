@@ -276,6 +276,18 @@
                                 <!-- Show only if attending -->
                                 <div id="attendingSummary" style="display: none;">
                                     <p><strong>Dietary preference:</strong> <span id="summaryDietary"></span></p>
+
+                                    <!-- Only show when group dietary = 'Yes'-->
+                                    <div id="summary-dietary-table-wrap" style="display:none;">
+                                        <div class="table-responsive">
+                                            <table class="table table-sm align-middle" id="summary-dietary-table">
+                                                <thead>
+                                                    <tr><th>Guest</th><th>Preference</th></tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table> 
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
