@@ -377,7 +377,7 @@ async function validateCurrentStep() {
         const ok = input.value.trim() && input.checkValidity();
         input.classList.toggle('is-invalid', !ok);
         if (!ok) isValid = false;
-        
+
         // else if (input.type !== 'checkbox') {
         //     if (!input.value.trim()) {
         //         input.classList.add('is-invalid');
@@ -717,15 +717,18 @@ function showDietaryGrpError(text) {
 /*-----------------------------------------------------------------------------*/
 function updateSummary() {
     // common fields
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
+    // const firstName = document.getElementById('firstName').value;
+    // const lastName = document.getElementById('lastName').value;
+    const userEmail = document.getElementById('userEmail').value;
     const attendingSummaryBlock = document.getElementById('attendingSummary');  //show only if attending
     const isGroup = isGroupParty();
 
     // update user name in summary
-    document.getElementById('summaryName').textContent = `${firstName} ${lastName}`;
+    // document.getElementById('summaryName').textContent = `${firstName} ${lastName}`;
+
+    // update email in summary
+    document.getElementById('summaryEmail').textContent = userEmail.trim().toLowerCase();
     // const attending = document.querySelector('input[name="attendingInput"]:checked');
-    
 
     // ----- summary if single----------------
     if (!isGroup) {
