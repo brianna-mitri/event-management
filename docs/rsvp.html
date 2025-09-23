@@ -119,19 +119,37 @@
                         <div class="row g-3 mb-3">
                             <!-- <label for="formName" class="form-label fs-5">Your full name</label> -->
                             <h2 class="text-center">Welcome!</h2>
-                            <h4>What's your full name?</h4>
-                            <div class="col-sm-6">
+                            <!-- <h4>What's your full name?</h4> -->
+                            <div class="col-6">
                                 <label for="firstName" class="form-label">First name</label>
                                 <input type="text" class="form-control" id="firstName" placeholder="Your first name" required>
                                 <div class="invalid-feedback">
                                     Please enter your first name
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-6">
                                 <label for="lastName" class="form-label">Last name</label>
                                 <input type="text" class="form-control" id="lastName" placeholder="Your last name" required>
                                 <div class="invalid-feedback">
                                     Please enter your last name
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Email input -->
+                        <div class="row g-3 mb-3">
+                            <div class="col">
+                                <label for="userEmail" class="form-label">Email</label>
+                                <input
+                                 type="email" 
+                                 class="form-control" 
+                                 id="userEmail" 
+                                 placeholder="example@gmail.com" 
+                                 autocomplete="email" 
+                                 name="userEmail"
+                                 pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                                 required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid email
                                 </div>
                             </div>
                         </div>

@@ -52,6 +52,11 @@ function capitalize(s = '') {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+// function isValidEmail(email) {
+//     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+//     return emailRegex.test(email);
+// }
+
 // ---- unified data model for both single + group ---------------------------------------------------------
 const memberInfo = {};              // guest_id -> {guest_id, party_id, attending, dietary_pref}
 let ogMemberInfo = {};            // copy taken right after verifyGuestName()
@@ -361,17 +366,30 @@ async function validateCurrentStep() {
                 });
             }
 
-        } else if (input.type !== 'checkbox') {
-            if (!input.value.trim()) {
-                input.classList.add('is-invalid');
-                input.focus();
-                isValid = false;
-                // alert('Please fill in all required fields.');
-                // return false;
-            } else {
-                input.classList.remove('is-invalid');
-            }
+        } 
+
+        if (input.type === 'checkbox') {
+            // handled elsewhere (group step)
+            continue;
         }
+
+        // text/email/etc: require value AND browser validity
+        const ok = input.value.trim() && input.checkValidity();
+        input.classList.toggle('is-invalid', !ok);
+        if (!ok) isValid = false;
+        
+        // else if (input.type !== 'checkbox') {
+        //     if (!input.value.trim()) {
+        //         input.classList.add('is-invalid');
+        //         input.focus();
+        //         isValid = false;
+        //         // alert('Please fill in all required fields.');
+        //         // return false;
+        //     } else {
+        //         input.classList.remove('is-invalid');
+        //     }
+        // } 
+    
     }
 
 
@@ -382,9 +400,19 @@ async function validateCurrentStep() {
 
         const verified = await verifyGuestName(firstName, lastName);
         if (!verified) {
-            isValid = false
+            isValid = false;
         }
     }
+
+    // // validate email input
+    // if (currentStepName === 'name') {
+    //     const emailInput = document.getElementById('userEmail');
+    //     if (emailInput.checkValidity()) {
+    //         console.log("Email is valid according to browser's rules.");
+    //     } else {
+    //         isValid = false;
+    //     }
+    // }
 
 
     // require at least one checkbox for grp attendance step
