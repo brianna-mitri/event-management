@@ -946,6 +946,12 @@ document.getElementById('lastName').addEventListener('input', function() {
     guestInfo = null;
 });
 
+// clear invalid state for email input once user types valid email
+document.getElementById('userEmail').addEventListener('input', (e) => {
+    const el = e.target;
+    if (el.value && el.checkValidity()) el.classList.remove('is-invalid');
+});
+
 /*-----------------------------------------------------------------------------*/
 // Initialization
 /*-----------------------------------------------------------------------------*/
