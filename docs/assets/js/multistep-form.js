@@ -8,12 +8,12 @@ GOOGLE_APPS_SCRIPT = 'https://script.google.com/macros/s/AKfycbyXnCL0dz47dLj0mOg
 const stepOrder = {
 
     // single party routes
-    attending: ['name', 'attendance', 'dietary', 'confirm'],
-    notAttending: ['name', 'attendance', 'confirm'],
+    attending: ['name', 'attendance', 'dietary', 'confirm', 'success'],
+    notAttending: ['name', 'attendance', 'confirm', 'success'],
 
     // grp party routes
-    attendingGrp: ['name', 'attendance-grp', 'dietary-grp', 'confirm'],        //checks at least one person in attendance
-    notAttendingGrp: ['name', 'attendance-grp', 'confirm']                 //checks 'none' for attendance
+    attendingGrp: ['name', 'attendance-grp', 'dietary-grp', 'confirm', 'success'],        //checks at least one person in attendance
+    notAttendingGrp: ['name', 'attendance-grp', 'confirm', 'success']                 //checks 'none' for attendance
 };
 
 // track current flow and position
@@ -281,15 +281,30 @@ function showStep(stepIndex) {
     // hide back button on first step
     prevBtn.style.display = stepIndex === 0 ? 'none' : 'inline-block';
 
-    // for last step, hide next button and show submit button
-    if (stepIndex === currentOrder.length - 1) {
+    // display buttons depending on step
+    if (stepIndex === currentOrder.length - 2) {
+        // for confirm step, hide next button and show submit button
         nextBtn.style.display = 'none';
         submitBtn.style.display = 'inline-block';
         updateSummary();
+    } else if (stepIndex === currentOrder.length - 1) {
+        // for success step, hide all navigation
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        submitBtn.style.display = 'none';
+        return;
     } else {
         nextBtn.style.display = 'inline-block';
         submitBtn.style.display = 'none';
     }
+
+    // // for success step, hide all navigation
+    // if (stepIndex === currentOrder.length - 1) {
+    //     prevBtn.style.display = 'none';
+    //     nextBtn.style.display = 'none';
+    //     submitBtn.style.display = 'none';
+    //     return;
+    // } 
 
     // lifecycle for dietary step
     if (currentStepName === 'dietary-grp') {
@@ -893,14 +908,14 @@ document.getElementById('rsvpForm').addEventListener('submit', async function (e
     e.preventDefault();
 
     // prevent incomplete/invalid form submissions (treat "enter" as "next" and validate last step)
-    if (currentStepIndex !== currentOrder.length - 1) {
+    if (currentStepIndex !== currentOrder.length - 2) {
         // treat submit as "next" (if not final step)
         // e.preventDefault();
         await changeStep(1);
         return;
     } 
 
-    // on final step, validate current step before 'submit'
+    // on confirm step, validate current step before 'submit'
     // e.preventDefault();
     const ok = await validateCurrentStep();
     if (!ok) return;
@@ -960,22 +975,10 @@ document.getElementById('rsvpForm').addEventListener('submit', async function (e
         const result = await response.json();
 
         if (result.success) {
-            // // log what we're sending
-            // console.log('=== FORM SUBMISSION DEBUG ===');
-            // console.log('Party ID:', String(guestInfo?.guest?.party_id || ''));
-            // console.log('Verified Guest:', String(guestInfo?.guest?.guest_id || ''));
-            // console.log('memberInfo state:');
-            // Object.values(memberInfo).forEach(member => {
-            //     console.log(`  Guest ${member.guest_id}: attending=${member.attending}, dietary=${member.dietary_pref}`);
-            // });
-
-            // console.log('Form data being sent:');
-            // for (let [key, value] of formData.entries()) {
-            //     console.log(`${key}: ${value}`);
-            // }
-
             // success show confirmation message
-            showSuccessMessage();
+            // showSuccessMessage();
+            currentStepIndex = currentOrder.length - 1;
+            showStep(currentStepIndex);
         } else {
             throw new Error(result.message || 'Submission failed');
         }
@@ -1047,22 +1050,22 @@ document.getElementById('rsvpForm').addEventListener('submit', async function (e
 
 });
 
-function showSuccessMessage() {
-    // hide form and show success message
-    document.getElementById('rsvpForm').style.display = 'none';
+// function showSuccessMessage() {
+//     // hide form and show success message
+//     document.getElementById('rsvpForm').style.display = 'none';
 
-    // create success message element
-    const successDiv = document.createElement('div');
-    successDiv.className = 'alert alert-success text-center';
-    successDiv.innerHTML = `
-        <h4>Thank you for your RSVP!</h4>
-        <p>We've received your response and will send you a confirmation via email.</p>
-    `;
+//     // create success message element
+//     const successDiv = document.createElement('div');
+//     successDiv.className = 'alert alert-success text-center';
+//     successDiv.innerHTML = `
+//         <h4>Thank you for your RSVP!</h4>
+//         <p>We've received your response and will send you a confirmation via email.</p>
+//     `;
 
-    // add it after the progress bar
-    const progressBar = document.querySelector('.progress');
-    progressBar.parentNode.insertBefore(successDiv, progressBar.nextSibling);
-}
+//     // add it after the progress bar
+//     const progressBar = document.querySelector('.progress');
+//     progressBar.parentNode.insertBefore(successDiv, progressBar.nextSibling);
+// }
 
 /*-----------------------------------------------------------------------------*/
 // Event Listeners
