@@ -239,6 +239,40 @@ async function verifyGuestName(firstName, lastName) {
     }
 }
 
+/*-------------------------- Functions: Navigation Spinner Utilities --------------------------*/
+// 1) showButtonSpinner(button, loadingText=""): shows spinner with custom text
+// 2) hideButtonSpinner(button): restores original button context
+/*-----------------------------------------------------------------------------*/
+function showButtonSpinner(button, loadingText = 'Loading...') {
+    if (!button) return;
+
+    // store original content
+    button.setAttribute('data-original-html', button.innerHTML);
+
+    // set spinner content
+    button.innerHTML = `
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        <span role="status">${loadingText}</span>
+    `;
+
+    // disable button
+    button.disabled = true;
+}
+
+function hideButtonSpinner(button) {
+    if (!button) return;
+
+    // restore original content
+    const originalHtml = button.getAttribute('data-original-html');
+    if (originalHtml) {
+        button.innerHTML = originalHtml;
+        button.removeAttribute('data-original-html');
+    }
+
+    // enable button
+    button.disabled = false;
+}
+
 /*-------------------------- Function: updateOrder() --------------------------*/
 // Called when user chagnes their attendance choice
 /*-----------------------------------------------------------------------------*/
@@ -332,11 +366,33 @@ async function changeStep(direction) {
     try {
         // validate before moving forward
         if (direction === 1) {
+            const currentStepName = currentOrder[currentStepIndex]
+
+            // show spinner for next button during validation
+            if (currentStepName === 'name') {
+                showButtonSpinner(nextBtn, 'Verifying...');
+            }
+
             const ok = await validateCurrentStep();
-            if (!ok) return;   //stop here if invalid
+            if (!ok) {
+
+                // hide spinner if validation fails
+                if (currentStepName === 'name') {
+                    hideButtonSpinner(nextBtn);
+                }
+
+                return;   //stop here if invalid
+
+            }
+
+            // hide spinner after successful validation
+            if (currentStepName === 'name') {
+                hideButtonSpinner(nextBtn);
+            }
+                
             
             // update step order, if they just answered attendance
-            if (currentOrder[currentStepIndex] === 'attendance') {
+            if (currentStepName === 'attendance') {
                 updateOrder();
             }
         }
@@ -920,11 +976,9 @@ document.getElementById('rsvpForm').addEventListener('submit', async function (e
     const ok = await validateCurrentStep();
     if (!ok) return;
 
-    // disable submit btn to prevent double submission
+    // disable submit btn to prevent double submission and show loading
     const submitBtn = document.getElementById('submitBtn');
-    const originalText = submitBtn.textContent;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting....';
+    showButtonSpinner(submitBtn, 'Submitting...');
 
     try {
         // debugging (before building form data)
@@ -986,86 +1040,12 @@ document.getElementById('rsvpForm').addEventListener('submit', async function (e
         console.error('Submission error:', error);
         alert('Sorry, there was an error submitting your RSVP. Please try again or contact us directly.');
     } finally {
-        // renable submit button
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
+        // hide spiner and restore submit button
+        hideButtonSpinner(submitBtn);
     }
-
-    // //----- build payloads -----
-    // const partyId = String(guestInfo?.guest?.party_id || '');
-    // const nowIso = new Date().toISOString();
-
-    // // party info patch
-    // const partyPatch = { party_id: partyId, set: { has_responded: 'yes' }};
-
-    // // guest patches: memberInfo vs ogMemberinfo
-    // const guestPatches = [];
-    // Object.keys(memberInfo).forEach(id => {
-    //     const curr = memberInfo[id];
-    //     const orig = ogMemberInfo[id] || {};
-    //     const set = {};
-
-    //     if (curr.attending !== orig.attending) set.attending = curr.attending;
-    //     if (curr.dietary_pref !== orig.dietary_pref) set.dietary_pref = curr.dietary_pref;
-
-    //     if (Object.keys(set).length > 0) {
-    //         guestPatches.push({ guest_id: String(id), set });
-    //     }
-    // });
-
-    // // response append
-    // const responseAppend = {
-    //     timestamp: nowIso,
-    //     user_id: String(Object.keys(memberInfo)[0] || ''),
-    //     party_id: partyId,
-    //     email: ''
-    // };
-
-    // // // collect all form data on submit
-    // // const formData = new FormData(this);
-    // // const data = Object.fromEntries(formData.entries());
-
-    // // // add group selections explicitly
-    // // const selected = formData.getAll('grpAttendees[]');
-    // // if (selected && selected.length) {
-    // //     data.grpAttendees = selected;
-    // //     // data.selected_guest_ids = JSON.stringify(
-    // //     //     selected.filter(v => v !== 'none')
-    // //     // );
-    // // }
-
-    // // // success
-    // // console.log('Form data:', data);
-    // // console.log('Guest info:', guestInfo);
-
-    // // console log outputs
-    // console.log('Guest info:', guestInfo);
-    // console.log('Party patch:', partyPatch);
-    // console.log('Guest patch:', guestPatches);
-    // console.log('Response append:', responseAppend);
-
-    // // alert
-    // alert('RSVP submitted successfully! Thank you!');
-    
 
 });
 
-// function showSuccessMessage() {
-//     // hide form and show success message
-//     document.getElementById('rsvpForm').style.display = 'none';
-
-//     // create success message element
-//     const successDiv = document.createElement('div');
-//     successDiv.className = 'alert alert-success text-center';
-//     successDiv.innerHTML = `
-//         <h4>Thank you for your RSVP!</h4>
-//         <p>We've received your response and will send you a confirmation via email.</p>
-//     `;
-
-//     // add it after the progress bar
-//     const progressBar = document.querySelector('.progress');
-//     progressBar.parentNode.insertBefore(successDiv, progressBar.nextSibling);
-// }
 
 /*-----------------------------------------------------------------------------*/
 // Event Listeners
