@@ -2,7 +2,7 @@
 // Step Management System
 /* --------------------------------------------------------- */
 // configuration
-GOOGLE_APPS_SCRIPT = 'https://script.google.com/macros/s/AKfycbzjmubkgAzt1qUdjQ8yBTFLHAFpFPKj1bx0KxVlZBtlyZyBY7ovQrG4zdI1DJNW9pV6/exec';
+GOOGLE_APPS_SCRIPT = 'https://script.google.com/macros/s/AKfycbyXnCL0dz47dLj0mOgG6rr6Rr4G5O0jqaNcpk4_3d73I2dBN0cLq36DVl3oguJ-n-Nh/exec';
 
 // define step paths
 const stepOrder = {
@@ -97,6 +97,38 @@ function initMemberStateFromGuestInfo() {
     }
 
     ogMemberInfo = deepClone(memberInfo);
+}
+
+// function: attendance (single): update based on radio selection
+function updateSinglePartyAttendance() {
+    if (isGroupParty()) return; //only for single parties 
+
+    const attending = document.querySelector('input[name="attendingInput"]:checked');
+    const guestId = String(guestInfo?.guest?.guest_id || '');
+
+    if (memberInfo[guestId] && attending) {
+        memberInfo[guestId].attending = attending.value;
+
+        // reset dietary to none if not attending
+        if (attending.value === 'no') {
+            memberInfo[guestId].dietary_pref = 'none';
+        }
+
+        console.log('Updated single party attendance:', guestId, attending.value);
+    }
+}
+
+// function: update single party dietary preference based on radio selection 
+function updateSinglePartyDietary() {
+    if (isGroupParty()) return;  // only for single parties
+
+    const dietary = document.querySelector('input[name="dietaryInput"]:checked');
+    const guestId = String(guestInfo?.guest?.guest_id || '');
+
+    if (memberInfo[guestId] && dietary) {
+        memberInfo[guestId].dietary_pref = dietary.value;
+        console.log('Updated single party dietary:', guestId, dietary.value);
+    }
 }
 
 // function: attendance (group): reflect checkboxes into memberInfo
@@ -857,83 +889,197 @@ function updateSummary() {
 /*-----------------------------------------------------------------------------*/
 document.getElementById('rsvpForm').addEventListener('submit', async function (e) {
 
+    // always prevent default form submission
+    e.preventDefault();
+
     // prevent incomplete/invalid form submissions (treat "enter" as "next" and validate last step)
     if (currentStepIndex !== currentOrder.length - 1) {
         // treat submit as "next" (if not final step)
-        e.preventDefault();
+        // e.preventDefault();
         await changeStep(1);
         return;
     } 
+
     // on final step, validate current step before 'submit'
-    e.preventDefault();
+    // e.preventDefault();
     const ok = await validateCurrentStep();
     if (!ok) return;
 
-    //----- build payloads -----
-    const partyId = String(guestInfo?.guest?.party_id || '');
-    const nowIso = new Date().toISOString();
+    // disable submit btn to prevent double submission
+    const submitBtn = document.getElementById('submitBtn');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting....';
 
-    // party info patch
-    const partyPatch = { party_id: partyId, set: { has_responded: 'yes' }};
+    try {
+        // debugging (before building form data)
+        console.log('=== MEMBERINFO DEBUG BEFORE SUBMISSION ===');
+        console.log('isGroupParty():', isGroupParty());
+        console.log('guestInfo:', guestInfo);
+        console.log('memberInfo contents:');
+        Object.keys(memberInfo).forEach(id => {
+            console.log(`  ${id}:`, memberInfo[id]);
+        });
 
-    // guest patches: memberInfo vs ogMemberinfo
-    const guestPatches = [];
-    Object.keys(memberInfo).forEach(id => {
-        const curr = memberInfo[id];
-        const orig = ogMemberInfo[id] || {};
-        const set = {};
+        // Check what checkboxes are actually selected
+        const checkboxes = document.querySelectorAll('input[name="grpAttendees[]"]:checked');
+        console.log('Selected checkboxes:', Array.from(checkboxes).map(cb => `${cb.id}=${cb.value}`));
 
-        if (curr.attending !== orig.attending) set.attending = curr.attending;
-        if (curr.dietary_pref !== orig.dietary_pref) set.dietary_pref = curr.dietary_pref;
+        //----------- build submission data ------------
+        const formData = new URLSearchParams();
+        formData.append('action', 'submitRSVP');
+        formData.append('verified_guest_id', String(guestInfo?.guest?.guest_id || ''));
+        formData.append('party_id', String(guestInfo?.guest?.party_id || ''));
+        formData.append('email', document.getElementById('userEmail').value.trim().toLowerCase());
+        
+        // send all guest data (both attending and not attending)
+        Object.values(memberInfo).forEach(member => {
+            formData.append('guests[]', JSON.stringify({
+                guest_id: String(member.guest_id),
+                attending: member.attending,
+                dietary_pref: member.dietary_pref || 'none'
+            }));
+        });
 
-        if (Object.keys(set).length > 0) {
-            guestPatches.push({ guest_id: String(id), set });
+        // debug check
+        console.log('FormData guests[] entries:', formData.getAll('guests[]'));
+
+        // send to google apps script
+        const response = await fetch(GOOGLE_APPS_SCRIPT, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error (`HTTP error! status: ${response.status}`);
         }
-    });
 
-    // response append
-    const responseAppend = {
-        timestamp: nowIso,
-        user_id: String(Object.keys(memberInfo)[0] || ''),
-        party_id: partyId,
-        email: ''
-    };
+        const result = await response.json();
 
-    // // collect all form data on submit
-    // const formData = new FormData(this);
-    // const data = Object.fromEntries(formData.entries());
+        if (result.success) {
+            // // log what we're sending
+            // console.log('=== FORM SUBMISSION DEBUG ===');
+            // console.log('Party ID:', String(guestInfo?.guest?.party_id || ''));
+            // console.log('Verified Guest:', String(guestInfo?.guest?.guest_id || ''));
+            // console.log('memberInfo state:');
+            // Object.values(memberInfo).forEach(member => {
+            //     console.log(`  Guest ${member.guest_id}: attending=${member.attending}, dietary=${member.dietary_pref}`);
+            // });
 
-    // // add group selections explicitly
-    // const selected = formData.getAll('grpAttendees[]');
-    // if (selected && selected.length) {
-    //     data.grpAttendees = selected;
-    //     // data.selected_guest_ids = JSON.stringify(
-    //     //     selected.filter(v => v !== 'none')
-    //     // );
-    // }
+            // console.log('Form data being sent:');
+            // for (let [key, value] of formData.entries()) {
+            //     console.log(`${key}: ${value}`);
+            // }
 
-    // // success
-    // console.log('Form data:', data);
+            // success show confirmation message
+            showSuccessMessage();
+        } else {
+            throw new Error(result.message || 'Submission failed');
+        }
+    } catch (error) {
+        console.error('Submission error:', error);
+        alert('Sorry, there was an error submitting your RSVP. Please try again or contact us directly.');
+    } finally {
+        // renable submit button
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+    }
+
+    // //----- build payloads -----
+    // const partyId = String(guestInfo?.guest?.party_id || '');
+    // const nowIso = new Date().toISOString();
+
+    // // party info patch
+    // const partyPatch = { party_id: partyId, set: { has_responded: 'yes' }};
+
+    // // guest patches: memberInfo vs ogMemberinfo
+    // const guestPatches = [];
+    // Object.keys(memberInfo).forEach(id => {
+    //     const curr = memberInfo[id];
+    //     const orig = ogMemberInfo[id] || {};
+    //     const set = {};
+
+    //     if (curr.attending !== orig.attending) set.attending = curr.attending;
+    //     if (curr.dietary_pref !== orig.dietary_pref) set.dietary_pref = curr.dietary_pref;
+
+    //     if (Object.keys(set).length > 0) {
+    //         guestPatches.push({ guest_id: String(id), set });
+    //     }
+    // });
+
+    // // response append
+    // const responseAppend = {
+    //     timestamp: nowIso,
+    //     user_id: String(Object.keys(memberInfo)[0] || ''),
+    //     party_id: partyId,
+    //     email: ''
+    // };
+
+    // // // collect all form data on submit
+    // // const formData = new FormData(this);
+    // // const data = Object.fromEntries(formData.entries());
+
+    // // // add group selections explicitly
+    // // const selected = formData.getAll('grpAttendees[]');
+    // // if (selected && selected.length) {
+    // //     data.grpAttendees = selected;
+    // //     // data.selected_guest_ids = JSON.stringify(
+    // //     //     selected.filter(v => v !== 'none')
+    // //     // );
+    // // }
+
+    // // // success
+    // // console.log('Form data:', data);
+    // // console.log('Guest info:', guestInfo);
+
+    // // console log outputs
     // console.log('Guest info:', guestInfo);
+    // console.log('Party patch:', partyPatch);
+    // console.log('Guest patch:', guestPatches);
+    // console.log('Response append:', responseAppend);
 
-    // console log outputs
-    console.log('Guest info:', guestInfo);
-    console.log('Party patch:', partyPatch);
-    console.log('Guest patch:', guestPatches);
-    console.log('Response append:', responseAppend);
-
-    // alert
-    alert('RSVP submitted successfully! Thank you!');
+    // // alert
+    // alert('RSVP submitted successfully! Thank you!');
     
 
 });
 
+function showSuccessMessage() {
+    // hide form and show success message
+    document.getElementById('rsvpForm').style.display = 'none';
+
+    // create success message element
+    const successDiv = document.createElement('div');
+    successDiv.className = 'alert alert-success text-center';
+    successDiv.innerHTML = `
+        <h4>Thank you for your RSVP!</h4>
+        <p>We've received your response and will send you a confirmation via email.</p>
+    `;
+
+    // add it after the progress bar
+    const progressBar = document.querySelector('.progress');
+    progressBar.parentNode.insertBefore(successDiv, progressBar.nextSibling);
+}
+
 /*-----------------------------------------------------------------------------*/
 // Event Listeners
 /*-----------------------------------------------------------------------------*/
-// listen for attendance changes to update steps order
+// listen for attendance changes to update steps order and member info
 document.querySelectorAll('input[name="attendingInput"]').forEach(radio => {
-    radio.addEventListener('change', updateOrder);
+    radio.addEventListener('change', function() {
+        updateOrder();
+        updateSinglePartyAttendance();
+    });
+});
+
+// listen for single party dietary changes
+document.querySelectorAll('input[name="dietaryInput"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        updateSinglePartyDietary();
+    });
 });
 
 // clear guest verification when name field change
