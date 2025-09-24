@@ -61,80 +61,62 @@ function verifyGuestName(p) {
   logToSheet('verifyGuestName started', p);
 
   /* ------ 1) verify guest is on guest list-------------------- */
-  // get name inputs
-  const firstNameInput = (p.firstName || '').toLowerCase().trim();
-  const lastNameInput = (p.lastName || '').toLowerCase().trim();
+  // get name inputs (normalize)
+  const norm = s => String(s || '').trim().toLowerCase();
+  const firstNameInput = norm(p.firstName);
+  const lastNameInput = norm(p.lastName);
 
   // open spreadsheet and get guest list sheet
   const ss = SpreadsheetApp.openById(SHEET_ID);    //spreadsheet
   const guestSheet = ss.getSheetByName(GUEST_LIST_SHEET);
-  const guestData = guestSheet.getDataRange().getValues();
+  // const guestData = guestSheet.getDataRange().getValues();
+
+  // read only needed guest columns and rows [guest_id, first_name, last_name, party_id]
+  const gLastRow = guestSheet.getLastRow();
+  const guestData = guestSheet.getRange(2, 1, gLastRow - 1, 4).getDisplayValues();
 
   // look for matching name (skip header row)
-  let found = false;
+  const idx = guestData.findIndex(row =>
+    norm(row[1]) === firstNameInput && norm(row[2]) === lastNameInput
+  );
+
+  let found = idx !== -1;
   let guestInfo = null;
-
-  for (let i = 1; i < guestData.length; i++) {
-    const row = guestData[i];
-    const sheetFirstName = String(row[1] || '').toLowerCase().trim();
-    const sheetLastName = String(row[2] || '').toLowerCase().trim();
-
-    // if match found
-    if (
-      sheetFirstName === firstNameInput
-      && sheetLastName === lastNameInput
-    ) {
-      found = true;
-
-      // get additional guest info needed
-      guestInfo = {
-        guest_id: row[0],
-        first_name: row[1],
-        last_name: row[2],
-        party_id: row[3]
-      };
-
-      break;
-
-    }
-  }
-
-  /* ------ 2) get party info (for verified guest) -------------------- */
   let partyInfo = null;
   let partyMembers = [];
 
-  // get party info for verified guest
-  if (found && guestInfo && guestInfo.party_id != null) {
+  if (found) {
+    const row = guestData[idx];
+    guestInfo = {
+      guest_id: row[0],
+      first_name: row[1],
+      last_name: row[2],
+      party_id: row[3]
+    };
 
-    // open party sheet and get data
+
+    /* ------ 2) get party info (for verified guest) -------------------- */
     const partySheet = ss.getSheetByName(PARTY_LIST_SHEET);
-    const partyData = partySheet.getDataRange().getValues();
+    const pLastRow = partySheet.getLastRow();
 
-    // find matching party id to get party type
-    let partyType = null;
+    // get party data if party id
+    if (guestInfo.party_id !== '') {
+      const partyData = partySheet.getRange(2, 1, pLastRow - 1, 3).getDisplayValues();
+      const partyRow = partyData.find(row => String(row[0]) === String(guestInfo.party_id));
 
-    for (let i = 1; i < partyData.length; i++) {
-      const row = partyData[i];
-      if (String(row[0]) == String(guestInfo.party_id)) {
-
-        // get party info
+      if (partyRow) {
         partyInfo = {
-          party_type: row[1],
-          has_responded: row[2]
+          party_type: partyRow[1],
+          has_responded: partyRow[2]
         };
-        break;
-        // partyType = String(row[1] || '').toLowerCase().trim();
-
       }
     }
 
     // for non single parties, collect all guests in same party
-    if (partyInfo.party_type !== 'single') {
-      for (let i = 1; i < guestData.length; i++) {
-        const row = guestData[i];
-
-        // find guests with matching party id
-        if (String(row[3]) == String(guestInfo.party_id)) {
+    if (partyInfo && partyInfo.party_type !== 'single') {
+      const partyId = String(guestInfo.party_id);
+      for (const row of guestData) {
+        if (String(row[3]) === partyId) {
           partyMembers.push({
             guest_id: row[0],
             first_name: row[1],
@@ -143,20 +125,20 @@ function verifyGuestName(p) {
         }
       }
     }
-  }
 
+  }
 
   /* ------ 3) result -------------------- */
   return ContentService
-    .createTextOutput(JSON.stringify({
-      success: true,
-      found: found,
-      guest: guestInfo,
-      party: partyInfo,
-      members: partyMembers,
-      message: found ? 'Guest found in list' : 'Guest not found in list'
-    }))
-    .setMimeType(ContentService.MimeType.JSON);
+  .createTextOutput(JSON.stringify({
+    success: true,
+    found: found,
+    guest: guestInfo,
+    party: partyInfo,
+    members: partyMembers,
+    message: found ? 'Guest found in list' : 'Guest not found in list'
+  }))
+  .setMimeType(ContentService.MimeType.JSON);
 
 } 
 
