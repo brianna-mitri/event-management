@@ -147,96 +147,95 @@ function submitRSVP(e) {
   try {
     logToSheet('submitRSVP started', e.parameters);
 
-    const p = e.parameter || {};
-    // logToSheet('e.parameter:', p);
-    // logToSheet('e.parameters:', e.parameters);
+    // parse params (e.parameters holds arrays for each key)
+    const p = e.parameters || {};
+    const first = (arr, def='') => Array.isArray(arr) ? String(arr[0] ?? def) : String(def);
 
-    const ss = SpreadsheetApp.openById(SHEET_ID);
-    const partyId = String(p.party_id || '');
-    const email = String(p.email || '');
+    const partyId = first(p.party_id);
+    const email = first(p.email);
+    const verifiedGuestId = first(p.verified_guest_id);
 
-    // use e.parameterS for repeated keys
-    // parse guests data from form submission (form sends: guests[]={"guest_id": "1", "attending": "yes", "dietary_pref": "vegan"})
-    const multiParams = e.parameters || {};
-    let guestsParam = multiParams['guests[]'];
+    // guests[] is an array of JSON strings--> ensure array shape
+    let guestsParam = p['guests[]'] || (e.parameter && e.parameter['guests[]']);
+    const guestsArray = Array.isArray(guestsParam) ? guestsParam : (guestsParam ? [guestsParam] : []);
 
-    // fallback if only a single value was sent
-    if (!guestsParam) guestsParam = p['guests[]'];
-    
-
-    // logToSheet('Raw guestParam received', {
-    //   isArray: Array.isArray(guestsParam),
-    //   type: typeof guestsParam,
-    //   value: guestsParam
-    // });
-
-
-    let guests = [];
-    if (Array.isArray(guestsParam)) {
-      // multiple guests, parse each JSON string (grp party)
-      guests = guestsParam.map(g => JSON.parse(g));
-      // logToSheet('Parsed multiple guests', guests);
-    } else if (guestsParam) {
-      // single guest, parse the json string (single party)
-      guests = [JSON.parse(guestsParam)];
-      // logToSheet('Parsed single guest', guests);
-    }
-
-    logToSheet('Final guests array', guests);
+    // parse and normalize payload --> [{guest_id, attending, dietary_pref}, ....]
+    const guests = guestsArray.map(s => JSON.parse(s)).map(g => ({
+      guest_id: String(g.guest_id),
+      attending: (g.attending || 'no'),
+      dietary_pref: (g.dietary_pref || 'none')
+    }));
+    logToSheet('Parsed submit payload', {partyId, email, verifiedGuestId, guests});
 
     /* ------ 1) update party_list: mark as responded-------------------- */
-    const partySheet = ss.getSheetByName(PARTY_LIST_SHEET);
-    const partyData = partySheet.getDataRange().getValues();
+    const ss = SpreadsheetApp.openById(SHEET_ID);
 
-    for (let i = 1; i < partyData.length; i++) {
-      if (String(partyData[i][0]) === partyId) {
-        partySheet.getRange(i + 1, 3).setValue('yes');  //has_responded column
-        break;
+    {
+      const partySheet = ss.getSheetByName(PARTY_LIST_SHEET);
+      const pLastRow = partySheet.getLastRow();
+
+      if (partyId) {
+        // read only party ids column
+        const partyIdsCol = partySheet.getRange(2, 1, pLastRow - 1, 1)
+          .getDisplayValues()
+          .map(r => r[0] + '');
+
+        const idx = partyIdsCol.indexOf(String(partyId));
+        if (idx !== -1) {
+          partySheet.getRange(2 + idx, 3).setValue('yes');
+        } else {
+          logToSheet('Party not found when marking responded', {partyId});
+        }
       }
     }
 
     /* ------ 2) update guest_list: set attendance and dietary preferences-------------------- */
-    const guestSheet = ss.getSheetByName(GUEST_LIST_SHEET);
-    const guestData = guestSheet.getDataRange().getValues();
+    let appliedCount = 0;
 
-    // create lookup map for guest updates
-    const guestUpdates = new Map();
-    guests.forEach(guest => {
-      guestUpdates.set(String(guest.guest_id), {
-        attending: guest.attending,
-        dietary_pref: guest.dietary_pref || 'none'
-      });
-    });
+    {
+      const guestSheet = ss.getSheetByName(GUEST_LIST_SHEET);
+      const gLastRow = guestSheet.getLastRow();
 
-    // logToSheet('Created guestUpdates map', Array.from(guestUpdates.entries()));
+      // build guest_id --> row# map from column a
+      const guestIdsCol = guestSheet.getRange(2, 1, gLastRow - 1, 1).getDisplayValues();
+      const idToRow = new Map(guestIdsCol.map((r, i) => [String(r[0] || ''), 2 + i]));
 
-    // update all guests in this party
-    let updatedGuestCount = 0;
-    for (let i = 1; i < guestData.length; i++) {
-      const guestId = String(guestData[i][0]);
-      const guestPartyId = String(guestData[i][3]);
+      // collect rows for attendance and dietary by value
+      const rowsAttending = [];   
+      const rowsNotAttending = [];
+      const rowsByDiet = new Map();   // {diet --> [rows]}
+      // let appliedCount = 0;
 
-      // if this guest belongs to the party being updated
-      if (guestPartyId === partyId) {
-
-        if (guestUpdates.has(guestId)) {
-          // guest has explicit data (update their info accordingly)
-          const update = guestUpdates.get(guestId);
-          console.log(`Updating guest ${guestId} with:`, update);
-          guestSheet.getRange(i + 1, 5).setValue(update.attending);
-          guestSheet.getRange(i + 1, 6).setValue(update.dietary_pref);
-        } else {
-          // guest not in submission data (set to not attending)
-          guestSheet.getRange(i + 1, 5).setValue('no');
-          guestSheet.getRange(i + 1, 6).setValue('none');
+      for (const g of guests) {
+        const row = idToRow.get(g.guest_id);
+        if (!row) {
+          // if provided guest id isn't in sheet, skip but log it
+          logToSheet('Guest id not found; skipping', g);
+          continue;
         }
-        updatedGuestCount++;
+        appliedCount++;
+
+        // attendance
+        (g.attending === 'yes' ? rowsAttending : rowsNotAttending).push(row);
+
+        // dietary (group by value)
+        const diet = String(g.dietary_pref || 'none');
+        if(!rowsByDiet.has(diet)) rowsByDiet.set(diet, []);
+        rowsByDiet.get(diet).push(row);
+      }
+
+      // batch writes: at most 2 calls for attending col and 1 call per unique diet for dietary_preference col
+      if (rowsAttending.length) guestSheet.getRangeList(rowsAttending.map(r => `E${r}`)).setValue('yes');
+      if (rowsNotAttending.length) guestSheet.getRangeList(rowsNotAttending.map(r => `E${r}`)).setValue('no');
+
+      for (const [diet, rows] of rowsByDiet.entries()) {
+        guestSheet.getRangeList(rows.map(r => `F${r}`)).setValue(diet);
       }
     }
 
     /* ------ 3) update response: add record-------------------- */
     const responseSheet = ss.getSheetByName(RESPONSES_SHEET);
-    const verifiedGuestId = String(p.verified_guest_id || '');
+    // const verifiedGuestId = String(p.verified_guest_id || '');
     // const attendingCnt = guests.filter(g=> g.attending === 'yes').length;
 
     // append row
@@ -253,7 +252,7 @@ function submitRSVP(e) {
         message: 'RSVP submitted successfully',
         data: {
           party_id: partyId,
-          updated_guests: updatedGuestCount,
+          updated_guests: appliedCount,
           total_guests: guests.length
         }
       }))
