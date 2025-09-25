@@ -313,9 +313,19 @@ function showStep(stepIndex) {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const submitBtn = document.getElementById('submitBtn');
+    const buttonContainer = prevBtn.parentElement;  //get parent of nav buttons
 
     // hide back button on first step
     prevBtn.style.display = stepIndex === 0 ? 'none' : 'inline-block';
+
+    // center button for first step only
+    if (currentStepName === 'name') {
+        buttonContainer.classList.remove('justify-content-between');
+        buttonContainer.classList.add('justify-content-center');
+    } else {
+        buttonContainer.classList.remove('justify-content-center');
+        buttonContainer.classList.add('justify-content-between');
+    }
 
     // display buttons depending on step
     if (stepIndex === currentOrder.length - 2) {
