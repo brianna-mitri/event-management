@@ -1,3 +1,4 @@
+/*-------- STEP MANAGEMENT ----------------- */
 // default to show one step at a time
 .step {
     display: none; // hide all steps by default
@@ -6,3 +7,135 @@
 .step.active {
     display: block; // only show the step with active class
 }
+
+
+/*-------- LAYOUT ----------------- */
+// overall body
+.rsvp-body {
+    @include media-breakpoint-down(sm) {
+        padding-top: 60px;
+    }
+    // padding-top: 60px;
+}
+// title section
+.rsvp-title {
+    // padding-top: 60px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4)),
+                url('../img/swiper_venue.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: $light;
+    // min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    // responsive heights
+    height: 45vh;                       //mobile
+    // min-height: 600px;
+
+    @include media-breakpoint-up(xl) {
+        height: 100vh;
+        // min-height: 650px;
+    }
+}
+
+// form section
+.rsvp-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+
+    // let height be flexible based on content
+    min-height: 45vh;
+
+    @include media-breakpoint-up(xl) {
+        min-height: 100vh;
+        padding: 3rem 2rem;
+        // min-height: 650px;
+    }
+
+    @include media-breakpoint-donw(sm) {
+        min-height: auto;
+        padding: 1rem 0.5rem;
+    }
+}
+
+// form container
+.form-container {
+    // background: lighten($light, 0.9%);
+    // background: mix($light, $dark, 90%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+
+    // padding so content stays inside
+    padding: 2rem;
+    margin: 1rem; //margin to prevent edge overflow
+
+
+    // adjust based on media size
+    @include media-breakpoint-up(xl) {
+        min-width: 35vw;
+        padding: 3rem;
+        margin: 2rem;
+        // min-height: 650px;
+    }
+
+    @include media-breakpoint-down(sm) {
+        padding: 1.5rem;
+        margin: 0.5rem;
+        // min-height: 650px;
+    }
+
+
+
+}
+
+// form itself
+#rsvpForm {
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+    // height: 100%;
+
+    .step {
+        // flex: 1; //take up available space
+        display: none;
+
+        &.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+    .progress {
+        margin-bottom: 2rem;
+    }
+
+    // nav buttons stay at bottom
+    .d-flex.justify-content-between {
+        margin-top: auto;   //push to bottom
+
+    }
+}
+
+// // mobile adjustments
+// @media (max-width: 992px) {
+//     .rsvp-title {
+//         min-height: 50vh;
+//         text-align: center;
+//     }
+
+//     .rsvp-form {
+//         min-height: auto;
+//     }
+
+//     .form-container {
+//         border-radius: 20px 20px 0 0;
+//     }
+// }

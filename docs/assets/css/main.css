@@ -13691,10 +13691,89 @@ textarea.form-control-lg {
   }
 }
 
+/*-------- STEP MANAGEMENT ----------------- */
 .step {
   display: none;
 }
 
 .step.active {
   display: block;
+}
+
+/*-------- LAYOUT ----------------- */
+@media (max-width: 575.98px) {
+  .rsvp-body {
+    padding-top: 60px;
+  }
+}
+
+.rsvp-title {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url("../img/swiper_venue.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #f5f1e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 45vh;
+}
+@media (min-width: 1200px) {
+  .rsvp-title {
+    height: 100vh;
+  }
+}
+
+.rsvp-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45vh;
+}
+@media (min-width: 1200px) {
+  .rsvp-form {
+    height: 100vh;
+  }
+}
+
+.form-container {
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  padding: 2rem;
+  margin: 1rem;
+}
+@media (min-width: 1200px) {
+  .form-container {
+    min-width: 35vw;
+    padding: 3rem;
+    margin: 2rem;
+  }
+}
+@media (max-width: 575.98px) {
+  .form-container {
+    padding: 1.5rem;
+    margin: 0.5rem;
+  }
+}
+
+#rsvpForm {
+  display: flex;
+  flex-direction: column;
+  min-height: 350px;
+}
+#rsvpForm .step {
+  display: none;
+}
+#rsvpForm .step.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#rsvpForm .progress {
+  margin-bottom: 2rem;
+}
+#rsvpForm .d-flex.justify-content-between {
+  margin-top: auto;
 }
