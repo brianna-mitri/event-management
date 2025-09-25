@@ -13758,6 +13758,13 @@ textarea.form-control-lg {
   padding: 2rem;
   margin: 1rem;
 }
+@media (min-width: 768px) {
+  .form-container {
+    max-width: 70vw;
+    padding: 3rem;
+    margin: 2rem;
+  }
+}
 @media (min-width: 1200px) {
   .form-container {
     min-width: 35vw;

@@ -96,6 +96,13 @@
 
 
     // adjust based on media size
+    @include media-breakpoint-up(md) {
+        max-width: 70vw;
+        padding: 3rem;
+        margin: 2rem;
+        // min-height: 650px;
+    }
+
     @include media-breakpoint-up(xl) {
         min-width: 35vw;
         padding: 3rem;
