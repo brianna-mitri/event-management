@@ -10,13 +10,6 @@
 
 
 /*-------- LAYOUT ----------------- */
-// overall body
-.rsvp-body {
-    @include media-breakpoint-down(sm) {
-        padding-top: 60px;
-    }
-    // padding-top: 60px;
-}
 // title section
 .rsvp-title {
     // padding-top: 60px;
@@ -107,9 +100,10 @@
         display: none;
 
         &.active {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            display: block;
+            // display: flex;
+            // flex-direction: column;
+            // justify-content: center;
         }
     }
 
@@ -120,7 +114,7 @@
     // nav buttons stay at bottom
     .d-flex.justify-content-between {
         margin-top: auto;   //push to bottom
-
+        padding-top: 1rem;
     }
 }
 
