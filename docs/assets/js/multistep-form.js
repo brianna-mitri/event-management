@@ -192,7 +192,8 @@ async function verifyGuestName(firstName, lastName) {
 
         if (!response.ok) {
             console.error('Apps script http error', response.status, await response.text());
-            alert('Unable to verify guest at the moment. Please try again.');
+            showAlertMessage('alert-name', "Unable to verify right now. Please try again.");
+            // alert('Unable to verify guest at the moment. Please try again.');
             return false;
         }
 
@@ -217,13 +218,13 @@ async function verifyGuestName(firstName, lastName) {
                 // single party
                 currentOrder = stepOrder.attending;
             }
-            // alert(`Welcome ${firstName} ${lastName}!`);
             return true;
         } else {
             // name not found on guest list  
             guestVerified = false;
             guestInfo = null;
-            alert("Sorry, we couldn't find you on our guest list. Please check the spelling.");
+            // alert("Sorry, we couldn't find you on our guest list. Please check the spelling.");
+            showAlertMessage('alert-name', "Please check your name's spelling");
             return false;
         }
 
@@ -233,7 +234,8 @@ async function verifyGuestName(firstName, lastName) {
         console.error('Error verifying guest: ', error);
         guestVerified = false;
         guestInfo = null;
-        alert('Unable to verify guest at moment. Please try again. Network Error: ' + error);
+        showAlertMessage('alert-name', "Unable to verify right now. Please try again.");
+        // alert('Unable to verify guest at moment. Please try again. Network Error: ' + error);
         return false;
         // return { found: false, error: 'Network error' };
     }
@@ -370,6 +372,7 @@ async function changeStep(direction) {
 
             // show spinner for next button during validation
             if (currentStepName === 'name') {
+                hideAlertMessage('alert-name'); //hide alert message if there
                 showButtonSpinner(nextBtn, 'Verifying...');
             }
 
@@ -460,8 +463,6 @@ async function validateCurrentStep() {
                     radio.classList.add('is-invalid');
                 });
                 isValid = false;
-                // alert('Please make a selection before continuing.');
-                // return false;
             } else {
                 // remove invalid class
                 radioGroup.forEach(radio => {
@@ -480,18 +481,6 @@ async function validateCurrentStep() {
         const ok = input.value.trim() && input.checkValidity();
         input.classList.toggle('is-invalid', !ok);
         if (!ok) isValid = false;
-
-        // else if (input.type !== 'checkbox') {
-        //     if (!input.value.trim()) {
-        //         input.classList.add('is-invalid');
-        //         input.focus();
-        //         isValid = false;
-        //         // alert('Please fill in all required fields.');
-        //         // return false;
-        //     } else {
-        //         input.classList.remove('is-invalid');
-        //     }
-        // } 
     
     }
 
@@ -976,9 +965,13 @@ document.getElementById('rsvpForm').addEventListener('submit', async function (e
     const ok = await validateCurrentStep();
     if (!ok) return;
 
+    // hide alert message if shown
+    hideAlertMessage('alert-submit');
+
     // disable submit btn to prevent double submission and show loading
     const submitBtn = document.getElementById('submitBtn');
     showButtonSpinner(submitBtn, 'Submitting...');
+
 
     try {
         // debugging (before building form data)
@@ -1029,8 +1022,6 @@ document.getElementById('rsvpForm').addEventListener('submit', async function (e
         const result = await response.json();
 
         if (result.success) {
-            // success show confirmation message
-            // showSuccessMessage();
             currentStepIndex = currentOrder.length - 1;
             showStep(currentStepIndex);
         } else {
@@ -1038,7 +1029,8 @@ document.getElementById('rsvpForm').addEventListener('submit', async function (e
         }
     } catch (error) {
         console.error('Submission error:', error);
-        alert('Sorry, there was an error submitting your RSVP. Please try again or contact us directly.');
+        showAlertMessage('alert-submit', "Please try to submit again or contact us directly.");
+        // alert('Sorry, there was an error submitting your RSVP. Please try again or contact us directly.');
     } finally {
         // hide spiner and restore submit button
         hideButtonSpinner(submitBtn);
@@ -1046,7 +1038,30 @@ document.getElementById('rsvpForm').addEventListener('submit', async function (e
 
 });
 
+/*-----------------------------------------------------------------------------*/
+// Alert fucntions
+// 1) takes alert id and message to be displayed (strings)
+// 2) takes alert id and hides it
+/*-----------------------------------------------------------------------------*/
+function showAlertMessage(alertId, message) {
+    let alertIdEl = document.getElementById(alertId);
+    let messageEl = document.getElementById(`${alertId}-message`);
 
+    // create alert message element
+    messageEl.innerHTML = message;
+
+    // display
+    alertIdEl.style.display = 'block';
+}
+
+function hideAlertMessage(alertId) {
+    let alertIdEl = document.getElementById(alertId);
+    
+    // hide if alert is shown
+    if (alertIdEl) {
+        alertIdEl.style.display = 'none';
+    }
+}
 /*-----------------------------------------------------------------------------*/
 // Event Listeners
 /*-----------------------------------------------------------------------------*/
@@ -1079,6 +1094,18 @@ document.getElementById('lastName').addEventListener('input', function() {
 document.getElementById('userEmail').addEventListener('input', (e) => {
     const el = e.target;
     if (el.value && el.checkValidity()) el.classList.remove('is-invalid');
+});
+
+// clear name alert when user starts typeing in either name field
+document.getElementById('firstName').addEventListener('input', function() {
+    guestVerified = false;
+    guestInfo = null;
+    hideAlertMessage('alert-name');
+});
+document.getElementById('lastName').addEventListener('input', function() {
+    guestVerified = false;
+    guestInfo = null;
+    hideAlertMessage('alert-name');
 });
 
 /*-----------------------------------------------------------------------------*/

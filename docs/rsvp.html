@@ -90,13 +90,13 @@
         <div class="container-fluid rsvp-container p-0">
             <div class="row g-0">
                 <!-- Title section (left on desktop and top on mobile)-->
-                <div class="col-xl-7 col-12 bg-primary">
+                <div class="col-xl-7 col-12 bg-dark">
                     <section class="rsvp-title">
 
                         <!-- Title -->
                         <div class="text-center">
-                            <h1 class="display-1 fw-semibold">RSVP</h1>
-                            <p class="display-7 fw-normal">Kindly submit your reply by Month DD</p>
+                            <h1 class="display-1 pb-2 fw-semibold">RSVP</h1>
+                            <h4 class="display-7 fw-normal">Kindly submit by Month DD</h4>
                         </div>
                         
                     </section>
@@ -124,6 +124,22 @@
                                         <h2 class="text-center">Welcome!</h2>
                                         <p class="text-muted text-center">Let's first find your invite</p>
                                         <!-- <h4>What's your full name?</h4> -->
+
+                                        <!-- Alert message -->
+                                        <div id="alert-name" style="display: none;">
+                                            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-exclamation-circle-fill me-2" viewBox="0 0 16 16">
+                                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+                                                </svg>
+                                                <div> 
+                                                    <span class="fw-bold">Error:</span>
+                                                    <span id="alert-name-message">Couldn't process. Please try again later</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Name inputs -->
                                         <div class="col-sm-6">
                                             <label for="firstName" class="form-label">First name</label>
                                             <input type="text" class="form-control" id="firstName" placeholder="Your first name" required>
@@ -299,6 +315,21 @@
                                 <div class="step" id="step-confirm">
                                     <h2 class="text-center">Confirm Your RSVP</h2>
                                     <p class="text-muted text-center">Please double check before submitting</p>
+
+                                    <!-- Alert message -->
+                                    <div id="alert-submit" style="display: none;">
+                                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-exclamation-circle-fill me-2" viewBox="0 0 16 16">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+                                            </svg>
+                                            <div> 
+                                                <span class="fw-bold">Error:</span>
+                                                <span id="alert-submit-message">Couldn't process. Please try again later</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    
                                     <div class="card">
                                         <div class="card-body">
                                             <!-- <h6>Overview:</h6> -->
