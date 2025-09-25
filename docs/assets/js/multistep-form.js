@@ -564,29 +564,37 @@ function renderGrpChecklist(members = []) {
         return;
     }
 
+    // create list group structure
+    const ul = document.createElement('ul');
+    ul.className = 'list-group list-group-cards';
+
     // get each member info for checklist
     members.forEach(m => {
         const member_id = `guest_${m.guest_id}`;
-        const wrapper = document.createElement('div');
-        wrapper.className = 'form-check';
+        const li = document.createElement('li');
+        li.className = 'list-group-item';
 
-        wrapper.innerHTML = `
-            <input class="form-check-input grp-member" type="checkbox" id="${member_id}" name="grpAttendees[]" value="${m.guest_id}">
-            <label class="form-check-label" for="${member_id}">
+        li.innerHTML = `
+            <input class="form-check-input grp-member me-3" type="checkbox" id="${member_id}" name="grpAttendees[]" value="${m.guest_id}">
+            <label class="form-check-label stretched-link" for="${member_id}">
                 ${m.first_name} ${m.last_name}
             </label>
         `;
-        container.appendChild(wrapper);
+        ul.appendChild(li);
     });
 
     // "none" check option
-    const noneWrapper = document.createElement('div');
-    noneWrapper.className = 'form-check';
-    noneWrapper.innerHTML = `
-        <input class="form-check-input" type="checkbox" id="grpNone" name="grpAttendees[]" value="none">
-        <label class="form-check-label" for="grpNone">None</label>
+    const noneLi = document.createElement('li');
+    noneLi.className = 'list-group-item none-option';
+    noneLi.innerHTML = `
+        <input class="form-check-input me-3" type="checkbox" id="grpNone" name="grpAttendees[]" value="none">
+        <label class="form-check-label stretched-link" for="grpNone">None</label>
     `;
-    container.appendChild(noneWrapper);
+
+    ul.appendChild(noneLi);
+
+    // clear container and add list
+    container.appendChild(ul);
 
     // if "none" checked then uncheck other options; if any member checked then uncheck "none"
     const noneBox = document.getElementById('grpNone');

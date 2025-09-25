@@ -150,18 +150,52 @@
     }
 }
 
-// // mobile adjustments
-// @media (max-width: 992px) {
-//     .rsvp-title {
-//         min-height: 50vh;
-//         text-align: center;
-//     }
 
-//     .rsvp-form {
-//         min-height: auto;
-//     }
+/*-------- OPTIONS ----------------- */
+//----checklist-----------------
+// check list group items/cards
+.list-group-cards .list-group-item {
+    margin-bottom: 15px;
+    border-radius: 12px;
+    border: 2px solid rgba($dark, 0.1);
+    transition: all 0.3s ease;
+}
 
-//     .form-container {
-//         border-radius: 20px 20px 0 0;
-//     }
+// hover 
+.list-group-cards .list-group-item:hover {
+    border-color: rgba($info, 0.3);
+    $box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
+}
+
+// card/item when checked
+.list-group-cards .list-group-item:has(input:checked) {
+    background: rgba($dark, 0.1);
+    // color: $light;
+    color: $dark;
+    border-color: rgba($dark, 0.1);
+}
+
+// checkbox styling
+.list-group-cards .form-check-input {
+    width: 1.1em;
+    height: 1.1em;
+    border: 2px solid rgba($dark, 0.1);
+    // background-color: $light;
+}
+
+// checked checkbox styling --> updates radio checks as well!
+.form-check-input:checked {
+    background-color: $info;
+    border-color: $info;
+
+    // $encoded-color:str-replace(#{$light}, '#', '%23');
+    // background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='#{$encoded-color}' class='bi bi-check-lg' viewBox='0 0 16 16'%3e%3cpath d='M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z'/%3e%3c/svg%3e");
+    // background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='#{$encoded-color}' class='bi bi-check2' viewBox='0 0 16 16'%3e%3cpath d='M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0'/%3e%3c/svg%3e");
+}
+
+// // special styling for none option
+// .list-group-cards .list-group-item.none-option:has(input:checked) {
+//     background: linear-gradient(135deg, #6c757d, #495057);
+//     color: $light;
+//     border-color: #6c757d;
 // }
