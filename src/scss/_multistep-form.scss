@@ -10,11 +10,31 @@
 
 
 /*-------- LAYOUT ----------------- */
+// ensure main container and row take full height
+.rsvp-container {
+    min-height: 100vh;
+
+    .row {
+        // @include media-breakpoint-up(xl) {
+        //     min-height: 100vh;
+        // }
+        //make both columns stretch to full height
+        .col-xl-7,
+        .col-xl-5 {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
 // title section
 .rsvp-title {
     // padding-top: 60px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4)),
-                url('../img/swiper_venue.jpg');
+    // background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4)),
+    //             url('../img/cheers_night.jpg');
+    background: linear-gradient(rgba(30, 40, 50, 0.4), rgba(30, 40, 50, 0.4)),
+                url('../img/cheers_night.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -26,13 +46,18 @@
     position: relative;
 
     // responsive heights
-    height: 45vh;                       //mobile
+    min-height: 45vh;                       //mobile
     // min-height: 600px;
 
     @include media-breakpoint-up(xl) {
-        height: 100vh;
+        // height: 100vh;
+        min-height: 100vh;
         // min-height: 650px;
     }
+
+    // ensure section fills available space
+    flex: 1;
+    width: 100%;
 }
 
 // form section
@@ -51,7 +76,7 @@
         // min-height: 650px;
     }
 
-    @include media-breakpoint-donw(sm) {
+    @include media-breakpoint-down(sm) {
         min-height: auto;
         padding: 1rem 0.5rem;
     }

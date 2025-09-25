@@ -13701,14 +13701,18 @@ textarea.form-control-lg {
 }
 
 /*-------- LAYOUT ----------------- */
-@media (max-width: 575.98px) {
-  .rsvp-body {
-    padding-top: 60px;
-  }
+.rsvp-container {
+  min-height: 100vh;
+}
+.rsvp-container .row .col-xl-7,
+.rsvp-container .row .col-xl-5 {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .rsvp-title {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url("../img/swiper_venue.jpg");
+  background: linear-gradient(rgba(30, 40, 50, 0.4), rgba(30, 40, 50, 0.4)), url("../img/cheers_night.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -13717,11 +13721,13 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 45vh;
+  min-height: 45vh;
+  flex: 1;
+  width: 100%;
 }
 @media (min-width: 1200px) {
   .rsvp-title {
-    height: 100vh;
+    min-height: 100vh;
   }
 }
 
@@ -13729,11 +13735,19 @@ textarea.form-control-lg {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 45vh;
+  padding: 2rem 1rem;
+  min-height: 45vh;
 }
 @media (min-width: 1200px) {
   .rsvp-form {
-    height: 100vh;
+    min-height: 100vh;
+    padding: 3rem 2rem;
+  }
+}
+@media (max-width: 575.98px) {
+  .rsvp-form {
+    min-height: auto;
+    padding: 1rem 0.5rem;
   }
 }
 
@@ -13767,13 +13781,12 @@ textarea.form-control-lg {
   display: none;
 }
 #rsvpForm .step.active {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: block;
 }
 #rsvpForm .progress {
   margin-bottom: 2rem;
 }
 #rsvpForm .d-flex.justify-content-between {
   margin-top: auto;
+  padding-top: 1rem;
 }

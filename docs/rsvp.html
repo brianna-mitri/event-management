@@ -16,7 +16,7 @@
 
     <!------------------------------------------- Navbar ------------------------------------------->
 
-    <nav class="navbar navbar-expand-sm navbar-theme-dark sticky-top navbar-spacing">
+    <nav class="navbar navbar-expand-sm navbar-theme-dark fixed-top navbar-spacing">
       <div class="container-fluid">
 
         <!-- Hamburger/Logo Name (left) -->
@@ -87,14 +87,14 @@
     <!-- Main Content -->
     <main>
 
-        <div class="container-fluid p-0">
+        <div class="container-fluid rsvp-container p-0">
             <div class="row g-0">
                 <!-- Title section (left on desktop and top on mobile)-->
-                <div class="col-xl-7 col-12">
+                <div class="col-xl-7 col-12 bg-primary">
                     <section class="rsvp-title">
 
                         <!-- Title -->
-                        <div class="container text-center">
+                        <div class="text-center">
                             <h1 class="display-1 fw-semibold">RSVP</h1>
                             <p class="display-7 fw-normal">Kindly submit your reply by Month DD</p>
                         </div>
@@ -337,7 +337,7 @@
                                 
                                 <!------------- Navigation Buttons ------------->
                                 <div class="d-flex justify-content-between">
-                                    <button type="button" class="btn btn-outline-primary main-btn" id="prevBtn" onclick="changeStep(-1)" style="display: none;">
+                                    <button type="button" class="btn btn-outline-dark main-btn" id="prevBtn" onclick="changeStep(-1)" style="display: none;">
                                         Back
                                     </button>
 
@@ -398,7 +398,7 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
 
     <!--Personal scripts-->
-    <!-- <script src="./assets/js/navbar.js"></script> -->
+    <script src="./assets/js/navbar.js"></script>
     <script src="./assets/js/multistep-form.js"></script>
     <!-- <script src="./assets/js/countdown.js"></script>
     <script src="./assets/js/swiping.js"></script>
