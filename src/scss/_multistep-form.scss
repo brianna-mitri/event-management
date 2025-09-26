@@ -1,4 +1,4 @@
-/*-------- STEP MANAGEMENT ----------------- */
+/*-------------------------------------------------- STEP MANAGEMENT -------------------------------------------------- */
 // default to show one step at a time
 .step {
     display: none; // hide all steps by default
@@ -9,7 +9,7 @@
 }
 
 
-/*-------- LAYOUT ----------------- */
+/*-------------------------------------------------- MAIN LAYOUT -------------------------------------------------- */
 // ensure main container and row take full height
 .rsvp-container {
     min-height: 100vh;
@@ -151,9 +151,53 @@
 }
 
 
-/*-------- OPTIONS ----------------- */
-//----checklist-----------------
-// check list group items/cards
+/*-------------------------------------------------- RADIO & CHECKBOX OPTIONS -------------------------------------------------- */
+//------------------------------------validation-------------------------------------------------
+// both red text AND invalid feedback
+.validation-wrapper.show-invalid .invalid-feedback {
+    display: block;
+}
+
+// red text for labels when validation fails
+.validation-wrapper.show-invalid .form-check-label {
+    color: $danger;
+}
+
+// red border for invalid inputs
+.validation-wrapper.show-invalid .form-check-input {
+    border-color: $danger;
+}
+
+// reset rule (no longer invalid) --> explicitly set normal colors
+.validation-wrapper:not(.show-invalid) .form-check-label {
+    color: $body-color;
+}
+.validation-wrapper:not(.show-invalid) .form-check-input {
+    border-color: rgba($dark, 0.1);
+
+    &:focus, &:active, &:checked:focus {
+        // override any lingering red focus states (also sets focus state color)
+        box-shadow: 0 0 0 0.25rem rgba($dark, 0.25);
+    }
+}
+.validation-wrapper .form-check-input:checked {
+    border-color: $info; //normal checked color
+}
+.validation-wrapper .form-check-input:checked {
+    // checked inputs use correct background color
+    background-color: $info;
+    border-color: $info;
+}
+
+
+// // style invalid feedback message
+// .validation-wrapper .invalid-feedback {
+//     margin-top: 0.75rem;
+//     font-size: 0.875rem;
+// }
+
+//------------------------------------list group item design-------------------------------------------------
+// check list group items/cards --> make like cards
 .list-group-cards .list-group-item {
     margin-bottom: 15px;
     border-radius: 12px;

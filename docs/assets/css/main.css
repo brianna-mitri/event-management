@@ -14034,7 +14034,7 @@ textarea.form-control-lg {
   }
 }
 
-/*-------- STEP MANAGEMENT ----------------- */
+/*-------------------------------------------------- STEP MANAGEMENT -------------------------------------------------- */
 .step {
   display: none;
 }
@@ -14043,7 +14043,7 @@ textarea.form-control-lg {
   display: block;
 }
 
-/*-------- LAYOUT ----------------- */
+/*-------------------------------------------------- MAIN LAYOUT -------------------------------------------------- */
 .rsvp-container {
   min-height: 100vh;
 }
@@ -14141,7 +14141,39 @@ textarea.form-control-lg {
   padding-top: 1rem;
 }
 
-/*-------- OPTIONS ----------------- */
+/*-------------------------------------------------- RADIO & CHECKBOX OPTIONS -------------------------------------------------- */
+.validation-wrapper.show-invalid .invalid-feedback {
+  display: block;
+}
+
+.validation-wrapper.show-invalid .form-check-label {
+  color: #ff6b6b;
+}
+
+.validation-wrapper.show-invalid .form-check-input {
+  border-color: #ff6b6b;
+}
+
+.validation-wrapper:not(.show-invalid) .form-check-label {
+  color: #21201f;
+}
+
+.validation-wrapper:not(.show-invalid) .form-check-input {
+  border-color: rgba(73, 1, 0, 0.1);
+}
+.validation-wrapper:not(.show-invalid) .form-check-input:focus, .validation-wrapper:not(.show-invalid) .form-check-input:active, .validation-wrapper:not(.show-invalid) .form-check-input:checked:focus {
+  box-shadow: 0 0 0 0.25rem rgba(73, 1, 0, 0.25);
+}
+
+.validation-wrapper .form-check-input:checked {
+  border-color: #8a0707;
+}
+
+.validation-wrapper .form-check-input:checked {
+  background-color: #8a0707;
+  border-color: #8a0707;
+}
+
 .list-group-cards .list-group-item {
   margin-bottom: 15px;
   border-radius: 12px;

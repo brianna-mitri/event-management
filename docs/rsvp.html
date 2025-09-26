@@ -183,26 +183,32 @@
                                         <p class="text-muted text-center">Please let us know if you can make it</p>
                                         <h4>Will you come to our event name?</h4>
 
-                                        <div class="col">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="attendingInput" id="attendingYes" value="yes" required>
-                                                <label class="form-check-label" for="attendingYes">
-                                                    Yes, I'll be there!
-                                                </label>
+                                        <div class="validation-wrapper">
+                                            <ul class="list-group list-group-cards">
+                                                <!-- options -->
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-3" type="radio" name="attendingInput" id="attendingYes" value="yes" required>
+                                                    <label class="form-check-label stretched-link" for="attendingYes">
+                                                        Yes, I'll be there!
+                                                    </label>
+                                                </li>
+
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-3" type="radio" name="attendingInput" id="attendingNo" value="no" required>
+                                                    <label class="form-check-label stretched-link" for="attendingNo">
+                                                        Sorry, can't make it :(
+                                                    </label>
+                                                </li>
+                                            </ul>
+
+                                            <!-- invalid feedback -->
+                                            <div class="invalid-feedback">
+                                                Please select whether you'll be attending
                                             </div>
 
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="attendingInput" id="attendingNo" value="no" required>
-                                                <label class="form-check-label" for="attendingNo">
-                                                    Sorry, can't make it :(
-                                                </label>
-
-                                                <!-- invalid feedback -->
-                                                <div class="invalid-feedback">
-                                                    Please select whether you'll be attending
-                                                </div>
-                                            </div>
                                         </div>
+                                        
+
                                     </div>
                                 </div>
 
@@ -213,41 +219,45 @@
 
                                     <h4>Do you have a dietary preference?</h4>
 
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="dietaryInput" id="dietVegan" value="vegan" required>
-                                            <label class="form-check-label" for="dietVegan">
-                                                Vegan
-                                            </label>
-                                        </div>
+                                    <div class="validation-wrapper">
+                                        <ul class="list-group list-group-cards">
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-3" type="radio" name="dietaryInput" id="dietVegan" value="vegan" required>
+                                                <label class="form-check-label stretched-link" for="dietVegan">
+                                                    Vegan
+                                                </label>
+                                            </li>
+                                            
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-3" type="radio" name="dietaryInput" id="dietVegetarian" value="vegetarian" required>
+                                                <label class="form-check-label stretched-link" for="dietVegetarian">
+                                                    Vegetarian
+                                                </label>
+                                            </li>
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="dietaryInput" id="dietVegetarian" value="vegetarian" required>
-                                            <label class="form-check-label" for="dietVegetarian">
-                                                Vegetarian
-                                            </label>
-                                        </div>
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-3" type="radio" name="dietaryInput" id="dietPescatarian" value="pescatarian" required>
+                                                <label class="form-check-label stretched-link" for="dietPescatarian">
+                                                    Pescatarian
+                                                </label>
+                                            </li>
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="dietaryInput" id="dietPescatarian" value="pescatarian" required>
-                                            <label class="form-check-label" for="dietPescatarian">
-                                                Pescatarian
-                                            </label>
-                                        </div>
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-3" type="radio" name="dietaryInput" id="dietNone" value="none" required>
+                                                <label class="form-check-label stretched-link" for="dietNone">
+                                                    None
+                                                </label>
+                                            </li>
+                                        </ul>
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="dietaryInput" id="dietNone" value="none" required>
-                                            <label class="form-check-label" for="dietNone">
-                                                None
-                                            </label>
-
-                                            <!-- invalid feedback -->
-                                            <div class="invalid-feedback">
-                                                Please select your dietary preference
-                                            </div>
+                                        <!-- invalid feedback -->
+                                        <div class="invalid-feedback">
+                                            Please select your dietary preference
                                         </div>
 
                                     </div>
+
+                   
                                 </div>
 
                                 <!-----GROUP PATH------------------------------------------------------------------------------------------------------>
@@ -259,12 +269,14 @@
                                         <h4>Who can come to our event name?</h4>
 
                                         <!--populated by JS once user name verified -->
-                                        <div id="grpChecklist" class="d-flex flex-column"></div>
+                                        <div id="grpChecklist" class="validation-wrapper"></div>
+                                        <!-- <div id="grpChecklist" class="d-flex flex-column"></div> -->
+
                                         
                                         <!-- invalid feedback -->
-                                        <div class="invalid-feedback">
+                                        <!-- <div class="invalid-feedback">
                                             Please select at least one guest
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 
@@ -274,27 +286,31 @@
                                     <p class="text-muted text-center">Help us prepare the perfect meals for everyone</p>
 
                                     <h4>Does anyone have a dietary preference?</h4>
-                                    
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="dietaryGrpInput" id="dietaryGrpYes" value="yes" required>
-                                            <label class="form-check-label" for="dietaryGrpYes">
-                                                Yes
-                                            </label>
-                                        </div>
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="dietaryGrpInput" id="dietaryGrpNo" value="no" required>
-                                            <label class="form-check-label" for="dietaryGrpNo">
-                                                No
-                                            </label>
+                                    <div class="validation-wrapper">
+                                        <ul class="list-group list-group-cards">
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-3" type="radio" name="dietaryGrpInput" id="dietaryGrpYes" value="yes" required>
+                                                <label class="form-check-label stretched-link" for="dietaryGrpYes">
+                                                    Yes
+                                                </label> 
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-3" type="radio" name="dietaryGrpInput" id="dietaryGrpNo" value="no" required>
+                                                <label class="form-check-label stretched-link" for="dietaryGrpNo">
+                                                    No
+                                                </label>
+                                            </li>
+                                        </ul>
 
-                                            <!-- invalid feedback -->
-                                            <div class="invalid-feedback">
-                                                Please select yes or no
-                                            </div>
+                                        <!-- invalid feedback -->
+                                        <div class="invalid-feedback">
+                                            Please select yes or no
                                         </div>
                                     </div>
+                                    
+                                
+                            
 
                                     <!-- Dietary preferences shown if yes checked -->
                                     <div id="grp-dietary-table-wrap" style="display: none;">
