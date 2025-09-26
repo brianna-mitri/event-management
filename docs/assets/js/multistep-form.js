@@ -465,19 +465,22 @@ async function validateCurrentStep() {
 
             // for radio buttons, check if any in the group is selected
             const radioGroup = step.querySelectorAll(`input[name="${input.name}"]`);
+            const wrapper = step.querySelector('.validation-wrapper');
             const isChecked = Array.from(radioGroup).some(radio => radio.checked);
 
             if(!isChecked) {
+                wrapper.classList.add('show-invalid');
                 // add invalid class to all radio buttons
-                radioGroup.forEach(radio => {
-                    radio.classList.add('is-invalid');
-                });
+                // radioGroup.forEach(radio => {
+                //     radio.classList.add('is-invalid');
+                // });
                 isValid = false;
             } else {
                 // remove invalid class
-                radioGroup.forEach(radio => {
-                    radio.classList.remove('is-invalid');
-                });
+                wrapper.classList.remove('was-validated');
+                // radioGroup.forEach(radio => {
+                //     radio.classList.remove('is-invalid');
+                // });
             }
 
         } 
@@ -522,12 +525,19 @@ async function validateCurrentStep() {
         const selected = Array.from(document.querySelectorAll('input[name="grpAttendees[]"]:checked'));  //all checked boxes (including none)
         const noneChecked = selected.some(checked => checked.value === 'none');
         const step = document.getElementById('step-attendance-grp');
-        const msg = step.querySelector('.invalid-feedback');
+        const wrapper = step.querySelector('.validation-wrapper');
+        // const msg = step.querySelector('.invalid-feedback');
 
         // valid if none is checked or if at least one member is checked
         const ok = noneChecked || selected.length > 0;
-        if (msg) msg.style.display = ok ? 'none' : 'block';
-        if (!ok) return false;
+        if (!ok) {
+            wrapper.classList.add('show-invalid');
+            isValid = false;
+        } else {
+            wrapper.classList.remove('show-invalid');
+        }
+        // if (msg) msg.style.display = ok ? 'none' : 'block';
+        // if (!ok) return false;
     }
 
     // for group dietary preference, if checked "yes" then need to not have "None" for each party member
@@ -564,29 +574,43 @@ function renderGrpChecklist(members = []) {
         return;
     }
 
+    // create list group structure
+    const ul = document.createElement('ul');
+    ul.className = 'list-group list-group-cards';
+
     // get each member info for checklist
     members.forEach(m => {
         const member_id = `guest_${m.guest_id}`;
-        const wrapper = document.createElement('div');
-        wrapper.className = 'form-check';
+        const li = document.createElement('li');
+        li.className = 'list-group-item';
 
-        wrapper.innerHTML = `
-            <input class="form-check-input grp-member" type="checkbox" id="${member_id}" name="grpAttendees[]" value="${m.guest_id}">
-            <label class="form-check-label" for="${member_id}">
+        li.innerHTML = `
+            <input class="form-check-input grp-member me-3" type="checkbox" id="${member_id}" name="grpAttendees[]" value="${m.guest_id}">
+            <label class="form-check-label stretched-link" for="${member_id}">
                 ${m.first_name} ${m.last_name}
             </label>
         `;
-        container.appendChild(wrapper);
+        ul.appendChild(li);
     });
 
     // "none" check option
-    const noneWrapper = document.createElement('div');
-    noneWrapper.className = 'form-check';
-    noneWrapper.innerHTML = `
-        <input class="form-check-input" type="checkbox" id="grpNone" name="grpAttendees[]" value="none">
-        <label class="form-check-label" for="grpNone">None</label>
+    const noneLi = document.createElement('li');
+    noneLi.className = 'list-group-item none-option';
+    noneLi.innerHTML = `
+        <input class="form-check-input me-3" type="checkbox" id="grpNone" name="grpAttendees[]" value="none">
+        <label class="form-check-label stretched-link" for="grpNone">None</label>
     `;
-    container.appendChild(noneWrapper);
+
+    ul.appendChild(noneLi);
+
+    // invalid feedback div after list
+    const invalidFeedback = document.createElement('div');
+    invalidFeedback.className = 'invalid-feedback';
+    invalidFeedback.textContent = 'Please select at least one guest (or "None")';
+
+    // clear container and add list + feedback
+    container.appendChild(ul);
+    container.appendChild(invalidFeedback);
 
     // if "none" checked then uncheck other options; if any member checked then uncheck "none"
     const noneBox = document.getElementById('grpNone');
@@ -1116,6 +1140,27 @@ document.getElementById('lastName').addEventListener('input', function() {
     guestVerified = false;
     guestInfo = null;
     hideAlertMessage('alert-name');
+});
+
+// clear "show invalid" from radio and checkboxes once user selects option
+document.addEventListener('change', function(e) {
+    const input = e.target;
+
+    // radio buttons
+    if (input.type === 'radio') {
+        const wrapper = input.closest('.validation-wrapper');
+        if (wrapper) {
+            wrapper.classList.remove('show-invalid');
+        }
+    }
+
+    // checkboxes (grp attendance)
+    if (input.type === 'checkbox' && input.name === 'grpAttendees[]') {
+        const wrapper = document.getElementById('grpChecklist');
+        if (wrapper) {
+            wrapper.classList.remove('show-invalid');
+        }
+    }
 });
 
 /*-----------------------------------------------------------------------------*/
