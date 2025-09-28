@@ -6711,7 +6711,7 @@ textarea.form-control-lg {
   margin-left: 1.5rem !important;
 }
 
-.mx-5 {
+.mx-5, .form-spacing {
   margin-right: 3rem !important;
   margin-left: 3rem !important;
 }
@@ -6781,7 +6781,7 @@ textarea.form-control-lg {
   margin-bottom: 1.5rem !important;
 }
 
-.my-5, .section-spacing {
+.my-5, .section-spacing, .form-spacing {
   margin-top: 3rem !important;
   margin-bottom: 3rem !important;
 }
@@ -6954,7 +6954,7 @@ textarea.form-control-lg {
   margin-bottom: 1rem !important;
 }
 
-.mb-4 {
+.mb-4, .form-spacing .progress {
   margin-bottom: 1.5rem !important;
 }
 

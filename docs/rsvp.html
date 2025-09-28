@@ -105,7 +105,7 @@
 
                 <!--- Form Section (right on desktop, bottom on mobile)-->
                 <div class="col-xl-5 col-12 bg-light">
-                    <section class="rsvp-form section-spacing">
+                    <section class="rsvp-form form-spacing">
                         <div class="container-fluid form-container">
                             <!-- <h2 class="display-4 fw-semibold mb-md-4">We hope you say yes!</h2> -->
 
@@ -156,7 +156,7 @@
                                         </div>
                                     </div>
                                     <!-- Email input -->
-                                    <div class="row g-3 mb-3">
+                                    <div class="row g-3 mb-4 mb-xl-5">
                                         <div class="col">
                                             <label for="userEmail" class="form-label">Email</label>
                                             <input
@@ -167,6 +167,7 @@
                                             name="userEmail"
                                             pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                                             required>
+                                            <div class="form-text">To get a confirmation email</div>
                                             <div class="invalid-feedback">
                                                 Please enter a valid email
                                             </div>
@@ -314,7 +315,7 @@
                                     <!-- Dietary preferences shown if yes checked -->
                                     <div id="grp-dietary-table-wrap" style="display: none;">
                                         <h5>Please specify below</h5>
-                                        <div class="card rsvp-card">
+                                        <div class="card rsvp-card mb-4">
                                             <!-- <h5 class="card-header">Please specify below</h5> -->
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -351,7 +352,7 @@
 
                                     </div>
                                     
-                                    <div class="card rsvp-card">
+                                    <div class="card rsvp-card mb-4">
                                         <div class="card-body">
                                             <!-- <h6>Overview:</h6> -->
                                             <!-- <p><strong>Name:</strong> <span id="summaryName"></span></p> -->
@@ -363,9 +364,10 @@
                                                 <p><strong>Dietary preference:</strong> <span id="summaryDietary"></span></p>
 
                                                 <!-- Only show when group dietary = 'Yes'-->
-                                                <div class="card rsvp-card">
-                                                    <div class="card-body">
-                                                        <div id="summary-dietary-table-wrap" style="display:none;">
+                                    
+                                                <div id="summary-dietary-table-wrap" style="display:none;">
+                                                    <div class="card">
+                                                        <div class="card-body">
                                                             <div class="table-responsive">
                                                                 <table class="table rsvp-table table-sm align-middle" id="summary-dietary-table">
                                                                     <!-- <thead>
