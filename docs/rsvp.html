@@ -313,14 +313,20 @@
 
                                     <!-- Dietary preferences shown if yes checked -->
                                     <div id="grp-dietary-table-wrap" style="display: none;">
-                                        <div class="table-responsive">
-                                            <table class="table table-sm align-middle" id="grp-dietary-table">
-                                                <h4>Please specify below</h4>
-                                                <!-- <thead>
-                                                    <tr><th>Guest</th><th>Preference</th></tr>
-                                                </thead> -->
-                                                <tbody></tbody>
-                                            </table>
+                                        <h5>Please specify below</h5>
+                                        <div class="card rsvp-card">
+                                            <!-- <h5 class="card-header">Please specify below</h5> -->
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table rsvp-table table-sm align-middle" id="grp-dietary-table">
+                                                        <!-- <h5>Please specify below</h5> -->
+                                                        <!-- <thead>
+                                                            <tr><th>Guest</th><th>Preference</th></tr>
+                                                        </thead> -->
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -345,7 +351,7 @@
 
                                     </div>
                                     
-                                    <div class="card">
+                                    <div class="card rsvp-card">
                                         <div class="card-body">
                                             <!-- <h6>Overview:</h6> -->
                                             <!-- <p><strong>Name:</strong> <span id="summaryName"></span></p> -->
@@ -357,16 +363,21 @@
                                                 <p><strong>Dietary preference:</strong> <span id="summaryDietary"></span></p>
 
                                                 <!-- Only show when group dietary = 'Yes'-->
-                                                <div id="summary-dietary-table-wrap" style="display:none;">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-sm align-middle" id="summary-dietary-table">
-                                                            <thead>
-                                                                <tr><th>Guest</th><th>Preference</th></tr>
-                                                            </thead>
-                                                            <tbody></tbody>
-                                                        </table> 
+                                                <div class="card rsvp-card">
+                                                    <div class="card-body">
+                                                        <div id="summary-dietary-table-wrap" style="display:none;">
+                                                            <div class="table-responsive">
+                                                                <table class="table rsvp-table table-sm align-middle" id="summary-dietary-table">
+                                                                    <!-- <thead>
+                                                                        <tr><th>Guest</th><th>Preference</th></tr>
+                                                                    </thead> -->
+                                                                    <tbody></tbody>
+                                                                </table> 
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                
                                             </div>
 
                                         </div>

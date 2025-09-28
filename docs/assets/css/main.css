@@ -14190,3 +14190,33 @@ textarea.form-control-lg {
   background-color: #8a0707;
   border-color: #8a0707;
 }
+
+.rsvp-card {
+  border: 2px solid rgba(73, 1, 0, 0.1);
+}
+
+.rsvp-table {
+  margin-bottom: 0;
+}
+.rsvp-table td, .rsvp-table th {
+  border-left: none;
+  border-right: none;
+  border-top: 2px solid rgba(73, 1, 0, 0.1);
+  border-bottom: none;
+}
+.rsvp-table tbody tr:first-child td {
+  border-top: none;
+}
+.rsvp-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+#grp-dietary-table td {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+.grp-diet-select {
+  background-color: rgba(73, 1, 0, 0.08);
+  border-color: rgba(73, 1, 0, 0.08);
+}

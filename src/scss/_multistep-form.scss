@@ -239,6 +239,8 @@ $empty-color: rgba($dark, 0.08);
 $focus-color: $info;
 $shadow-color: 0 0 0 0.25rem rgba($dark, 0.15);
 // $shadow-color: 0 0 0 0 0.25rem rgba(black, 0.5);
+// $form-border-color: rgba($dark, 0.1);
+$card-border-color: 2px solid rgba($dark, 0.1);
 
 
 /*-------------------------------------------------- PROGRESS BAR -------------------------------------------------- */
@@ -357,3 +359,50 @@ $shadow-color: 0 0 0 0.25rem rgba($dark, 0.15);
 //     color: $light;
 //     border-color: #6c757d;
 // }
+
+//------------------------------------TABLE/CARD-------------------------------------------------
+// overall card styling
+.rsvp-card {
+    border: $card-border-color;
+}
+
+// table styling
+.rsvp-table {
+
+    // no gap underneath
+    margin-bottom: 0;
+
+    // adjust the border color
+    td, th {
+        border-left: none;
+        border-right: none;
+        border-top: $card-border-color;
+        border-bottom: none;
+
+    }
+
+    // remove top border for first row
+    tbody tr:first-child td {
+        border-top: none;
+    }
+
+    // remove the bottom border from last row
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+}
+
+// adjust padding for dropdown table
+#grp-dietary-table {
+    // adjust spacing
+    td {
+        padding-top: 0.8rem;
+        padding-bottom: 0.8rem;
+    }
+}
+// dropdown styling within table (for options)
+.grp-diet-select {
+    background-color: $empty-color;
+    border-color: $empty-color;
+    // border-color: rgba($info, 0.4);
+}
