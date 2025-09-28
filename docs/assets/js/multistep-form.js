@@ -1004,7 +1004,7 @@ document.getElementById('rsvpForm').addEventListener('submit', async function (e
 
     // disable submit btn to prevent double submission and show loading
     const submitBtn = document.getElementById('submitBtn');
-    showButtonSpinner(submitBtn, 'Submitting...');
+    showButtonSpinner(submitBtn, 'Sending...');
 
 
     try {
