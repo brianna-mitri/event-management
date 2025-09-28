@@ -14079,6 +14079,9 @@ textarea.form-control-lg {
 @media (min-width: 768px) {
   .rsvp-container .row .col-xl-5 {
     min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 @media (min-width: 1200px) {
@@ -14094,6 +14097,37 @@ textarea.form-control-lg {
 .rsvp-title {
   justify-content: center;
   background-color: #6f1f27;
+}
+
+.form-container {
+  max-width: 600px;
+}
+@media (min-width: 1200px) {
+  .form-container {
+    min-width: 450px;
+  }
+}
+
+/*-------------------------------------------------- COLORS -------------------------------------------------- */
+/*-------------------------------------------------- PROGRESS BAR -------------------------------------------------- */
+.progress {
+  background-color: rgba(73, 1, 0, 0.08);
+}
+
+/*-------------------------------------------------- TEXT INPUT -------------------------------------------------- */
+.form-label {
+  font-weight: 500;
+}
+
+.form-control {
+  background-color: rgba(73, 1, 0, 0.08);
+  border-color: rgba(73, 1, 0, 0.08);
+}
+
+.form-control:focus {
+  background-color: rgba(73, 1, 0, 0.08);
+  border-color: rgba(73, 1, 0, 0.08);
+  box-shadow: 0 0 0 0.25rem rgba(73, 1, 0, 0.15);
 }
 
 /*-------------------------------------------------- RADIO & CHECKBOX OPTIONS -------------------------------------------------- */

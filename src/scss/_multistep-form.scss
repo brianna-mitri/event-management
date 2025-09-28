@@ -50,6 +50,11 @@
 
             @include media-breakpoint-up(md) {
                 min-height: 60vh;
+
+                // flexbox centering for larger screens
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             @include media-breakpoint-up(xl) {
@@ -75,6 +80,15 @@
     // @include media-breakpoint-up(xl) {
     //     min-height: 100vh;
     // }
+}
+
+// form container
+.form-container {
+    max-width: 600px;
+    
+    @include media-breakpoint-up(xl) {
+        min-width: 450px;
+    }
 }
 
 
@@ -218,6 +232,38 @@
 //     }
 // }
 
+/*-------------------------------------------------- COLORS -------------------------------------------------- */
+// form coloring
+// $fill-color: #e6e5e4;
+$empty-color: rgba($dark, 0.08);
+$focus-color: $info;
+$shadow-color: 0 0 0 0.25rem rgba($dark, 0.15);
+// $shadow-color: 0 0 0 0 0.25rem rgba(black, 0.5);
+
+
+/*-------------------------------------------------- PROGRESS BAR -------------------------------------------------- */
+.progress {
+    background-color: $empty-color;
+}
+
+/*-------------------------------------------------- TEXT INPUT -------------------------------------------------- */
+// form label
+.form-label {
+    font-weight: 500;
+    // font-size: 1.05rem;
+}
+// normal text input state
+.form-control {
+    background-color: $empty-color;
+    border-color: $empty-color;
+}
+
+// focused text input state
+.form-control:focus {
+    background-color: $empty-color;
+    border-color: $empty-color;
+    box-shadow: $shadow-color;
+}
 
 /*-------------------------------------------------- RADIO & CHECKBOX OPTIONS -------------------------------------------------- */
 //------------------------------------validation-------------------------------------------------
