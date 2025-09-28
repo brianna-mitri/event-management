@@ -213,6 +213,20 @@ $spacers: map-merge(
     }
 }
 
+// rsvp form spacing
+.form-spacing {
+    @extend .mx-5;
+    @extend .my-5;
+
+    .progress {
+        @extend .mb-4;
+    }
+
+    // .card{
+    //     @extend .mb-4;
+    // }
+}
+
 // footer spacing
 .footer-spacing {
     .container {

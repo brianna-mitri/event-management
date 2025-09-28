@@ -16,7 +16,7 @@
 
     <!------------------------------------------- Navbar ------------------------------------------->
 
-    <nav class="navbar navbar-expand-sm navbar-theme-dark fixed-top navbar-spacing">
+    <nav class="navbar navbar-expand-sm navbar-theme-dark sticky-top navbar-spacing">
       <div class="container-fluid">
 
         <!-- Hamburger/Logo Name (left) -->
@@ -85,12 +85,12 @@
     </nav>
 
     <!-- Main Content -->
-    <main>
+    <main class="rsvp-main">
 
         <div class="container-fluid rsvp-container p-0">
             <div class="row g-0">
                 <!-- Title section (left on desktop and top on mobile)-->
-                <div class="col-xl-7 col-12 bg-dark">
+                <div class="col-xl-7 col-12 text-light d-flex justify-content-center align-items-center">
                     <section class="rsvp-title">
 
                         <!-- Title -->
@@ -104,8 +104,8 @@
                 </div>
 
                 <!--- Form Section (right on desktop, bottom on mobile)-->
-                <div class="col-xl-5 col-12">
-                    <section class="rsvp-form section-spacing">
+                <div class="col-xl-5 col-12 bg-light">
+                    <section class="rsvp-form form-spacing">
                         <div class="container-fluid form-container">
                             <!-- <h2 class="display-4 fw-semibold mb-md-4">We hope you say yes!</h2> -->
 
@@ -142,32 +142,32 @@
                                         <!-- Name inputs -->
                                         <div class="col-sm-6">
                                             <label for="firstName" class="form-label">First name</label>
-                                            <input type="text" class="form-control" id="firstName" placeholder="Your first name" required>
+                                            <input type="text" class="form-control" id="firstName" required>
                                             <div class="invalid-feedback">
                                                 Please enter your first name
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <label for="lastName" class="form-label">Last name</label>
-                                            <input type="text" class="form-control" id="lastName" placeholder="Your last name" required>
+                                            <input type="text" class="form-control" id="lastName" required>
                                             <div class="invalid-feedback">
                                                 Please enter your last name
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Email input -->
-                                    <div class="row g-3 mb-3">
+                                    <div class="row g-3 mb-4 mb-xl-5">
                                         <div class="col">
                                             <label for="userEmail" class="form-label">Email</label>
                                             <input
                                             type="email" 
                                             class="form-control" 
                                             id="userEmail" 
-                                            placeholder="example@gmail.com" 
                                             autocomplete="email" 
                                             name="userEmail"
                                             pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                                             required>
+                                            <div class="form-text">To get a confirmation email</div>
                                             <div class="invalid-feedback">
                                                 Please enter a valid email
                                             </div>
@@ -314,14 +314,20 @@
 
                                     <!-- Dietary preferences shown if yes checked -->
                                     <div id="grp-dietary-table-wrap" style="display: none;">
-                                        <div class="table-responsive">
-                                            <table class="table table-sm align-middle" id="grp-dietary-table">
-                                                <h4>Please specify below</h4>
-                                                <!-- <thead>
-                                                    <tr><th>Guest</th><th>Preference</th></tr>
-                                                </thead> -->
-                                                <tbody></tbody>
-                                            </table>
+                                        <h5>Please specify below</h5>
+                                        <div class="card rsvp-card mb-4">
+                                            <!-- <h5 class="card-header">Please specify below</h5> -->
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table rsvp-table table-sm align-middle" id="grp-dietary-table">
+                                                        <!-- <h5>Please specify below</h5> -->
+                                                        <!-- <thead>
+                                                            <tr><th>Guest</th><th>Preference</th></tr>
+                                                        </thead> -->
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -346,7 +352,7 @@
 
                                     </div>
                                     
-                                    <div class="card">
+                                    <div class="card rsvp-card mb-4">
                                         <div class="card-body">
                                             <!-- <h6>Overview:</h6> -->
                                             <!-- <p><strong>Name:</strong> <span id="summaryName"></span></p> -->
@@ -358,16 +364,22 @@
                                                 <p><strong>Dietary preference:</strong> <span id="summaryDietary"></span></p>
 
                                                 <!-- Only show when group dietary = 'Yes'-->
+                                    
                                                 <div id="summary-dietary-table-wrap" style="display:none;">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-sm align-middle" id="summary-dietary-table">
-                                                            <thead>
-                                                                <tr><th>Guest</th><th>Preference</th></tr>
-                                                            </thead>
-                                                            <tbody></tbody>
-                                                        </table> 
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <div class="table-responsive">
+                                                                <table class="table rsvp-table table-sm align-middle" id="summary-dietary-table">
+                                                                    <!-- <thead>
+                                                                        <tr><th>Guest</th><th>Preference</th></tr>
+                                                                    </thead> -->
+                                                                    <tbody></tbody>
+                                                                </table> 
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                
                                             </div>
 
                                         </div>
