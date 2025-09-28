@@ -10,145 +10,213 @@
 
 
 /*-------------------------------------------------- MAIN LAYOUT -------------------------------------------------- */
-// ensure main container and row take full height
+// main section
+.rsvp-main {
+    background: #6f1f27;
+
+}
+
 .rsvp-container {
     min-height: 100vh;
 
+    @include media-breakpoint-up(xl) {
+        min-height: 90vh;
+    }
+
     .row {
-        // @include media-breakpoint-up(xl) {
-        //     min-height: 100vh;
-        // }
-        //make both columns stretch to full height
-        .col-xl-7,
+
+        //rsvp title
+        .col-xl-7 {
+            min-height: 30vh;
+
+            @include media-breakpoint-up(md) {
+                min-height: 40vh;
+            }
+
+            @include media-breakpoint-up(xl) {
+                min-height: 90vh;
+            }
+        }
+
+        // rsvp form
         .col-xl-5 {
-            min-height: 60vh;
-            display: flex;
-            flex-direction: column;
+            min-height: 70vh;
+            
+            // mobile rounded top
+            border-top-left-radius: 2.5rem;
+            border-top-right-radius: 2.5rem;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+
+            @include media-breakpoint-up(md) {
+                min-height: 60vh;
+            }
+
+            @include media-breakpoint-up(xl) {
+                min-height: 90vh;
+               
+                // desktop rounded left side
+                border-top-left-radius: 2.5rem;
+                border-top-right-radius: 0;
+                border-bottom-left-radius: 2.5rem;
+                border-bottom-right-radius: 0;
+
+            }
         }
     }
 }
 
-// title section
+// rsvp title section
 .rsvp-title {
-    // padding-top: 60px;
-    // background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4)),
-    //             url('../img/cheers_night.jpg');
-    background: linear-gradient(rgba(30, 40, 50, 0.4), rgba(30, 40, 50, 0.4)),
-                url('../img/cheers_night.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: $light;
-    // min-height: 300px;
-    display: flex;
-    align-items: center;
+    // min-height: 25vh;
     justify-content: center;
-    position: relative;
+    background-color: #6f1f27;
 
-    // responsive heights
-    min-height: 45vh;                       //mobile
-    // min-height: 600px;
-
-    @include media-breakpoint-up(xl) {
-        // height: 100vh;
-        min-height: 100vh;
-        // min-height: 650px;
-    }
-
-    // ensure section fills available space
-    flex: 1;
-    width: 100%;
+    // @include media-breakpoint-up(xl) {
+    //     min-height: 100vh;
+    // }
 }
 
-// form section
-.rsvp-form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1rem;
 
-    // let height be flexible based on content
-    min-height: 45vh;
+// // ensure main container and row take full height
+// .rsvp-container {
+//     min-height: 100vh;
 
-    @include media-breakpoint-up(xl) {
-        min-height: 100vh;
-        padding: 3rem 2rem;
-        // min-height: 650px;
-    }
+//     .row {
+//         // @include media-breakpoint-up(xl) {
+//         //     min-height: 100vh;
+//         // }
+//         //make both columns stretch to full height
+//         .col-xl-7,
+//         .col-xl-5 {
+//             min-height: 60vh;
+//             display: flex;
+//             flex-direction: column;
+//         }
+//     }
+// }
 
-    @include media-breakpoint-down(sm) {
-        min-height: auto;
-        padding: 1rem 0.5rem;
-    }
-}
+// // title section
+// .rsvp-title {
+//     // padding-top: 60px;
+//     // background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4)),
+//     //             url('../img/cheers_night.jpg');
+//     background: linear-gradient(rgba(30, 40, 50, 0.4), rgba(30, 40, 50, 0.4)),
+//                 url('../img/cheers_night.jpg');
+//     background-size: cover;
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     color: $light;
+//     // min-height: 300px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     position: relative;
 
-// form container
-.form-container {
-    // background: lighten($light, 0.9%);
-    // background: mix($light, $dark, 90%);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
+//     // responsive heights
+//     min-height: 45vh;                       //mobile
+//     // min-height: 600px;
 
-    // padding so content stays inside
-    padding: 2rem;
-    margin: 1rem; //margin to prevent edge overflow
+//     @include media-breakpoint-up(xl) {
+//         // height: 100vh;
+//         min-height: 100vh;
+//         // min-height: 650px;
+//     }
+
+//     // ensure section fills available space
+//     flex: 1;
+//     width: 100%;
+// }
+
+// // form section
+// .rsvp-form {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     padding: 2rem 1rem;
+
+//     // let height be flexible based on content
+//     min-height: 45vh;
+
+//     @include media-breakpoint-up(xl) {
+//         min-height: 100vh;
+//         padding: 3rem 2rem;
+//         // min-height: 650px;
+//     }
+
+//     @include media-breakpoint-down(sm) {
+//         min-height: auto;
+//         padding: 1rem 0.5rem;
+//     }
+// }
+
+// // form container
+// .form-container {
+//     // background: lighten($light, 0.9%);
+//     // background: mix($light, $dark, 90%);
+//     border-radius: 20px;
+//     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+//     max-width: 800px;
+
+//     // padding so content stays inside
+//     padding: 2rem;
+//     margin: 1rem; //margin to prevent edge overflow
 
 
-    // adjust based on media size
-    @include media-breakpoint-up(md) {
-        max-width: 70vw;
-        padding: 3rem;
-        margin: 2rem;
-        // min-height: 650px;
-    }
+//     // adjust based on media size
+//     @include media-breakpoint-up(md) {
+//         max-width: 70vw;
+//         padding: 3rem;
+//         margin: 2rem;
+//         // min-height: 650px;
+//     }
 
-    @include media-breakpoint-up(xl) {
-        min-width: 35vw;
-        padding: 3rem;
-        margin: 2rem;
-        // min-height: 650px;
-    }
+//     @include media-breakpoint-up(xl) {
+//         min-width: 35vw;
+//         padding: 3rem;
+//         margin: 2rem;
+//         // min-height: 650px;
+//     }
 
-    @include media-breakpoint-down(sm) {
-        padding: 1.5rem;
-        margin: 0.5rem;
-        // min-height: 650px;
-    }
+//     @include media-breakpoint-down(sm) {
+//         padding: 1.5rem;
+//         margin: 0.5rem;
+//         // min-height: 650px;
+//     }
 
 
 
-}
+// }
 
-// form itself
-#rsvpForm {
-    display: flex;
-    flex-direction: column;
-    min-height: 350px;
-    // height: 100%;
+// // form itself
+// #rsvpForm {
+//     display: flex;
+//     flex-direction: column;
+//     min-height: 350px;
+//     // height: 100%;
 
-    .step {
-        // flex: 1; //take up available space
-        display: none;
+//     .step {
+//         // flex: 1; //take up available space
+//         display: none;
 
-        &.active {
-            display: block;
-            // display: flex;
-            // flex-direction: column;
-            // justify-content: center;
-        }
-    }
+//         &.active {
+//             display: block;
+//             // display: flex;
+//             // flex-direction: column;
+//             // justify-content: center;
+//         }
+//     }
 
-    .progress {
-        margin-bottom: 2rem;
-    }
+//     .progress {
+//         margin-bottom: 2rem;
+//     }
 
-    // nav buttons stay at bottom
-    .d-flex.justify-content-between {
-        margin-top: auto;   //push to bottom
-        padding-top: 1rem;
-    }
-}
+//     // nav buttons stay at bottom
+//     .d-flex.justify-content-between {
+//         margin-top: auto;   //push to bottom
+//         padding-top: 1rem;
+//     }
+// }
 
 
 /*-------------------------------------------------- RADIO & CHECKBOX OPTIONS -------------------------------------------------- */

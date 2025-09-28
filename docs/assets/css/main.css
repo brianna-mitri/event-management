@@ -14044,101 +14044,56 @@ textarea.form-control-lg {
 }
 
 /*-------------------------------------------------- MAIN LAYOUT -------------------------------------------------- */
+.rsvp-main {
+  background: #6f1f27;
+}
+
 .rsvp-container {
   min-height: 100vh;
 }
-.rsvp-container .row .col-xl-7,
+@media (min-width: 1200px) {
+  .rsvp-container {
+    min-height: 90vh;
+  }
+}
+.rsvp-container .row .col-xl-7 {
+  min-height: 30vh;
+}
+@media (min-width: 768px) {
+  .rsvp-container .row .col-xl-7 {
+    min-height: 40vh;
+  }
+}
+@media (min-width: 1200px) {
+  .rsvp-container .row .col-xl-7 {
+    min-height: 90vh;
+  }
+}
 .rsvp-container .row .col-xl-5 {
-  min-height: 60vh;
-  display: flex;
-  flex-direction: column;
+  min-height: 70vh;
+  border-top-left-radius: 2.5rem;
+  border-top-right-radius: 2.5rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+@media (min-width: 768px) {
+  .rsvp-container .row .col-xl-5 {
+    min-height: 60vh;
+  }
+}
+@media (min-width: 1200px) {
+  .rsvp-container .row .col-xl-5 {
+    min-height: 90vh;
+    border-top-left-radius: 2.5rem;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 2.5rem;
+    border-bottom-right-radius: 0;
+  }
 }
 
 .rsvp-title {
-  background: linear-gradient(rgba(30, 40, 50, 0.4), rgba(30, 40, 50, 0.4)), url("../img/cheers_night.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: #f5f1e9;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  position: relative;
-  min-height: 45vh;
-  flex: 1;
-  width: 100%;
-}
-@media (min-width: 1200px) {
-  .rsvp-title {
-    min-height: 100vh;
-  }
-}
-
-.rsvp-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem;
-  min-height: 45vh;
-}
-@media (min-width: 1200px) {
-  .rsvp-form {
-    min-height: 100vh;
-    padding: 3rem 2rem;
-  }
-}
-@media (max-width: 575.98px) {
-  .rsvp-form {
-    min-height: auto;
-    padding: 1rem 0.5rem;
-  }
-}
-
-.form-container {
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  padding: 2rem;
-  margin: 1rem;
-}
-@media (min-width: 768px) {
-  .form-container {
-    max-width: 70vw;
-    padding: 3rem;
-    margin: 2rem;
-  }
-}
-@media (min-width: 1200px) {
-  .form-container {
-    min-width: 35vw;
-    padding: 3rem;
-    margin: 2rem;
-  }
-}
-@media (max-width: 575.98px) {
-  .form-container {
-    padding: 1.5rem;
-    margin: 0.5rem;
-  }
-}
-
-#rsvpForm {
-  display: flex;
-  flex-direction: column;
-  min-height: 350px;
-}
-#rsvpForm .step {
-  display: none;
-}
-#rsvpForm .step.active {
-  display: block;
-}
-#rsvpForm .progress {
-  margin-bottom: 2rem;
-}
-#rsvpForm .d-flex.justify-content-between {
-  margin-top: auto;
-  padding-top: 1rem;
+  background-color: #6f1f27;
 }
 
 /*-------------------------------------------------- RADIO & CHECKBOX OPTIONS -------------------------------------------------- */
