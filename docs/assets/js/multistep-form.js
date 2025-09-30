@@ -514,15 +514,38 @@ async function validateCurrentStep() {
         }
     }
 
-    // // validate email input
-    // if (currentStepName === 'name') {
-    //     const emailInput = document.getElementById('userEmail');
-    //     if (emailInput.checkValidity()) {
-    //         console.log("Email is valid according to browser's rules.");
-    //     } else {
-    //         isValid = false;
-    //     }
-    // }
+    // validate email input (uses validator js library)
+    if (currentStepName === 'name') {
+        // get email input
+        const emailInput = document.getElementById('userEmail');
+        const email = emailInput.value.trim().toLowerCase();
+
+        // reject common typo patterns
+        const typoPatterns = [
+            /\.ocm$/i,
+            /\.cmo$/i,
+            /\.con$/i,
+            /\.cm$/i,
+            /\.om$/i,
+            /\.comm$/i,
+            /\.ccom$/i,
+            /\.co$/i,       //single .co without country
+            /\.ne$/i,
+            /\.nte$/i
+        ];
+
+        const validatorOptions = {
+            require_tld: true,
+            domain_specific_validation: true,    //extra gmail/provider validation
+            host_blacklist: typoPatterns         //block typo patterns
+        };
+
+        if (email && !validator.isEmail(email, validatorOptions)) {
+            emailInput.classList.add('is-invalid');
+            isValid = false;
+        }
+
+    }
 
 
     // require at least one checkbox for grp attendance step
