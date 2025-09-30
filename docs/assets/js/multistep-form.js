@@ -628,7 +628,7 @@ function renderGrpChecklist(members = []) {
         }
 
         // update step order--> if "none" checked then notAttendingGrp otherwise attendingGrp
-        currentOrder = (noneBox.checked || !anyMember)
+        currentOrder = noneBox.checked
             ? stepOrder.notAttendingGrp
             : stepOrder.attendingGrp;
 
