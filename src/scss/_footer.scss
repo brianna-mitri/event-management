@@ -35,6 +35,7 @@
 // light theme
 .footer-light {
     @include footer-theme(
-        darken($light, 10%), $main-text
+        rgba($dark, 0.08), $main-text
+        // darken($light, 10%), $main-text
     );
 }

@@ -14020,7 +14020,7 @@ textarea.form-control-lg {
 }
 
 .footer-light {
-  background-color: rgb(229.0625, 218.6875, 197.9375);
+  background-color: rgba(73, 1, 0, 0.08);
 }
 .footer-light .nav-link {
   color: #21201f;
