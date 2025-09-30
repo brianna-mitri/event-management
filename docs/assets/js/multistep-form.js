@@ -344,13 +344,18 @@ function showStep(stepIndex) {
         submitBtn.style.display = 'none';
     }
 
-    // // for success step, hide all navigation
-    // if (stepIndex === currentOrder.length - 1) {
-    //     prevBtn.style.display = 'none';
-    //     nextBtn.style.display = 'none';
-    //     submitBtn.style.display = 'none';
-    //     return;
-    // } 
+    // for attendance step, add user's first name
+    const guestFirstName = guestInfo?.guest?.first_name || 'guest';
+    if (currentStepName === 'attendance') {
+        // const guestFirstName = guestInfo?.guest?.first_name || 'guest';
+        const guestNameEl = document.getElementById('guest-name');
+        guestNameEl.textContent = guestFirstName;
+    }
+    if (currentStepName === 'attendance-grp') {
+        const guestNameGrpEl = document.getElementById('grp-guest-name');
+        guestNameGrpEl.textContent = guestFirstName;
+    }
+
 
     // lifecycle for dietary step
     if (currentStepName === 'dietary-grp') {
