@@ -61,8 +61,13 @@ function verifyGuestName(p) {
   logToSheet('verifyGuestName started', p);
 
   /* ------ 1) verify guest is on guest list-------------------- */
-  // get name inputs (normalize)
-  const norm = s => String(s || '').trim().toLowerCase();
+  // get name inputs (normalize with accent removal)
+  const norm = s => String(s || '')
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
   const firstNameInput = norm(p.firstName);
   const lastNameInput = norm(p.lastName);
 
@@ -73,7 +78,7 @@ function verifyGuestName(p) {
 
   // read only needed guest columns and rows [guest_id, first_name, last_name, party_id]
   const gLastRow = guestSheet.getLastRow();
-  const guestData = guestSheet.getRange(2, 1, gLastRow - 1, 4).getDisplayValues();
+  const guestData = guestSheet.getRange(2, 1, gLastRow - 1, 4).getValues();
 
   // look for matching name (skip header row)
   const idx = guestData.findIndex(row =>

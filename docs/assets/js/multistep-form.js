@@ -344,13 +344,18 @@ function showStep(stepIndex) {
         submitBtn.style.display = 'none';
     }
 
-    // // for success step, hide all navigation
-    // if (stepIndex === currentOrder.length - 1) {
-    //     prevBtn.style.display = 'none';
-    //     nextBtn.style.display = 'none';
-    //     submitBtn.style.display = 'none';
-    //     return;
-    // } 
+    // for attendance step, add user's first name
+    const guestFirstName = guestInfo?.guest?.first_name || 'guest';
+    if (currentStepName === 'attendance') {
+        // const guestFirstName = guestInfo?.guest?.first_name || 'guest';
+        const guestNameEl = document.getElementById('guest-name');
+        guestNameEl.textContent = guestFirstName;
+    }
+    if (currentStepName === 'attendance-grp') {
+        const guestNameGrpEl = document.getElementById('grp-guest-name');
+        guestNameGrpEl.textContent = guestFirstName;
+    }
+
 
     // lifecycle for dietary step
     if (currentStepName === 'dietary-grp') {
@@ -509,15 +514,38 @@ async function validateCurrentStep() {
         }
     }
 
-    // // validate email input
-    // if (currentStepName === 'name') {
-    //     const emailInput = document.getElementById('userEmail');
-    //     if (emailInput.checkValidity()) {
-    //         console.log("Email is valid according to browser's rules.");
-    //     } else {
-    //         isValid = false;
-    //     }
-    // }
+    // validate email input (uses validator js library)
+    if (currentStepName === 'name') {
+        // get email input
+        const emailInput = document.getElementById('userEmail');
+        const email = emailInput.value.trim().toLowerCase();
+
+        // reject common typo patterns
+        const typoPatterns = [
+            /\.ocm$/i,
+            /\.cmo$/i,
+            /\.con$/i,
+            /\.cm$/i,
+            /\.om$/i,
+            /\.comm$/i,
+            /\.ccom$/i,
+            /\.co$/i,       //single .co without country
+            /\.ne$/i,
+            /\.nte$/i
+        ];
+
+        const validatorOptions = {
+            require_tld: true,
+            domain_specific_validation: true,    //extra gmail/provider validation
+            host_blacklist: typoPatterns         //block typo patterns
+        };
+
+        if (email && !validator.isEmail(email, validatorOptions)) {
+            emailInput.classList.add('is-invalid');
+            isValid = false;
+        }
+
+    }
 
 
     // require at least one checkbox for grp attendance step
@@ -623,7 +651,7 @@ function renderGrpChecklist(members = []) {
         }
 
         // update step order--> if "none" checked then notAttendingGrp otherwise attendingGrp
-        currentOrder = (noneBox.checked || !anyMember)
+        currentOrder = noneBox.checked
             ? stepOrder.notAttendingGrp
             : stepOrder.attendingGrp;
 
@@ -1004,7 +1032,7 @@ document.getElementById('rsvpForm').addEventListener('submit', async function (e
 
     // disable submit btn to prevent double submission and show loading
     const submitBtn = document.getElementById('submitBtn');
-    showButtonSpinner(submitBtn, 'Submitting...');
+    showButtonSpinner(submitBtn, 'Sending...');
 
 
     try {
