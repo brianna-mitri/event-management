@@ -13707,7 +13707,7 @@ textarea.form-control-lg {
 .navbar-theme-dark .navbar-brand:hover, .navbar-theme-dark .navbar-brand:focus,
 .navbar-theme-dark .navbar-nav .nav-link:hover,
 .navbar-theme-dark .navbar-nav .nav-link:focus {
-  color: #defaca;
+  color: #8a0707;
 }
 .navbar-theme-dark .navbar-toggler {
   border: none;
@@ -13736,20 +13736,20 @@ textarea.form-control-lg {
     padding: 0.75rem 1.5rem;
   }
   .navbar-theme-dark .navbar-nav .nav-link:hover, .navbar-theme-dark .navbar-nav .nav-link:focus {
-    background-color: rgba(222, 250, 202, 0.3);
-    color: #defaca;
+    background-color: rgba(138, 7, 7, 0.3);
+    color: #8a0707;
   }
   .navbar-theme-dark .navbar-nav .nav-link:active {
-    background-color: rgba(222, 250, 202, 0.6);
-    color: #defaca;
+    background-color: rgba(138, 7, 7, 0.6);
+    color: #8a0707;
   }
 }
 .navbar-theme-dark .btn {
-  background-color: #8a0707;
-  color: #f5f1e9;
+  background-color: #f5f1e9;
+  color: #490100;
 }
 .navbar-theme-dark .btn:hover {
-  background-color: rgb(89.4620689655, 4.5379310345, 4.5379310345);
+  background-color: rgb(229.0625, 218.6875, 197.9375);
 }
 
 /* --------------------------- Typography --------------------------- */
@@ -13860,9 +13860,9 @@ textarea.form-control-lg {
   background-image: linear-gradient(rgba(30, 40, 50, 0.5), rgba(30, 40, 50, 0.2)), url("../img/table_florals.jpg");
 }
 
-.hero-rsvp {
+.hero-details {
   background-image: url("../img/swiper_venue.jpg");
-  height: 45vh;
+  height: 40vh;
   min-height: 500px;
 }
 

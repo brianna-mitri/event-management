@@ -178,8 +178,8 @@
 
 .navbar-theme-dark {
     @include navbar-theme(
-        $dark, $light, $success,
-        $info, $light
+        $dark, $light, $info,
+        $light, $dark
     );
 }
 
