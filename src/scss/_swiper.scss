@@ -51,13 +51,13 @@
         margin-left: auto;
     }
 
-    &.active,
-    &:active {
-        background-color: $primary;
-        border-width: 2px;
-        border-color: $info;
-        font-weight: 1.2rem;
-    }
+    // &.active,
+    // &:active {
+    //     background-color: $primary;
+    //     // border-width: 2px;
+    //     border-color: $dark;
+    //     // font-weight: 1.2rem;
+    // }
 }
 
 // navigation buttons

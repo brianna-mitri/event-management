@@ -14103,9 +14103,8 @@ textarea.form-control-lg {
 /*---------------------------- ACTIVE STATES ---------------------------*/
 .btn.btn-swiper:active {
   background-color: rgba(73, 1, 0, 0.08);
-  border-width: 2px;
-  border-color: #8a0707;
-  font-weight: 1.2rem;
+  border-color: #490100;
+  transform: scale(0.98);
 }
 
 /* Countdown: Typography & Borders */
@@ -14200,12 +14199,6 @@ textarea.form-control-lg {
 .btn-swiper::after {
   content: " →";
   margin-left: auto;
-}
-.btn-swiper.active, .btn-swiper:active {
-  background-color: #7e896b;
-  border-width: 2px;
-  border-color: #8a0707;
-  font-weight: 1.2rem;
 }
 
 .swiper-button-prev,
