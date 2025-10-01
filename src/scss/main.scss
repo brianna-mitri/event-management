@@ -38,7 +38,7 @@
 @import "../../node_modules/bootstrap/scss/spinners";
 @import "../../node_modules/bootstrap/scss/list-group";
 // @import "../../node_modules/bootstrap/scss/offcanvas";
-// @import "../../node_modules/bootstrap/scss/carousel";
+@import "../../node_modules/bootstrap/scss/carousel";
 
 // 7. helpers
 @import "../../node_modules/bootstrap/scss/helpers";
@@ -56,3 +56,4 @@
 @import "swiper";
 @import "footer";
 @import "multistep-form";
+@import "carousel-details";

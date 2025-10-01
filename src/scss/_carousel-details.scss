@@ -1,0 +1,55 @@
+// make images same size in carousel
+#carousel-dresscode-autoplay .carousel-item {
+    height: 400px;
+}
+
+#carousel-dresscode-autoplay .carousel-item img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+// add border around carousel
+#carousel-dresscode-autoplay {
+    // border line
+    border: 3px solid $light;
+
+    // rounded
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+
+// // navigation buttons styling
+// .carousel-control-prev,
+// .carousel-control-next {
+//     width: 44px;
+//     height: 44px;
+//     background: $info;
+//     border-radius: 50%;
+//     opacity: 1;
+
+//     // center buttnos and vertically position
+//     top: 50%;
+//     transform: translateY(-50%);
+
+//     // border 
+//     // border-radius: 50%;
+//     // border: 2px solid $light;
+
+//     // style arrow
+//     // &:after {
+//     //     font-size: 16px;
+//     //     color: $light;
+//     //     font-weight: bold;
+//     //     line-height: 44px;
+//     // }
+// }
+
+// .carousel-control-prev-icon,
+// .carousel-control-next-icon {
+//     width: 25px;
+//     height: 25px;
+//     background-size: 25px 25px;
+//     font-weight: bold;
+// }
