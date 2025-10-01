@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RSVP Page</title>
+
+    <!-- CSS-->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /> -->
+    <link href="./assets/css/main.min.css?v=1" rel="stylesheet">
+  </head>
+  <body>
+
+
+
+    <!------------------------------------------- Navbar ------------------------------------------->
+
+    <nav class="navbar navbar-expand-sm navbar-theme-transparent fixed-top navbar-spacing">
+      <div class="container-fluid">
+
+        <!-- Hamburger/Logo Name (left) -->
+        <div class="d-flex align-items-center gap-1">
+
+            <!-- Hamburger -->
+            <button class="navbar-toggler me-1" type="button" 
+                    data-bs-toggle="collapse" data-bs-target="#navbarMenu" 
+                    aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Logo Name -->
+            <a class="navbar-brand me-0 d-md-none" href="index.html">MM &#8226; DD &#8226; YY</a>
+            <a class="navbar-brand me-0 d-none d-md-block" href="index.html">MM &#8226; DD &#8226; YYYY</a>
+
+        </div>
+
+        <!-- CTA (always visible on right side)-->
+        <a class="btn btn ms-sm-3 order-sm-3" href="#cta">Get Updates</a>
+        
+        <!-- Menu -->
+        <div class="collapse navbar-collapse order-sm-2" 
+            id="navbarMenu">
+
+          
+          <!-- <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="navbarMenuLabel">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div> -->
+
+          <!-- Other pages -->
+          <!-- <div class="offcanvas-body"> -->
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="rsvp.html">RSVP</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="details.html">Details</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="faq.html">Registry</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+            </ul>
+            
+            <!-- CTA -->
+            <!-- <div class="mt-3 d-sm-none">
+                <a class="btn btn ms-sm-3" href="#cta">Get Updates</a>
+            </div> -->
+            
+
+          <!-- </div> -->
+        </div>
+
+        <!-- CTA (always visible on right side)-->
+        <!-- <a class="btn btn ms-sm-3" href="#cta">Get Updates</a> -->
+
+
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!----------------------------- TITLE AREA ----------------------------------------->
+        <section class="title hero hero-details hero-mask">
+            <div class="hero-mask mask-gradient"></div>
+            <div class="container">
+                <h1 class="display-1 fw-semibold">Details</h1>
+                <h4 class="display-6 fw-normal">MonthName DD, YYYY</h4>
+            </div>
+        </section>
+
+
+        <section class="location-details section-spacing">
+            <div class="container-fluid text-center">
+
+                <!-- <div class="row">
+                    <div class="col-12">
+                        <h2 class="display-4 fw-semibold mb-md-4">The Location</h2>
+                    </div>
+                </div> -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <img src="assets/img/venue_graphic.png" class="img-fluid rounded-4" style="max-height: 300px; width: 100%; max-width: 600px; object-fit: cover;">
+                    </div>
+                </div>
+                <div class="row">
+                    <!--Text -->
+                    <div class="col-12 col-sm-6 order-1 order-sm-1 mb-4">
+                        <h5 class="display-6 fw-semibold mb-md-4">Venue 1 at 2:00 pm</h5>
+                        <hr class="my-3 w-25 order-2 mx-auto border-dark opacity-50">
+                        <h5 class="fw-semibold pb-2">Venue Name Here</h5>
+                        <p class="lead-text fw-normal">1234 Addressline,</p>
+                        <p class="lead-text fw-normal">CityName, CA 12345</p>
+                    </div>
+                    <hr class="d-sm-none my-3 w-75 order-2 mx-auto border-dark pb-4 opacity-75 border-2">
+                    <div class="col-12 col-sm-6 order-3 order-sm-3">
+                        <h5 class="display-6 fw-semibold mb-md-4">Venue 2 at 4:00 pm</h5>
+                        <hr class="my-3 w-25 order-2 mx-auto border-dark opacity-50">
+                        <h5 class="fw-semibold pb-2">Venue 2 Name Here</h5>
+                        <p class="lead-text fw-normal">1234 Addressline,</p>
+                        <p class="lead-text fw-normal">CityName, CA 12345</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-dark banner-spacing-no-margins footer-spacing">
+      <div class="container text-center">
+        <ul class="nav justify-content-center lead-text fw-semibold">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="rsvp.html">RSVP</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="details.html">Details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faq.html">Registry</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+        <p class="fw-light">© 2025 Company, Inc</p>
+      </div>
+      
+    </footer>
+
+    <!---------- SCRIPTS ---------->
+    <!--Bootstrap JS Bundle (w/ Popper)-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    
+    <!-- Validator JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.15.15/validator.min.js"></script>
+    <!--Swiper JS-->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
+
+    <!--Personal scripts-->
+    <script src="./assets/js/navbar.js"></script>
+    <script src="./assets/js/multistep-form.js"></script>
+    <!-- <script src="./assets/js/countdown.js"></script>
+    <script src="./assets/js/swiping.js"></script>
+    <script src="./assets/js/parallax.js"></script> -->
+  </body>
+</html>
