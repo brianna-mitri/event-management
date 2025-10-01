@@ -14100,6 +14100,14 @@ textarea.form-control-lg {
   }
 }
 
+/*---------------------------- ACTIVE STATES ---------------------------*/
+.btn.btn-swiper:active {
+  background-color: rgba(73, 1, 0, 0.08);
+  border-width: 2px;
+  border-color: #8a0707;
+  font-weight: 1.2rem;
+}
+
 /* Countdown: Typography & Borders */
 .timebox .time-unit {
   border: 1px solid rgba(245, 241, 233, 0.15);
@@ -14187,10 +14195,17 @@ textarea.form-control-lg {
   color: #21201f;
   font-weight: 300px;
   width: 100%;
+  background-color: transparent;
 }
 .btn-swiper::after {
   content: " →";
   margin-left: auto;
+}
+.btn-swiper.active, .btn-swiper:active {
+  background-color: #7e896b;
+  border-width: 2px;
+  border-color: #8a0707;
+  font-weight: 1.2rem;
 }
 
 .swiper-button-prev,

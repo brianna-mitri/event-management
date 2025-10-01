@@ -23,3 +23,17 @@
         font-size: 1.25rem;
     }
 }
+
+
+/*---------------------------- ACTIVE STATES ---------------------------*/
+$light-active-color: rgba($dark, 0.08);
+
+// swiper buttons
+.btn.btn-swiper:active {
+    background-color: $light-active-color;
+    // background-color: $primary;
+    border-width: 2px;
+    border-color: $info;
+    font-weight: 1.2rem;
+    // transform: scale(0.98);
+}
